@@ -410,6 +410,9 @@ check_conformity<-function(aem){
 #'  \item{\code{random_starts: }}
 #' {Numer of random starts for the EM-algorithm.}
 #' }
+#' @note This is an experimental version of an improved version of the iota
+#' concept. Function and results may change in the future. We plan to implement
+#' the final version at the beginng of 2023.
 #' @export
 compute_iota2<-function(data,
                         random_starts=3,

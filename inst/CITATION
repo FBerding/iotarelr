@@ -2,7 +2,12 @@ citHeader("To cite iotarelr in publications use:")
 
 citEntry(entry="Article",
 title="Performance and Configuration of Artificial Intelligence in Business Education Learning Analytics Applications. A Content Analysis-Based Approach",
-author=personList(as.person("Florian Berding")),
+author=personList(as.person("Florian Berding"),
+  as.person("Elisabeth Riebenbauer"),
+  as.person("Simone Stuetz"),
+  as.person("Heike Jahncke"),
+  as.person("Andreas Slopinski"),
+  as.person("Karin Rebmann")),
 journal="SocArXiv Papers",
 year="2022",
 volume="",
@@ -11,5 +16,5 @@ pages="",
 url="https://osf.io/preprints/socarxiv/trvcy/",
 doi="10.31235/osf.io/trvcy",
 
-textVersion="Berding, F., Riebenbauer, E., Stütz, S., Jahncke, H., Slopinski, A., & Rebmann, K. (2022, March 23). Performance and Configuration of Artificial Intelligence in Business Education Learning Analytics Applications. A Content Analysis-Based Approach. https://doi.org/10.31235/osf.io/trvcy"
+textVersion="Berding, Florian, Elisabeth Riebenbauer, Simone Stütz, Heike Jahncke, Andreas Slopinski, and Karin Rebmann. 2022. “Performance and Configuration of Artificial Intelligence in Business Education Learning Analytics Applications. A Content Analysis-based Approach.” SocArXiv. March 23. https://doi.org/10.31235/osf.io/trvcy"
 )

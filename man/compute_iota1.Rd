@@ -31,3 +31,10 @@ the whole scale.}
 \description{
 Computes all elements of the Iota Reliability Concept
 }
+\references{
+Berding, F., Riebenbauer, E., Stuetz, S., Jahncke, H.,
+Slopinski, A., & Rebmann, K. (2022, March 23). Performance and Configuration
+of Artificial Intelligence in Business Education Learning Analytics
+Applications. A Content Analysis-Based Approach.
+https://doi.org/10.31235/osf.io/trvcy
+}
