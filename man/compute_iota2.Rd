@@ -6,9 +6,11 @@
 \usage{
 compute_iota2(
   data,
-  random_starts = 3,
+  random_starts = 10,
   max_iterations = 5000,
   cr_rel_change = 1e-12,
+  step_size = 1e-04,
+  b_min = 0.01,
   trace = TRUE
 )
 }
@@ -25,6 +27,14 @@ the EM-algorithm.}
 
 \item{cr_rel_change}{Positive numeric value for defining the convergence of the
 EM-algorithm.}
+
+\item{step_size}{\code{Double} for specifying the size for increasing or
+decreasing the probabilities during the condition stage of estimation.
+This value should not be less than 1e-3.}
+
+\item{b_min}{Value ranging between 0 and 1 determining the minimal size of
+the categories for checking if boundary values occured. The algorithm tries
+to select solution that are not considered to be boundary values.}
 
 \item{trace}{Boolean. \code{TRUE} if information on the estimation progress
 should be printed to the console.}

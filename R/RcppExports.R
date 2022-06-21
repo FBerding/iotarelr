@@ -51,7 +51,75 @@ fct_log_likelihood_c <- function(categorial_sizes, aem, obs_pattern_shape, obs_p
     .Call('_iotarelr_fct_log_likelihood_c', PACKAGE = 'iotarelr', categorial_sizes, aem, obs_pattern_shape, obs_pattern_frq, categorical_levels)
 }
 
-#'Parameter estimation via EM-Algorithm
+#' Estimating log-likelihood in Condition Stage
+#'
+#' Function written in \code{C++} estimating the log-likelihood of a given
+#' parameter set during the condition stage.
+#'
+#' @param probabilities \code{NumericVector} containing the probabilities of
+#' a multinominal distribution.
+#' @param observations \code{NumericVector} containing the number of
+#' observations for each category of the multinominal distribution.
+#' @return Returns the log-likelihood as a single numeric value.
+log_likelihood_multi_c <- function(probabilities, observations) {
+    .Call('_iotarelr_log_likelihood_multi_c', PACKAGE = 'iotarelr', probabilities, observations)
+}
+
+#' Gradient for Log-Likelihood in Condition Stage
+#'
+#' Function written in \code{C++} estimating the gradient of the log-likelihood
+#' function for a given parameter set and given observations.
+#'
+#' @param param_values \code{NumericVector} containing the probabilities of
+#' a multinominal distribution. The length of this factor is the number of
+#' categories - 1.
+#' @param observations \code{NumericVector} containing the number of
+#' observations for each category of the multinominal distribution. The length
+#' of this vector equals the number of categories.
+#' @return Returns the gradient as a \code{NumericVector}.
+grad_ll <- function(param_values, observations) {
+    .Call('_iotarelr_grad_ll', PACKAGE = 'iotarelr', param_values, observations)
+}
+
+#' Estimating log-likelihood in Condition Stage
+#'
+#' Function written in \code{C++} estimating the log-likelihood of a given
+#' parameter set during the condition stage.
+#'
+#' @param observations \code{NumericVector} containing the frequency of the
+#' categories.
+#' @param anchor \code{Integer} ranging between 1 and the number of categories.
+#' Anchor defines the reference category that is the category with the highest
+#' probability according to the assumption of weak superiority.
+#' @param max_iter \code{Integer} specifying the maximal number of iterations
+#' for each random start.
+#' @param n_random_starts \code{Integer} for the number of random start.
+#' @param step_size \code{Double} for specifying the size for increasing or
+#' decreasing the probabilities during the estimation. This value should not
+#' be less than 1e-3.
+#' @param cr_rel_change \code{Double} for defining when the estimation should
+#' stop. That is if the change in log-likelihood is smaller as this value the
+#' estimation stops.
+#' @param trace \code{Bool} \code{TRUE} if information about the progress of
+#' estimation should be printed to the console. \code{FALSE} if not desired.
+#' @return Returns the log-likelihood as a single numeric value.
+est_con_multinominal_c <- function(observations, anchor, max_iter = 500000L, step_size = 1e-4, cr_rel_change = 1e-12, n_random_starts = 10L, trace = FALSE) {
+    .Call('_iotarelr_est_con_multinominal_c', PACKAGE = 'iotarelr', observations, anchor, max_iter, step_size, cr_rel_change, n_random_starts, trace)
+}
+
+#'Check assumptions of weak superiority
+#'
+#'This function tests if the probabilities within the AEM-matrix are in line with
+#'the assumption of weak superiority.
+#'
+#'@param aem matrix of probabilities
+#'@return Returns the number of violations of the assumption of weak superiority.
+#'0 if the assumptions are fulfilled.
+check_conformity_c <- function(aem) {
+    .Call('_iotarelr_check_conformity_c', PACKAGE = 'iotarelr', aem)
+}
+
+#'Parameter estimation via EM-Algorithm with Condition Stage
 #'
 #'Function written in \code{C++} for estimating the parameters of the model
 #'via Expectation-Maximization(EM)-algorithm.
@@ -66,6 +134,9 @@ fct_log_likelihood_c <- function(categorial_sizes, aem, obs_pattern_shape, obs_p
 #' the function \code{\link{get_patterns}}.
 #' @param categorical_levels \code{Vector} containing all possible categories of
 #' the content analysis.
+#' @param step_size \code{Double} for specifying the size for increasing or
+#' decreasing the probabilities during the condition stage of estimation.
+#' This value should not be less than 1e-3.
 #'@param random_starts Integer for determining how often the algorithm should
 #'restart with randomly chosen values for the aem matrix and the categorical
 #'sizes.
@@ -75,6 +146,7 @@ fct_log_likelihood_c <- function(categorial_sizes, aem, obs_pattern_shape, obs_p
 #'algorithm stops if the relative change is smaller than this criterion.
 #'@param trace \code{TRUE} for printing progress information on the console.
 #'\code{FALSE} if this information should not be printed.
+#'
 #'@return Function returns a \code{List} with the estimated parameter sets for
 #'every random start. Every parameter set contains the following components:
 #'\item{log_likelihood}{Log-likelihood of the estimated solution.}
@@ -88,7 +160,7 @@ fct_log_likelihood_c <- function(categorial_sizes, aem, obs_pattern_shape, obs_p
 #'\code{TRUE}. \code{FALSE} in every other case.}
 #'\item{iteration}{Number of iterations when the algorithm was terminated.}
 #'@export
-EM_algo_c <- function(obs_pattern_shape, obs_pattern_frq, obs_internal_count, categorical_levels, random_starts, max_iterations, rel_convergence, trace) {
-    .Call('_iotarelr_EM_algo_c', PACKAGE = 'iotarelr', obs_pattern_shape, obs_pattern_frq, obs_internal_count, categorical_levels, random_starts, max_iterations, rel_convergence, trace)
+EM_algo_c <- function(obs_pattern_shape, obs_pattern_frq, obs_internal_count, categorical_levels, step_size, random_starts, max_iterations, rel_convergence, trace) {
+    .Call('_iotarelr_EM_algo_c', PACKAGE = 'iotarelr', obs_pattern_shape, obs_pattern_frq, obs_internal_count, categorical_levels, step_size, random_starts, max_iterations, rel_convergence, trace)
 }
 

@@ -2,13 +2,14 @@
 % Please edit documentation in R/RcppExports.R
 \name{EM_algo_c}
 \alias{EM_algo_c}
-\title{Parameter estimation via EM-Algorithm}
+\title{Parameter estimation via EM-Algorithm with Condition Stage}
 \usage{
 EM_algo_c(
   obs_pattern_shape,
   obs_pattern_frq,
   obs_internal_count,
   categorical_levels,
+  step_size,
   random_starts,
   max_iterations,
   rel_convergence,
@@ -30,6 +31,10 @@ the function \code{\link{get_patterns}}.}
 
 \item{categorical_levels}{\code{Vector} containing all possible categories of
 the content analysis.}
+
+\item{step_size}{\code{Double} for specifying the size for increasing or
+decreasing the probabilities during the condition stage of estimation.
+This value should not be less than 1e-3.}
 
 \item{random_starts}{Integer for determining how often the algorithm should
 restart with randomly chosen values for the aem matrix and the categorical
