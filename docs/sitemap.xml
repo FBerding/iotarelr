@@ -4,10 +4,28 @@
     <loc>/404.html</loc>
   </url>
   <url>
+    <loc>/articles/cons_and_values.html</loc>
+  </url>
+  <url>
+    <loc>/articles/dgf.html</loc>
+  </url>
+  <url>
+    <loc>/articles/error_correction.html</loc>
+  </url>
+  <url>
     <loc>/articles/index.html</loc>
   </url>
   <url>
+    <loc>/articles/iotarelr.html</loc>
+  </url>
+  <url>
     <loc>/articles/my-vignette.html</loc>
+  </url>
+  <url>
+    <loc>/articles/new_rater.html</loc>
+  </url>
+  <url>
+    <loc>/articles/vig_Iota_1.html</loc>
   </url>
   <url>
     <loc>/authors.html</loc>
@@ -16,7 +34,22 @@
     <loc>/index.html</loc>
   </url>
   <url>
+    <loc>/news/index.html</loc>
+  </url>
+  <url>
     <loc>/reference/check_conformity.html</loc>
+  </url>
+  <url>
+    <loc>/reference/check_conformity_c.html</loc>
+  </url>
+  <url>
+    <loc>/reference/check_dgf.html</loc>
+  </url>
+  <url>
+    <loc>/reference/check_dif.html</loc>
+  </url>
+  <url>
+    <loc>/reference/check_new_rater.html</loc>
   </url>
   <url>
     <loc>/reference/compute_iota1.html</loc>
@@ -28,13 +61,25 @@
     <loc>/reference/EM_algo_c.html</loc>
   </url>
   <url>
+    <loc>/reference/est_con_multinominal_c.html</loc>
+  </url>
+  <url>
+    <loc>/reference/est_expected_categories.html</loc>
+  </url>
+  <url>
     <loc>/reference/fct_log_likelihood_c.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_consequences.html</loc>
   </url>
   <url>
     <loc>/reference/get_derivates_rank.html</loc>
   </url>
   <url>
     <loc>/reference/get_derivates_rank_unorderd.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_iota2_measures.html</loc>
   </url>
   <url>
     <loc>/reference/get_patterns.html</loc>
@@ -49,9 +94,30 @@
     <loc>/reference/get_random_start_values_p.html</loc>
   </url>
   <url>
+    <loc>/reference/get_summary.html</loc>
+  </url>
+  <url>
+    <loc>/reference/grad_ll.html</loc>
+  </url>
+  <url>
     <loc>/reference/index.html</loc>
   </url>
   <url>
+    <loc>/reference/iotarelr_new_rater.html</loc>
+  </url>
+  <url>
+    <loc>/reference/iotarelr_written_exams.html</loc>
+  </url>
+  <url>
+    <loc>/reference/log_likelihood_multi_c.html</loc>
+  </url>
+  <url>
+    <loc>/reference/plot_iota.html</loc>
+  </url>
+  <url>
     <loc>/reference/sort_estimates.html</loc>
+  </url>
+  <url>
+    <loc>/reference/writtenexams.html</loc>
   </url>
 </urlset>

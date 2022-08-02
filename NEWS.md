@@ -1,3 +1,4 @@
-# iotarelr 0.1.1.9006
+# 29 March 2022
+* Releasing iotarelr 0.1.1
+* Providing Iota Concept of generation one
 
-* Added a `NEWS.md` file to track changes to the package.

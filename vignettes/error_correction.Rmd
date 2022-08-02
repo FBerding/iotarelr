@@ -1,0 +1,104 @@
+---
+title: "4) Error Correction"
+author: "Florian Berding and Julia Pargmann"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{error_correction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+# 1 Introduction
+Literature of content analysis presents the estimation of reliability often as
+a part of the development phase of a coding scheme. That is, reliability is
+estimated and evaluated in order to inform a revision. If the reliability is 
+considered to be sufficient the main study starts. Often, the reliability of the codings
+of this main study is not further controlled assuming that the reliability estimates
+of the development phase hold for the complete main study. Sometimes researchers
+communicate about their findings and assign a category to a coding unit by 
+agreeing on the relevant category.
+
+With the *Iota Concept* the reliability of a coding scheme can be taken 
+into account more explicitly during the main study. It provides the opportunity 
+for error corrections which is not possible with traditional measures 
+such as *Percentage Agreement* or *Krippendorff's Alpha*.  
+
+The error correction of the *Iota Concept* is based on two ideas First, an
+*Assignment Error Matrix* produces patterns of ratings for every coding unit.
+These patterns give hints which true category may be the source for this 
+kind of observation. This require at least two raters. Second, involving additional
+raters provide more information on a coding unit which can improve the assignments.
+This idea is similar to the application of multiple items in questionnaires or tests 
+where each item can be considered as a test for the phenomena of interest. Additional
+test are used for reducing errors.
+
+In this vignette we would like to continue our example with the exams from 
+the first [vignette](iotarelr.html) and we want to shows you how the error 
+correction can be applied.
+
+# 2 Using the Error Correction of the Iota Concept
+Applying the error correction of the *Iota Concept* requires that all coding units
+of the core study are rated by at least two raters. The error correction can
+be requested with the function `est_expected_categories()`. This function 
+calculates the probability that a coding unit belongs to a specific true
+category under the condition of the observed pattern. To illustrate the error 
+correction a look into the data set is helpful.
+
+```{r}
+library(iotarelr)
+head(iotarelr_written_exams)
+```
+The first 6 rows of the data set show that the three raters do not agree on all
+coding units. While the raters agree on the first two exams they disagree partly
+on the exams number 3 to 6. In particular, two raters consider exam 3 to be average
+while one rater consider this exams to be good. Thus, there seems to be some
+kind of errors and it is not clear which category should be assigned to exam 3.
+
+To solve this problem we must first estimate the *Assignment Error Matrix*. In 
+the next step we pass the estimated *Assignment Error Matrix* to the function
+`est_expected_categories()` and use the data ratings as data source. The results
+are saved in the object expected_categoris.
+
+```{r}
+res_iota2<-compute_iota2(data=iotarelr_written_exams[c("Coder A","Coder B","Coder C")],
+                         random_starts = 2,
+                         trace = FALSE)
+expected_categoris<-est_expected_categories(data=iotarelr_written_exams[c("Coder A","Coder B","Coder C")],
+                        aem=res_iota2$categorical_level$raw_estimates$assignment_error_matrix)
+head(expected_categoris)
+
+```
+The resulting object contains the ratings and additional columns. The columns
+contain the probability that a coding unit belongs to a specific true category.
+For the first two rows the probability that these exams are truly poor exams is about
+94.5 %. The chance that these exams represent truly good exams is about 5.5 % and
+that they are truly average exams is nearly 0 %.
+
+For exam number 3 and 4 the probability to be an average exam is about 48.2 %, to
+be a good exam is about 36.4 % and to be a poor exam is about 15.2 %. Thus, it is
+most plausible to assign exams number 3 and 4 to the category "average". The
+most plausible category is always presented in the last column. 
+
+If the ratings were done by only one rater these kind of errors would not become
+visible. For example, if the exams were rated only by rater B exams 3 and 4 were
+assigned as good exams although it is more plausible to assign them to the category
+"average". 
+
+# 3 Conclusions
+Estimating the most likely true category has several advantages:
+
+- It allows multiple testing of coding units by more than two raters. 
+- The additional information can be used to calculate the certainty of an
+assignment.
+- The most likely true category is assigned to a coding unit.
+- Errors made by only one raters can be avoided.
+- Researchers do not need to discuss every coding unit which is
+expensive for large sample sizes.
+

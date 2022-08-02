@@ -14,6 +14,6 @@ Returns the number of violations of the assumption of weak superiority.
 0 if the assumptions are fulfilled.
 }
 \description{
-This function tests if the probabilities within the AEM-matrix are in line with
-the assumption of weak superiority.
+This function tests if the probabilities within the Assignment Error Matrix
+are in line with the assumption of weak superiority.
 }

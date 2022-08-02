@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{est_con_multinominal_c}
 \alias{est_con_multinominal_c}
-\title{Estimating log-likelihood in Condition Stage}
+\title{Estimating log likelihood in Condition Stage}
 \usage{
 est_con_multinominal_c(
   observations,
@@ -19,7 +19,7 @@ est_con_multinominal_c(
 categories.}
 
 \item{anchor}{\code{Integer} ranging between 1 and the number of categories.
-Anchor defines the reference category that is the category with the highest
+Anchor defines the reference category. That is the category with the highest
 probability according to the assumption of weak superiority.}
 
 \item{max_iter}{\code{Integer} specifying the maximal number of iterations
@@ -30,7 +30,7 @@ decreasing the probabilities during the estimation. This value should not
 be less than 1e-3.}
 
 \item{cr_rel_change}{\code{Double} for defining when the estimation should
-stop. That is if the change in log-likelihood is smaller as this value the
+stop. That is, if the change in log-likelihood is smaller as this value the
 estimation stops.}
 
 \item{n_random_starts}{\code{Integer} for the number of random start.}
@@ -39,9 +39,9 @@ estimation stops.}
 estimation should be printed to the console. \code{FALSE} if not desired.}
 }
 \value{
-Returns the log-likelihood as a single numeric value.
+Returns the log likelihood as a single numeric value.
 }
 \description{
-Function written in \code{C++} estimating the log-likelihood of a given
+Function written in \code{C++} estimating the log likelihood of a given
 parameter set during the condition stage.
 }

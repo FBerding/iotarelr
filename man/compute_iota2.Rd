@@ -9,38 +9,56 @@ compute_iota2(
   random_starts = 10,
   max_iterations = 5000,
   cr_rel_change = 1e-12,
-  step_size = 1e-04,
+  con_step_size = 1e-04,
+  con_rel_convergence = 1e-12,
+  con_max_iterations = 5000,
+  con_random_starts = 5,
   b_min = 0.01,
-  trace = TRUE
+  trace = TRUE,
+  con_trace = FALSE
 )
 }
 \arguments{
 \item{data}{Data for which the elements should be estimated. Data must be
-an object of type data.frame or matrix with cases in the rows and
+an object of type \code{data.frame} or \code{matrix} with cases in the rows and
 raters in the columns.}
 
 \item{random_starts}{An integer for the number of random starts for the
-EM-algorithm.}
+EM algorithm.}
 
 \item{max_iterations}{An integer for the maximum number of iterations within
-the EM-algorithm.}
+the EM algorithm.}
 
 \item{cr_rel_change}{Positive numeric value for defining the convergence of the
-EM-algorithm.}
+EM algorithm.}
 
-\item{step_size}{\code{Double} for specifying the size for increasing or
+\item{con_step_size}{\code{Double} for specifying the size for increasing or
 decreasing the probabilities during the condition stage of estimation.
 This value should not be less than 1e-3.}
 
-\item{b_min}{Value ranging between 0 and 1 determining the minimal size of
-the categories for checking if boundary values occured. The algorithm tries
-to select solution that are not considered to be boundary values.}
+\item{con_rel_convergence}{\code{Double} for determining the convergence
+criterion during condition stage. The algorithm stops if the relative change
+is smaller than this criterion.}
 
-\item{trace}{Boolean. \code{TRUE} if information on the estimation progress
-should be printed to the console.}
+\item{con_max_iterations}{\code{Integer} for the maximum number of iterations
+during the condition stage.}
+
+\item{con_random_starts}{\code{Integer} for the number of random starts
+within the condition stage.}
+
+\item{b_min}{Value ranging between 0 and 1 determining the minimal size of
+the categories for checking if boundary values occurred. The algorithm tries
+to select solutions that are not considered to be boundary values.}
+
+\item{trace}{\code{TRUE} for printing progress information on the console.
+\code{FALSE} if this information should not be printed.}
+
+\item{con_trace}{\code{TRUE} for printing progress information on the console
+during estimations in the condition stage. \code{FALSE} if this information
+should not be printed.}
 }
 \value{
-Returns a \code{List} with the following three components:
+Returns a \code{list} with the following three components:
 The first component \code{estimates_categorical_level} comprises all
 elements that describe the ratings on a categorical level. The elements are
 sub-divided into raw estimates and chance-corrected estimates.
@@ -51,8 +69,10 @@ sub-divided into raw estimates and chance-corrected estimates.
 Reliabilities for each category. These values represent probabilities.}
 \item{\code{beta_reliability: }}{A vector containing the Beta Reliabilities for each
 category. These values represent probabilities.}
-\item{\code{assignment_error_matrix: }}{AEM-matrix containing the conditional
+\item{\code{assignment_error_matrix: }}{Assignment Error Matrix containing the conditional
 probabilities for assigning a unit of category i to categories 1 to n.}
+#' \item{\code{iota: }}
+{A vector containing the Iota values for each category.}
 }}
 \item{\code{elements_chance_corrected}}{
 \itemize{
@@ -60,71 +80,49 @@ probabilities for assigning a unit of category i to categories 1 to n.}
 {A vector containing the chance corrected Alpha Reliabilities for each category.}
 \item{\code{beta_reliability: }}
 {A vector containing the chance corrected Beta Reliabilities for each category.}
-\item{\code{iota: }}
-{A vector containing the Iota values for each category.}
 }}
 }
 The second component \code{estimates_scale_level} contains elements for
 describing the quality of the ratings on a scale level. It comprises the
 following elements:
 \itemize{
-\item{\code{avg_iota: }}
-{Numeric value representing the mean of the Iota values.}
-\item{\code{min_Iota: }}
-{Numeric value representing the minimum of the Iota values.}
-\item{\code{total_iota: }}
-{Numeric value representing the weighted mean of the Iota values. Class sizes
-are used for weighting.}
-\item{\code{aem_index: }}
-{Numeric value representing the deviation of the AEM from a matrix describing
-random assignments.}
-\item{\code{aem_index_weighted: }}
-{Numeric value representing the deviation of the AEM from a matrix describing
-random assignments. Categorical sizes are used for weighting. Nominal scale
-level is assumed.}
-\item{\code{aem_index_weighted_ord: }}
-{Numeric value representing the deviation of the AEM from a matrix describing
-random assignments. Categorical sizes are used for weighting. Ordinal scale
-level is assumed.}
+\item{\code{iota_index: }}
+{Iota Index representing the reliability on a scale level.}
+\item{\code{iota_index_d4: }}
+{Static Iota Index which is a transformation of the original Iota Index
+in order to consider the uncertainty of estimation.}
+\item{\code{iota_index_dyn2: }}
+{Dynamic Iota Index which is a transformation of the original Iota Index
+in order to consider the uncertainty of estimation.}
 }
 The third component \code{information} contains important information
 regarding the parameter estimation. It comprises the following elements:
- \itemize{
+\itemize{
 \item{\code{log_likelihood: }}
-{Log-likelihood of the used solution.}
-\item{\code{Convergence: }}
+{Log likelihood of the best solution.}
+\item{\code{convergence: }}
 {If estimation converged 0 else 1.}
-\item{\code{categorical_sizes: }}
-{Estimates categorical sizes. This is the estimated amount of the categories.}
+\item{\code{p_class_sizes: }}
+{Estimated categorical sizes. This is the estimated amount of the categories.}
 \item{\code{conformity: }}
 {\code{0} if the solution is in line with assumptions of weak superiority.
  A number greater 0 indicates the number of violations of the assumption
- of weak superiority.}.
-\item{\code{n_condition: }}
-{\code{TRUE} if the number of observed patterns equals or ist greater than
-the degrees of freedom. \code{FALSE} if not}.
-\item{\code{s_condition: }}
-{\code{TRUE} if the rank of the derivates equals the degrees of freedoms.
- \code{FALSE} if not.}
-\item{\code{deviation: }}
-{Measure for describing the distance between the different solutions. 0
-indicates that all solutions generated for the different start values
-are the same.}
-\item{\code{n_pattern: }}
-{Numer of observed patterns.}
-\item{\code{n_pattern_unordered: }}
-{Numer of observed patterns if the order of codings are not considered.}
- \item{\code{n_parameter: }}
-{Numer independently estimates parameters.}
+ of weak superiority.}
  \item{\code{random_starts: }}
-{Numer of random starts for the EM-algorithm.}
+{Numer of random starts for the EM algorithm.}
+\item{\code{boundaries: }}
+{\code{False} if the best solution does not contain boundary values.
+\code{True} if the best solution does contain boundary values}
+\item{\code{p_boundaries: }}
+{Percentage of solutions with boundary values during estimation.}
+\item{\code{call: }}
+{Name of the function that created the object.}
+\item{\code{n_rater: }}
+{Number of raters.}
+\item{\code{n_cunits: }}
+{Number of coding units.}
 }
 }
 \description{
-Computes all elements of the Iota Reliability Concept
-}
-\note{
-This is an experimental version of an improved version of the iota
-concept. Function and results may change in the future. We plan to implement
-the final version at the beginng of 2023.
+Fits a model of Iota2 to the data
 }

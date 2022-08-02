@@ -2,6 +2,11 @@ pandoc: 2.14.0.3
 pkgdown: 2.0.2
 pkgdown_sha: ~
 articles:
-  my-vignette: my-vignette.html
-last_built: 2022-03-29T07:03Z
+  cons_and_values: cons_and_values.html
+  dgf: dgf.html
+  error_correction: error_correction.html
+  iotarelr: iotarelr.html
+  new_rater: new_rater.html
+  vig_Iota_1: vig_Iota_1.html
+last_built: 2022-08-02T14:18Z
 

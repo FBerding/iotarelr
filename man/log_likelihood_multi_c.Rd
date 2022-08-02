@@ -8,15 +8,16 @@ log_likelihood_multi_c(probabilities, observations)
 }
 \arguments{
 \item{probabilities}{\code{NumericVector} containing the probabilities of
-a multinominal distribution.}
+a multinominal distribution. In the context of Iota Reliability this refers
+to a specific row of the Assignment Error Matrix.}
 
 \item{observations}{\code{NumericVector} containing the number of
 observations for each category of the multinominal distribution.}
 }
 \value{
-Returns the log-likelihood as a single numeric value.
+Returns the log likelihood as a single numeric value.
 }
 \description{
-Function written in \code{C++} estimating the log-likelihood of a given
+Function written in \code{C++} estimating the log likelihood of a given
 parameter set during the condition stage.
 }

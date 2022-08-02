@@ -8,16 +8,16 @@ compute_iota1(data)
 }
 \arguments{
 \item{data}{Data for which the elements should be estimated. Data must be
-an object of type data.frame or matrix with  cases in the rows and
+an object of type \code{data.frame} or \code{matrix} with  cases in the rows and
 raters in the columns.}
 }
 \value{
 A list with the following components
-\item{alpha}{A vector containing the chance-corrected alpha reliabilities for
+\item{alpha}{A vector containing the chance-corrected Alpha Reliabilities for
 every category.}
-\item{beta}{A vector containing the chance-corrected beta reliabilities for
+\item{beta}{A vector containing the chance-corrected Beta Reliabilities for
 every category.}
-\item{iota}{A vector containing the iota values for every category.}
+\item{iota}{A vector containing the Iota values for every category.}
 \item{assignment_error_matrix}{A matrix with the conditional probabilities
 for every category. The rows refer to the true categories and the columns
 refer to the assigned categories. The elements on the diagonal represent the
@@ -25,7 +25,7 @@ alpha errors of that category. The other elements in each row represent the
 conditioned probabilities that a coding unit is wrongly assigned to another
 category.}
 \item{average_iota}{A numeric value ranging between 0 and 1 representing the
-average iota values on a categorical level. It describes the reliability of
+Average Iota values on a categorical level. It describes the reliability of
 the whole scale.}
 }
 \description{

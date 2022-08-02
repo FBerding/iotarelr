@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{get_random_start_values_p}
 \alias{get_random_start_values_p}
-\title{Generating randomly chosen probabilities for aem-matrix}
+\title{Generating randomly chosen probabilities for Assignment Error Matrix}
 \usage{
 get_random_start_values_p(n_categories)
 }
@@ -11,11 +11,11 @@ get_random_start_values_p(n_categories)
 at least 2.}
 }
 \value{
-Returns a matrix for the assignment errors (AEM) with randomly
+Returns a matrix for Assignment Error Matrix (AEM) with randomly
 generated probabilities. The generated probabilities are in line with
 the assumption of weak superiority.
 }
 \description{
 Function written in \code{C++} for generating a set of randomly chosen
-probabilities for the aem-Matrix.
+probabilities for the Assignment Error Matrix.
 }

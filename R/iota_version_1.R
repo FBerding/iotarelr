@@ -3,14 +3,14 @@
 #' Computes all elements of the Iota Reliability Concept
 #'
 #' @param data Data for which the elements should be estimated. Data must be
-#' an object of type data.frame or matrix with  cases in the rows and
+#' an object of type \code{data.frame} or \code{matrix} with  cases in the rows and
 #' raters in the columns.
 #' @return A list with the following components
-#' \item{alpha}{A vector containing the chance-corrected alpha reliabilities for
+#' \item{alpha}{A vector containing the chance-corrected Alpha Reliabilities for
 #' every category.}
-#' \item{beta}{A vector containing the chance-corrected beta reliabilities for
+#' \item{beta}{A vector containing the chance-corrected Beta Reliabilities for
 #' every category.}
-#' \item{iota}{A vector containing the iota values for every category.}
+#' \item{iota}{A vector containing the Iota values for every category.}
 #' \item{assignment_error_matrix}{A matrix with the conditional probabilities
 #' for every category. The rows refer to the true categories and the columns
 #' refer to the assigned categories. The elements on the diagonal represent the
@@ -18,7 +18,7 @@
 #' conditioned probabilities that a coding unit is wrongly assigned to another
 #' category.}
 #' \item{average_iota}{A numeric value ranging between 0 and 1 representing the
-#' average iota values on a categorical level. It describes the reliability of
+#' Average Iota values on a categorical level. It describes the reliability of
 #' the whole scale.}
 #' @references Berding, F., Riebenbauer, E., Stuetz, S., Jahncke, H.,
 #' Slopinski, A., & Rebmann, K. (2022, March 23). Performance and Configuration
@@ -28,7 +28,6 @@
 #' @export
 
 compute_iota1<-function(data){
-
   data<-as.data.frame(data)
   categorical_levels<-names(table(data[1]))
   for(i in 2:ncol(data)){
@@ -169,6 +168,8 @@ compute_iota1<-function(data){
   results["iota"]<-list(reliability)
   results["assignment_error_matrix"]<-list(assignment_error_matrix)
   results["average_iota"]<-mean(reliability)
+
+  class(results)<-"iotarelr_iota1"
 
   return(results)
 }

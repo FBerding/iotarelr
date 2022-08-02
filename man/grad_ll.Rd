@@ -2,14 +2,14 @@
 % Please edit documentation in R/RcppExports.R
 \name{grad_ll}
 \alias{grad_ll}
-\title{Gradient for Log-Likelihood in Condition Stage}
+\title{Gradient for Log Likelihood in Condition Stage}
 \usage{
 grad_ll(param_values, observations)
 }
 \arguments{
 \item{param_values}{\code{NumericVector} containing the probabilities of
 a multinominal distribution. The length of this factor is the number of
-categories - 1.}
+categories - 1 since it contains only the parameters to be estimated.}
 
 \item{observations}{\code{NumericVector} containing the number of
 observations for each category of the multinominal distribution. The length
@@ -19,6 +19,6 @@ of this vector equals the number of categories.}
 Returns the gradient as a \code{NumericVector}.
 }
 \description{
-Function written in \code{C++} estimating the gradient of the log-likelihood
+Function written in \code{C++} estimating the gradient of the log likelihood
 function for a given parameter set and given observations.
 }
