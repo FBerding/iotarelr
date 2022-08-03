@@ -37,28 +37,28 @@ the students are about their abilities to successfully pass the exam. Let's furt
 assume that the degree of confidence vary between "low", "medium" and "high".
 
 In analogy to studies investigating the relationship between achievement and
-self-efficacy we assume that participants with better exams have a higher 
-confidence in their abilities. The following Figure illustrates this relationship.
+self-concept (Huang 2011; Möller et al. 2020) we assume that participants with better exams have a higher 
+confidence in their abilities. Figure 1 illustrates this relationship.
 
-![introduction](con_andvalues_intro.png){width=100%}
+![Figure 1: Assumed Relationship between Performance and Ability Self Concept](con_and_values_intro.png){width=100%}
 
 To prove this relationship we use the data of the exams and the rated interviews.
 If we can draw the right conclusion from the data depends on the reliability of
 the generated data, the sample size and the sample method. This can be explored 
 in more detail with the function `get_consequences()`
 
-# 2 Using get_consequences()
+# 2 Using *get_consequences()*
 
 The function `get_consequences()` provides information about the impact of reliability
 on significance testing and drawing conclusions. It takes at least
-four arguments. With `measure_typ` you must decide which measure of reliability 
+four arguments. With `measure_typ` you can decide which measure of reliability 
 on the scale level you would like to use. Currently we recommend to use 
 `measure_typ = "dynamic_iota_index"` because in our analysis this measure showed the
 highest value for *R²* in predicting different kinds of data quality.
 
 With `measure_1_val` you can set the reliability of the independent variable. In our
-example this is the performance a participant showed in his exam. Here the value for
-*Dynamic Iota Index* is about .267. With 
+example this is the performance a participant shows in his exam. Here the value for
+*Dynamic Iota Index* is about .267 (see [Get started](iotarelr.html). With 
 `measure_2_val` you can set the reliability of the depended variable. If this
 value is not set explicitly the analysis assumes the same reliability as for the
 independent variable. In our example the dependent variable refers to the data
@@ -80,8 +80,8 @@ their relevance for real world applications. Thus,"no" does not mean a value for
 relationship, but values above 0.5. Cohen's (1988) work does not explicitly deal
 with *Kendall's Tau* but with Persons Correlation. For *Cramer's V* the situation
 is more complicated as the class of the effect size depends on the number of categories.
-But this is considered in the function. In our example with assume a medium
-relationship between achievement and confidence.
+But this is considered in the function. In our example we assume a medium
+relationship between performance and confidence.
 
 The argument `sample_size` refers to the sample size of a planed 
 or realized study. In our example three raters judged the written exams of 318
@@ -89,7 +89,7 @@ participants and analysed their corresponding interviews.
 
 Finally `level` refers to the certainty level of the calculated prediction intervals. 
 A prediction interval characterizes the probability that the true value is 
-within a specific range around the prediction (Afifi 2020, p. 119). In the 
+within a specific range around the prediction (Afifi et al. 2020, p. 119). In the 
 current example we choose 95 %.
 
 ```{r calculation}
@@ -110,8 +110,8 @@ estimated sample effect size and the true sample effect size. Since we are using
 ordinal data the effect size is  *Kendall's Tau*. The mean value implies that we
 expect that *Kendall's Tau* differs from an error free assessment about .260 units.
 This is quite high if we use Cohen's (1988) classification for Pearson Correlation. 
-Here the meaning of a correlation chances every .20 units. The value for lower and
-upper mean that which a certainty of 95 % the estimated value for *Kendall's Tau*
+Here the meaning of a correlation changes every .20 units. The value for lower and
+upper mean that with a certainty of 95 % the estimated value for *Kendall's Tau*
 differs from an error free estimation between .107 and .413 units.
 
 The column "practically no effect" reports the probability that the effect size does
@@ -139,7 +139,7 @@ the probability to correctly classify the effect size is at least 90 %. In both
 cases the probability is zero.
 
 **Type I errors:** The last row refers to the risk of Type I errors. Type I errors
-this context mean that the significant test implies the acceptance of the null
+in this context mean that the significant test implies the acceptance of the null
 hypothesis while an error free measurement would imply the rejection of the null hypothesis.
 In other words: The results of the significant test implies that there is no relationship although
 an error free measurement would imply the acceptance of a relationship.
@@ -169,10 +169,17 @@ Second, the analysis assumes that both independent and depend variables have
 the same number of categories. Thus, please use the results as an orientation.
 
 # References
-- Afifi, A. (2020). Practical Multivariate Analysis (6th ed.). Chapman and Hall/
+- Afifi, A., May, S., Donatello, R. A. & Clark, V. A. (2020). Practical Multivariate Analysis (6th ed.). Chapman and Hall/
 CRC Texts in Statistical Science Ser. CRC Press LLC. 
+- Huang, C. (2011). Self-concept and academic achievement: a meta-analysis of 
+longitudinal relations. Journal of school psychology, 49(5), 505–528. 
+https://doi.org/10.1016/j.jsp.2011.07.001
 - Cohen, J. (1988). Statistical Power Analysis for the Behavioral Sciences 
-(2nd Ed.). Taylor & Francis. 
+(2nd Ed.). Taylor & Francis.
+- Möller, J., Zitzmann, S., Helm, F., Machts, N. & Wolff, F. (2020). 
+A Meta-Analysis of Relations Between Achievement and Self-Concept. 
+Review of Educational Research, 90(3), 376–419. 
+https://doi.org/10.3102/0034654320919354
 
 
 

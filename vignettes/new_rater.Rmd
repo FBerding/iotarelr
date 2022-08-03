@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 Most scientific studies include the development of a new coding scheme for their
 study which is typically the focus of introducing literature of content analysis 
 (Krippendorff, 2019; Kuckartz, 2018; Mayring, 2015; Schreier, 2012). In these cases, 
-the reliability can be estimated and analyzed as in the first [vignette](iotarelr.html). 
+the reliability can be estimated and analyzed as described in the first [vignette](iotarelr.html). 
 In contrast, less recommendations refer to the application of existing coding schemes 
 which are available from published studies or other sources. In these cases, it is 
 not necessary to develop a new scheme but to apply an existing coding scheme to new 
@@ -62,9 +62,9 @@ are compared with the existing assignments of the material.
 Based on this data the *Assignment Error Matrix* for the new rater can be calculated.
 
 To illustrate this process we continue the example from the first [vignette](iotarelr.html).
-First, we simulate an "old" study by calculation Iota2 for the example. Second,
+First, we simulate an "old" study by calculating Iota2 for the example. Second,
 we calculate the most likely true category for each coding unit. These assignments
-serves us as "true" categories. In practice, this steps has not do be performed in every
+serves us as "true" categories. In practice, these steps have not to be performed in every
 case. If an old source provides the final assignments of coding units these values
 can be used as "true" values. 
 ```{r setup}
@@ -72,18 +72,20 @@ library(iotarelr)
 res_iota2<-compute_iota2(data=iotarelr_written_exams[c("Coder A","Coder B","Coder C")],
                          random_starts = 2,
                          trace = FALSE)
-expected_categoris<-est_expected_categories(data=iotarelr_written_exams[c("Coder A","Coder B","Coder C")],
-                        aem=res_iota2$categorical_level$raw_estimates$assignment_error_matrix)
+expected_categoris<-est_expected_categories(
+  data=iotarelr_written_exams[c("Coder A","Coder B","Coder C")],
+  aem=res_iota2$categorical_level$raw_estimates$assignment_error_matrix)
 true_values<-expected_categoris$expected_category
 ```
 Third, a new rater has to rate the same material as in the old source. That is, 
 the new rater has to rate the same exams with the same coding scheme. His results
-are saved in the vector iotarelr_new_rater. Now, we can request the reliability
+are saved in the vector `iotarelr_new_rater`. Now, we can request the reliability
 estimate for this rater by requesting the function `check_new_rater()`.
 ```{r}
-res_new_rater<-check_new_rater(true_values = expected_categoris$expected_category,
-                assigned_values = iotarelr_new_rater,
-                categorical_levels = c("average","good","poor"))
+res_new_rater<-check_new_rater(
+  true_values = expected_categoris$expected_category,
+  assigned_values = iotarelr_new_rater,
+  categorical_levels = c("average","good","poor"))
 ```
 It is very important to pass the categorical levels to the function since
 it cannot be ensured that a new rater uses all categories of a coding scheme. The
@@ -100,28 +102,38 @@ note that the interpretation of these values is now slightly different from the
 development phase. Here the high values indicate that the new rater has a high chance
 to assign the same categories to a coding unit as in the old study.
 
-This is also documented in the value for *Iota* which range between .6735 for
+This is also documented in the values for *Iota* which range between .6735 for
 average exams to .8334 for the poor exams. The *Dynamic Iota Index* is quite high
 with .716. Finally, we can plot the results for the new rater.
-```{r}
+```{r, fig.height = 3, fig.width = 7.2, fig.align = "center"}
 plot_iota(res_new_rater)
+
 ```
-The plot of Iota for the new rater emphasizes that he is able to recover a hugh
+The plot of *Iota* for the new rater emphasizes that he is able to recover a hugh
 number of true categories for all kind of exams. Only in the case of average exams
-some coding units belonging to that category are not part of the corresponding data.
+some coding units belonging to that category are not part of the labeled data.
 Here, nearly the same number of forgotten average exams is compensated by coding units
-from other categories. Thus, in average the number of coding units in the data for
-the average exams equals their true number but on the individual level there are some errors.
+from other categories. Thus, in average the number of coding units in the labeled data for
+the average exams equals their true number but on the individual level there are errors.
 
 # 3 Conclusion
-The function `check_new_rater`provides detailed insights in how a new rater
+The function `check_new_rater()`provides detailed insights in how a new rater
 has acquired the understanding from an existing coding scheme. This information
-can be used to to individually guide the training process of new raters since 
-the *Assignment Error Matrix* and *Iota* provide hints where error occurs and
+can be used to individually guide the training process of new raters since 
+the *Assignment Error Matrix* and *Iota Reliability* provide hints where errors occur and
 where everything is fine. This can increase the quality of codings, saves costs
 and time making the replication and comparison of studies using content analysis
 more easy. 
 
+# References
+- Früh, W. (2017). Inhaltsanalyse: Theorie und Praxis (9., überarbeitete Auflage). UTB.
+- Krippendorff, K. (2019). Content Analysis: An Introduction to Its Methodology 
+(4th Ed.). SAGE. 
+- Kuckartz, U. (2018). Qualitative Inhaltsanalyse: Methoden, Praxis, 
+Computerunterstützung (4. Auflage). Grundlagentexte Methoden. Beltz.
+- Mayring, P. (2015). Qualitative Inhaltsanalyse: Grundlagen und Techniken 
+(12., überarbeitete Auflage). Beltz.
+- Schreier, M. (2012). Qualitative Content Analysis in Practice. SAGE. 
 
 
 

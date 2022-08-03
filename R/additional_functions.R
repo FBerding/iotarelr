@@ -122,7 +122,9 @@ plot_iota<-function(object,
     ggplot2::geom_text(ggplot2::aes(x=(.data$position_l+.data$position_r)*0.5,y=.data$category,label = round(.data$amount,digits=3)),
               size = 6, hjust = 0.5, vjust = 0, check_overlap=TRUE)+
     ggplot2::theme_classic()+
-    ggplot2::theme(legend.position="bottom",legend.key.size = ggplot2::unit(0.2, "cm"))
+    ggplot2::theme(legend.position="bottom",
+                   legend.justification = "left",
+                   legend.key.size = ggplot2::unit(0.2, "cm"))
 
   return(image_plot)
 }
@@ -336,7 +338,7 @@ check_new_rater<-function(true_values,
 #'to select solution that are not considered to be boundary values.
 #'@return Returns an object of class \code{iotarelr_iota2_dif}. For each group
 #'the results of the estimation are saved separately. The structure within each
-#'group is similar to the results from \code{\link{compute_iota2()}}. Please check
+#'group is similar to the results from \code{compute_iota2()}. Please check
 #'that documentation.
 #'@export
 

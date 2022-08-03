@@ -2,8 +2,15 @@ Package: iotarelr
 Type: Package
 Title: Iota Inter Coder Reliability for Content Analysis
 Version: 0.1.2
-Authors@R: person("Berding", "Florian",
-    email="florian.berding@uni-hamburg.de", role=c("aut","cre"))
+Authors@R: 
+  c(
+  person("Berding", "Florian",
+    email="florian.berding@uni-hamburg.de", 
+    role=c("aut","cre")),
+  person("Pargmann","Julia",
+    email="julia.pargmann@uni-hamburg.de", 
+    role=c("ctb"))
+  )
 Description: 
     iotarelr provides routines and tools for assessing the quality
     of content analysis on the basis of the Iota Reliability Concept. The concept

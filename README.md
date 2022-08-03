@@ -70,8 +70,14 @@ Concept*.
     category i to category i.
 -   ***Beta Reliability:*** Probability to assign a coding unit of
     category j to category i.
--   ***Iota:*** Value ranging between 0 and 1 reflecting how well the
-    generated data of category i really reflects category i.
+-   ***Iota Reliability:***
+    -   ***Iota:*** Value ranging between 0 and 1 reflecting how well
+        the generated data of category i really reflects category i.
+    -   ***Iota Error I:*** Value describing the extent how many coding
+        units are missing in the data for category i.
+    -   ***Iota Error II:*** Value describing the extent how many coding
+        units from *other* categories are part of the data for
+        category i.
 
 **On the scale level:**
 
