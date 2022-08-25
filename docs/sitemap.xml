@@ -19,9 +19,6 @@
     <loc>/articles/iotarelr.html</loc>
   </url>
   <url>
-    <loc>/articles/my-vignette.html</loc>
-  </url>
-  <url>
     <loc>/articles/new_rater.html</loc>
   </url>
   <url>
@@ -37,16 +34,10 @@
     <loc>/news/index.html</loc>
   </url>
   <url>
-    <loc>/reference/check_conformity.html</loc>
-  </url>
-  <url>
     <loc>/reference/check_conformity_c.html</loc>
   </url>
   <url>
     <loc>/reference/check_dgf.html</loc>
-  </url>
-  <url>
-    <loc>/reference/check_dif.html</loc>
   </url>
   <url>
     <loc>/reference/check_new_rater.html</loc>
@@ -73,19 +64,10 @@
     <loc>/reference/get_consequences.html</loc>
   </url>
   <url>
-    <loc>/reference/get_derivates_rank.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_derivates_rank_unorderd.html</loc>
-  </url>
-  <url>
     <loc>/reference/get_iota2_measures.html</loc>
   </url>
   <url>
     <loc>/reference/get_patterns.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_patterns_unordered.html</loc>
   </url>
   <url>
     <loc>/reference/get_random_start_values_class_sizes.html</loc>
@@ -113,11 +95,5 @@
   </url>
   <url>
     <loc>/reference/plot_iota.html</loc>
-  </url>
-  <url>
-    <loc>/reference/sort_estimates.html</loc>
-  </url>
-  <url>
-    <loc>/reference/writtenexams.html</loc>
   </url>
 </urlset>

@@ -16,66 +16,66 @@ knitr::opts_chunk$set(
 )
 ```
 # 1 Introduction
-Most scientific studies include the development of a new coding scheme for their
-study which is typically the focus of introducing literature of content analysis 
+Many scientific studies include the development of a new coding scheme for their
+study which is typically the focus of introductory literature of content analysis 
 (Krippendorff, 2019; Kuckartz, 2018; Mayring, 2015; Schreier, 2012). In these cases, 
 the reliability can be estimated and analyzed as described in the first [vignette](iotarelr.html). 
-In contrast, less recommendations refer to the application of existing coding schemes 
+In contrast to the literature for new coding schemes, less recommendations refer to the application of existing coding schemes 
 which are available from published studies or other sources. In these cases, it is 
-not necessary to develop a new scheme but to apply an existing coding scheme to new 
-data often along with new raters. The application of an existing coding scheme to 
+not necessary to develop a new scheme, but rather to apply an existing one to new 
+data, often along with new raters. The application of an existing coding scheme to 
 new data has several reasons. 
 
-- First, studies using the same coding scheme can be directly compared contributing 
+- First, studies using the same coding scheme can be directly compared, contributing 
 to knowledge accumulation in a specific topic or discipline. 
 - Second, applying an existing coding schemes provides the opportunity to prove 
-results of prior studies by trying to reproduce them. 
-- Third, using an existing scheme saves resources since ideally the improvement 
-cycle for developing is not necessary. This saves capacities which are available 
-for other important aspects (greater sample sizes, refining specific categories, 
+the results of prior studies by trying to reproduce them. 
+- Third, using an existing scheme saves resources, since ideally, the improvement 
+cycle for developing is not necessary. This saves capacities which then become available 
+for other important study characteristics (greater sample sizes, refining specific categories, 
 considering more categories etc.).
 
-Estimating the reliability of codings based on an existing coding scheme is different 
-from estimating the reliability in developing a coding scheme. The phase of developing 
+Estimating the reliability of codings based on an existing coding scheme differs 
+from estimating the reliability in the development a coding scheme. The phase of developing 
 a coding scheme aims to provide a theoretically and empirically sound guide for 
-analyzing data. This includes that researchers and raters become clear of their 
-interpretation of categories and data. They have to develop the same understanding 
-of the categories based on theoretical theories and empirical evidences. 
-Ideally the final coding scheme is precise enough to document this shared 
+data analysis. This includes that researchers and raters clear up their own
+interpretation of categories and data and develop the same understanding 
+of the categories based on theory and empircal evidence. 
+Ideally, the final coding scheme is precise enough to document this shared 
 understanding and to guide users to the same interpretation of data and the same 
 assignments of data to categories. 
 
 In contrast, the phase of applying an existing coding scheme by new raters does 
 not aim to incorporate the interpretation of data and categories of the new raters. 
 The aim is to train new raters to achieve the understanding of data and categories 
-documented in the scheme. The existing coding scheme represents a discussed and validated 
-understanding which new raters have to acquire in order to apply the coding scheme 
+documented in the scheme. The existing coding scheme represents an already discussed and validated 
+understanding, which new raters have to acquire in order to apply the coding scheme 
 in the same way as in its development study or any other preliminary study.
-As a consequence, reliability estimation has to considers the existence of a predefined understanding. 
+As a consequence, reliability estimation has to consider the existence of a predefined understanding. 
 
 # 2 Estimating the quality of ratings for a new rater
-Within the frame work of *Iota Concept* this is realized with the function 
+Within the frame work of the *Iota Concept*, this is realized with the function 
 `check_new_rater()`. In order to estimate how well a new rater has developed the 
-understanding documented in a coding scheme data and material from existing sources 
+understanding documented in a coding scheme, data and material from existing sources 
 must be used. The new rater assigns the material to categories and the assignments 
-are compared with the existing assignments of the material. 
-Based on this data the *Assignment Error Matrix* for the new rater can be calculated.
+are compared to the existing assignments of the material. 
+Based on this data, the *Assignment Error Matrix* for the new rater can be calculated.
 
-To illustrate this process we continue the example from the first [vignette](iotarelr.html).
+To illustrate this process, we continue the example from the first [vignette](iotarelr.html).
 First, we simulate an "old" study by calculating Iota2 for the example. Second,
 we calculate the most likely true category for each coding unit. These assignments
-serves us as "true" categories. In practice, these steps have not to be performed in every
-case. If an old source provides the final assignments of coding units these values
+serve us as "true" categories. In practice, these steps do not have to be performed in every
+case. If an old source provides the final assignments of coding units, these values
 can be used as "true" values. 
 ```{r setup}
 library(iotarelr)
 res_iota2<-compute_iota2(data=iotarelr_written_exams[c("Coder A","Coder B","Coder C")],
                          random_starts = 2,
                          trace = FALSE)
-expected_categoris<-est_expected_categories(
+expected_categories<-est_expected_categories(
   data=iotarelr_written_exams[c("Coder A","Coder B","Coder C")],
   aem=res_iota2$categorical_level$raw_estimates$assignment_error_matrix)
-true_values<-expected_categoris$expected_category
+true_values<-expected_categories$expected_category
 ```
 Third, a new rater has to rate the same material as in the old source. That is, 
 the new rater has to rate the same exams with the same coding scheme. His results
@@ -83,46 +83,46 @@ are saved in the vector `iotarelr_new_rater`. Now, we can request the reliabilit
 estimate for this rater by requesting the function `check_new_rater()`.
 ```{r}
 res_new_rater<-check_new_rater(
-  true_values = expected_categoris$expected_category,
+  true_values = true_values,
   assigned_values = iotarelr_new_rater,
   categorical_levels = c("average","good","poor"))
 ```
 It is very important to pass the categorical levels to the function since
 it cannot be ensured that a new rater uses all categories of a coding scheme. The
-resulting object is of class `iotarelr_iota2`. Thus, we can use the function
+resulting object is of the class `iotarelr_iota2`. Thus, we can use the function
 `get_summary()` to look into the results.
 ```{r}
 get_summary(res_new_rater)
 ```
-Focusing on the *Assignment Error Matrix* the values on the diagonal are very high.
-This lead to high vales for the *Alpha Reliability* which is about 78.73 % for
-average exams, about 85.90 % for good exams and about 93.24 for poor exams. Thus,
+Focusing on the *Assignment Error Matrix*, the values on the diagonal are very high.
+This leads to high vales for the *Alpha Reliability*, which is about 78.73% for
+average exams, about 85.90% for good exams and about 93.24% for poor exams. Thus,
 the chance is very high for this new rater to assign the correct categories. Please
 note that the interpretation of these values is now slightly different from the 
-development phase. Here the high values indicate that the new rater has a high chance
+development phase. Here, the high values indicate that the new rater has a high chance
 to assign the same categories to a coding unit as in the old study.
 
 This is also documented in the values for *Iota* which range between .6735 for
 average exams to .8334 for the poor exams. The *Dynamic Iota Index* is quite high
 with .716. Finally, we can plot the results for the new rater.
-```{r, fig.height = 3, fig.width = 7.2, fig.align = "center"}
+```{r, fig.height = 3, fig.width = 7.2, fig.align = "center", fig.cap="Figure 1: Plot of Iota for a New Rater"}
 plot_iota(res_new_rater)
 
 ```
-The plot of *Iota* for the new rater emphasizes that he is able to recover a hugh
-number of true categories for all kind of exams. Only in the case of average exams
+The plot of *Iota* for the new rater emphasizes that he is able to recover a large
+number of true categories for all kinds of exams. Only in the case of average exams,
 some coding units belonging to that category are not part of the labeled data.
 Here, nearly the same number of forgotten average exams is compensated by coding units
-from other categories. Thus, in average the number of coding units in the labeled data for
-the average exams equals their true number but on the individual level there are errors.
+from other categories. Thus, on average, the number of coding units in the labeled data for
+the average exams equals their true number, but on the individual level there are errors.
 
 # 3 Conclusion
-The function `check_new_rater()`provides detailed insights in how a new rater
-has acquired the understanding from an existing coding scheme. This information
-can be used to individually guide the training process of new raters since 
+The function `check_new_rater()` provides detailed insights into how a new rater
+has acquired their understanding of an existing coding scheme. This information
+can be used to individually guide the training process of new raters, since 
 the *Assignment Error Matrix* and *Iota Reliability* provide hints where errors occur and
-where everything is fine. This can increase the quality of codings, saves costs
-and time making the replication and comparison of studies using content analysis
+where everything is fine. This can increase the quality of codings and saves both costs
+and time, making the replication and comparison of studies using content analysis
 more easy. 
 
 # References

@@ -70,21 +70,21 @@ get_patterns<-function(data,categorical_levels){
 #' @param cr_rel_change Positive numeric value for defining the convergence of the
 #' EM algorithm.
 #' @param con_step_size \code{Double} for specifying the size for increasing or
-#' decreasing the probabilities during the condition stage of estimation.
+#' decreasing the probabilities during the conditioning stage of estimation.
 #' This value should not be less than 1e-3.
 #' @param con_random_starts \code{Integer} for the number of random starts
-#' within the condition stage.
+#' within the conditioning stage.
 #' @param con_max_iterations \code{Integer} for the maximum number of iterations
-#' during the condition stage.
+#' during the conditioning stage.
 #' @param con_rel_convergence \code{Double} for determining the convergence
-#' criterion during condition stage. The algorithm stops if the relative change
+#' criterion during the conditioning stage. The algorithm stops if the relative change
 #' is smaller than this criterion.
 #'@param trace \code{TRUE} for printing progress information on the console.
-#'\code{FALSE} if this information should not be printed.
+#'\code{FALSE} if this information is not to be printed.
 #'@param con_trace \code{TRUE} for printing progress information on the console
-#'during estimations in the condition stage. \code{FALSE} if this information
-#'should not be printed.
-#' @param b_min Value ranging between 0 and 1 determining the minimal size of
+#'during estimations in the conditioning stage. \code{FALSE} if this information
+#'is not to be printed.
+#' @param b_min Value ranging between 0 and 1, determining the minimal size of
 #' the categories for checking if boundary values occurred. The algorithm tries
 #' to select solutions that are not considered to be boundary values.
 #' @return Returns a \code{list} with the following three components:
@@ -106,9 +106,9 @@ get_patterns<-function(data,categorical_levels){
 #' \item{\code{elements_chance_corrected}}{
 #' \itemize{
 #' \item{\code{alpha_reliability: }}
-#' {A vector containing the chance corrected Alpha Reliabilities for each category.}
+#' {A vector containing the chance-corrected Alpha Reliabilities for each category.}
 #' \item{\code{beta_reliability: }}
-#' {A vector containing the chance corrected Beta Reliabilities for each category.}
+#' {A vector containing the chance-corrected Beta Reliabilities for each category.}
 #' }}
 #' }
 #' The second component \code{estimates_scale_level} contains elements for
@@ -116,21 +116,21 @@ get_patterns<-function(data,categorical_levels){
 #' following elements:
 #' \itemize{
 #' \item{\code{iota_index: }}
-#' {Iota Index representing the reliability on a scale level.}
+#' {The Iota Index, representing the reliability on a scale level.}
 #' \item{\code{iota_index_d4: }}
-#' {Static Iota Index which is a transformation of the original Iota Index
+#' {The Static Iota Index, which is a transformation of the original Iota Index,
 #' in order to consider the uncertainty of estimation.}
 #' \item{\code{iota_index_dyn2: }}
-#' {Dynamic Iota Index which is a transformation of the original Iota Index
+#' {The Dynamic Iota Index, which is a transformation of the original Iota Index,
 #' in order to consider the uncertainty of estimation.}
 #' }
 #' The third component \code{information} contains important information
 #' regarding the parameter estimation. It comprises the following elements:
 #'\itemize{
 #' \item{\code{log_likelihood: }}
-#' {Log likelihood of the best solution.}
+#' {Log-likelihood of the best solution.}
 #' \item{\code{convergence: }}
-#' {If estimation converged 0 else 1.}
+#' {If estimation converged 0, otherwise 1.}
 #' \item{\code{p_class_sizes: }}
 #' {Estimated categorical sizes. This is the estimated amount of the categories.}
 #' \item{\code{conformity: }}
@@ -143,7 +143,7 @@ get_patterns<-function(data,categorical_levels){
 #' {\code{False} if the best solution does not contain boundary values.
 #' \code{True} if the best solution does contain boundary values}
 #' \item{\code{p_boundaries: }}
-#' {Percentage of solutions with boundary values during estimation.}
+#' {Percentage of solutions with boundary values during the estimation.}
 #' \item{\code{call: }}
 #' {Name of the function that created the object.}
 #' \item{\code{n_rater: }}
@@ -165,6 +165,12 @@ compute_iota2<-function(data,
                         con_trace=FALSE){
 
   #---------------------------------------------------------------------------
+  #Checking input data
+  if((is.data.frame(data)==TRUE |
+     is.matrix(data==TRUE))==FALSE){
+    stop("data must be a matrix or data.frame")
+  }
+
   #Converting input data
   data<-as.data.frame(data)
   categorical_levels<-names(table(data[1]))
@@ -226,7 +232,7 @@ compute_iota2<-function(data,
   }
 
   #Selection of the best estimates
-  #Reducing the estimates to parameters that are conform as much as possible
+  #Reducing the estimates to parameters that are as compliant as possible
   summary_selected_I<-subset(summary,summary[,6]>b_min)
   if(nrow(summary_selected_I)!=0){
   index_min<-summary_selected_I[match(x=min(summary_selected_I[,1],na.rm = TRUE),
@@ -309,9 +315,9 @@ compute_iota2<-function(data,
 #' \item{\code{elements_chance_corrected}}{
 #' \itemize{
 #' \item{\code{alpha_reliability: }}
-#' {A vector containing the chance corrected Alpha Reliabilities for each category.}
+#' {A vector containing the chance-corrected Alpha Reliabilities for each category.}
 #' \item{\code{beta_reliability: }}
-#' {A vector containing the chance corrected Beta Reliabilities for each category.}
+#' {A vector containing the chance-corrected Beta Reliabilities for each category.}
 #' }}
 #' }
 #' The second component \code{estimates_scale_level} contains elements for
@@ -319,12 +325,12 @@ compute_iota2<-function(data,
 #' following elements:
 #' \itemize{
 #' \item{\code{iota_index: }}
-#' {Iota Index representing the reliability on a scale level.}
+#' {The Iota Index, representing the reliability on a scale level.}
 #' \item{\code{iota_index_d4: }}
-#' {Static Iota Index which is a transformation of the original Iota Index
+#' {The Static Iota Index, which is a transformation of the original Iota Index,
 #' in order to consider the uncertainty of estimation.}
 #' \item{\code{iota_index_dyn2: }}
-#' {Dynamic Iota Index which is a transformation of the original Iota Index
+#' {The Dynamic Iota Index, which is a transformation of the original Iota Index,
 #' in order to consider the uncertainty of estimation.}
 #' }
 #' @export
@@ -361,10 +367,10 @@ get_iota2_measures<-function(aem,
   }
   p_beta_reliability<-1-p_beta_error
 
-  #Estimating normalized and chance corrected alpha values for iota
+  #Estimating normalized and chance-corrected alpha values for Iota
   alpha<-(p_alpha_reliability-1/n_categories)/(1-1/n_categories)
 
-  #Estimating normalized and chance corrected beta values for iota
+  #Estimating normalized and chance-corrected beta values for Iota
   beta<-vector(length = n_categories)
   names(beta)<-categorical_levels
   for (k in categorical_levels){
@@ -380,7 +386,7 @@ get_iota2_measures<-function(aem,
     #beta[k]<-abs((p_beta_reliability[k]-tmp)/(1-tmp))
   }
 
-  #Estimating iota
+  #Estimating Iota
   beta_error_sum<-vector(length = n_categories)
   for(i in 1:n_categories){
     beta_error_sum[i]<-sum(categorical_sizes*p_alpha_error)-

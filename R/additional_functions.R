@@ -140,21 +140,19 @@ plot_iota<-function(object,
 #'categories of the coding units. Missing values are currently not supported and
 #'have to be omitted from the vector. Vector must have the same length as
 #'\code{true_values}.
-#' @param categorical_levels \code{Vector} containing all possible categories of
-#' the content analysis.
 #' @param con_step_size \code{Double} for specifying the size for increasing or
-#' decreasing the probabilities during the condition stage of estimation.
+#' decreasing the probabilities during the conditioning stage of estimation.
 #' This value should not be less than 1e-3.
 #' @param con_random_starts \code{Integer} for the number of random starts
 #' within the condition stage.
 #' @param con_max_iterations \code{Integer} for the maximum number of iterations
-#' during the condition stage.
+#' during the conditioning stage.
 #' @param con_rel_convergence \code{Double} for determining the convergence
-#' criterion during condition stage. The algorithm stops if the relative change
+#' criterion during the conditioning stage. The algorithm stops if the relative change
 #' is smaller than this criterion.
 #'@param con_trace \code{TRUE} for printing progress information on the console
-#'during estimations in the condition stage. \code{FALSE} if this information
-#'should not be printed.
+#'during estimations in the conditioning stage. \code{FALSE} if you do not want to have
+#'this information printed.
 #' @return Returns a \code{list} with the following three components:
 #' The first component \code{estimates_categorical_level} comprises all
 #' elements that describe the ratings on a categorical level. The elements are
@@ -166,7 +164,7 @@ plot_iota<-function(object,
 #' Reliabilities for each category. These values represent probabilities.}
 #' \item{\code{beta_reliability: }}{A vector containing the Beta Reliabilities for each
 #' category. These values represent probabilities.}
-#' \item{\code{assignment_error_matrix: }}{Assignment Error Matrix containing the conditional
+#' \item{\code{assignment_error_matrix: }}{An Assignment Error Matrix containing the conditional
 #' probabilities for assigning a unit of category i to categories 1 to n.}
 #' #' \item{\code{iota: }}
 #' {A vector containing the Iota values for each category.}
@@ -174,31 +172,31 @@ plot_iota<-function(object,
 #' \item{\code{elements_chance_corrected}}{
 #' \itemize{
 #' \item{\code{alpha_reliability: }}
-#' {A vector containing the chance corrected Alpha Reliabilities for each category.}
+#' {A vector containing the chance-corrected Alpha Reliabilities for each category.}
 #' \item{\code{beta_reliability: }}
-#' {A vector containing the chance corrected Beta Reliabilities for each category.}
+#' {A vector containing the chance-corrected Beta Reliabilities for each category.}
 #' }}
 #' }
-#' The second component \code{estimates_scale_level} contains elements for
-#' describing the quality of the ratings on a scale level. It comprises the
+#' The second component \code{estimates_scale_level} contains elements to
+#' describe the quality of the ratings on a scale level. It contains the
 #' following elements:
 #' \itemize{
 #' \item{\code{iota_index: }}
-#' {Iota Index representing the reliability on a scale level.}
+#' {The Iota Index representing the reliability on a scale level.}
 #' \item{\code{iota_index_d4: }}
-#' {Static Iota Index which is a transformation of the original Iota Index
+#' {The Static Iota Index, which is a transformation of the original Iota Index,
 #' in order to consider the uncertainty of estimation.}
 #' \item{\code{iota_index_dyn2: }}
-#' {Dynamic Iota Index which is a transformation of the original Iota Index
+#' {The Dynamic Iota Index, which is a transformation of the original Iota Index,
 #' in order to consider the uncertainty of estimation.}
 #' }
 #' The third component \code{information} contains important information
 #' regarding the parameter estimation. It comprises the following elements:
 #'\itemize{
 #' \item{\code{log_likelihood: }}
-#' {Log likelihood of the best solution.}
+#' {Log-likelihood of the best solution.}
 #' \item{\code{convergence: }}
-#' {If estimation converged 0 else 1.}
+#' {If estimation converged 0, otherwise 1.}
 #' \item{\code{p_class_sizes: }}
 #' {Estimated categorical sizes. This is the estimated amount of the categories.}
 #' \item{\code{conformity: }}
@@ -225,24 +223,60 @@ plot_iota<-function(object,
 #'@export
 check_new_rater<-function(true_values,
                           assigned_values,
-                          categorical_levels,
                           con_step_size=1e-4,
                           con_random_starts=5,
                           con_max_iterations=5000,
                           con_rel_convergence=1e-12,
                           con_trace=FALSE){
 
-  categorical_levels<-as.character(categorical_levels)
+  #Checking format of true values and assigned values
+  if((is.data.frame(true_values)==TRUE |
+     is.factor(true_values)==TRUE |
+     is.vector(true_values)==TRUE)==FALSE){
+    stop("true_values must be a vector, factor or data.frame")
+  }
+  if((is.data.frame(assigned_values)==TRUE |
+      is.factor(assigned_values)==TRUE |
+      is.vector(assigned_values)==TRUE)==FALSE){
+    stop("assigned_values must be a vector, factor or data.frame")
+  }
 
-  unname(true_values)
-  unname(assigned_values)
+  #Standardizing input data of the true values
+  true_values<-unname(true_values)
+  if(is.data.frame(true_values)==TRUE){
+    true_values<-as.matrix(true_values)
+  }
+  true_values<-as.character(true_values)
+
+  #Standardizing input data of the assigned values
+  if(is.data.frame(assigned_values)==TRUE){
+    assigned_values<-as.matrix(assigned_values)
+  }
+  assigned_values<-as.character(assigned_values)
+  assigned_values<-unname(assigned_values)
+
+  #Gathering information on the categorical levels
+  categorical_levels<-names(table(true_values))
+  categorical_levels<-sort(categorical_levels,decreasing = FALSE)
+
+  categorical_levels_assigned_data<-names(table(assigned_values))
+  categorical_levels_assigned_data<-sort(categorical_levels_assigned_data,decreasing = FALSE)
+
+  #Checking if the categorical levels are compatible
+  if(sum(categorical_levels_assigned_data%in%categorical_levels)!=length(categorical_levels_assigned_data)){
+    stop("The categorical levels of the assigned values exceed the range of
+         possible categorical levels of the true values. Please check your
+         assigned data for levels that do not occur in the true data.")
+  }
+
+  #Start of the calculations
   obs<-cbind(true_values,assigned_values)
   colnames(obs)<-c("true_values","assigned_values")
   obs<-as.data.frame(obs)
 
   n_categories=length(categorical_levels)
   freq_matrix<-matrix(data=NA,
-                      nrow =n_categories,
+                      nrow = n_categories,
                       ncol = n_categories)
 
   colnames(freq_matrix)<-categorical_levels
@@ -319,7 +353,7 @@ check_new_rater<-function(true_values,
 #' @param cr_rel_change Positive numeric value for defining the convergence of the
 #' EM algorithm.
 #' @param con_step_size \code{Double} for specifying the size for increasing or
-#' decreasing the probabilities during the condition stage of estimation.
+#' decreasing the probabilities during the conditioning stage of estimation.
 #' This value should not be less than 1e-3.
 #' @param con_random_starts \code{Integer} for the number of random starts
 #' within the condition stage.
@@ -329,14 +363,14 @@ check_new_rater<-function(true_values,
 #' criterion during condition stage. The algorithm stops if the relative change
 #' is smaller than this criterion.
 #'@param trace \code{TRUE} for printing progress information on the console.
-#'\code{FALSE} if this information should not be printed.
+#'\code{FALSE} if this information is not to be printed.
 #'@param con_trace \code{TRUE} for printing progress information on the console
 #'during estimations in the condition stage. \code{FALSE} if this information
-#'should not be printed.
+#'is not to be printed.
 #'@param b_min Value ranging between 0 and 1 determining the minimal size of
 #'the categories for checking if boundary values occurred. The algorithm tries
-#'to select solution that are not considered to be boundary values.
-#'@return Returns an object of class \code{iotarelr_iota2_dif}. For each group
+#'to select solutions that are not considered to be boundary values.
+#'@return Returns an object of class \code{iotarelr_iota2_dif}. For each group,
 #'the results of the estimation are saved separately. The structure within each
 #'group is similar to the results from \code{compute_iota2()}. Please check
 #'that documentation.
@@ -392,9 +426,9 @@ check_dgf<-function(data,
 #' @param data \code{Matrix} which contains the codings for every coding unit. The
 #' coding units must be in the rows and the raters must be in the columns. At
 #' least two raters are necessary.
-#' @param aem Assignment Error Matrix based on Iota Concept generation two (Iota2).
+#' @param aem Assignment Error Matrix based on the second generation of the Iota Concept (Iota2).
 #' @return Returns a \code{matrix} with the original data, the conditioned
-#' probability each true category, and the expected category for every coding unit.
+#' probability of each true category, and the expected category for every coding unit.
 #' @export
 
 est_expected_categories<-function(data,
@@ -466,9 +500,9 @@ get_summary<-function(object){
     }
     replications<-sum(round(est_log_likelihood,digits = 4)==round(log_likelihood,digits = 4))
     if(replications>1){
-      string_rep="The best log likelihood has been replicated."
+      string_rep="The best log-likelihood has been replicated."
     } else {
-      string_rep="The best log likelihood has not been replicated. Increase the
+      string_rep="The best log-likelihood has not been replicated. Increase the
       number of random stars and/or inspect the Assignment Error Matrices and
       categorical sizes."
     }
@@ -533,28 +567,28 @@ get_summary<-function(object){
 #'
 #' @param measure_typ Type of measure used for estimation. Set "iota_index" for
 #' the original Iota Index, "static_iota_index" for the static transformation
-#' of Iota Index with d=4 or "dynamic_iota_index" for the dynamic transformation
-#' of Iota Index with d=2.
+#' of the Iota Index with d=4 or "dynamic_iota_index" for the dynamic transformation
+#' of the Iota Index with d=2.
 #' @param measure_1_val Reliability value for the independent variable.
 #' @param measure_2_val Reliability value for the dependent variable. If not
-#' set the function uses the same value as for the independent variable.
+#' set, the function uses the same value as for the independent variable.
 #' @param level Level of certainty for calculating the prediction intervals.
-#' @param strength True strength of the relationship between independent and
-#' depended variable. Possible value are "no", "weak", "medium" and "strong". If
-#' no value is supplied a strong relationship is assumed for deviation and a weak
-#' relationship for all others. They represent the most demanding situations for
+#' @param strength True strength of the relationship between the independent and
+#' dependent variable. Possible values are "no", "weak", "medium" and "strong". If
+#' no value is supplied, a strong relationship is assumed for deviation and a weak
+#' relationship for all others. They represent the most demanding situations for the
 #' reliability.
 #' @param data_type Type of data. Possible values are "nominal" or "ordinal".
 #' @param sample_size Size of the sample in the study.
 #' @return Returns a \code{data.frame} which contains the prediction intervals
 #' for the deviation between  true and estimated sample association/correlation,
 #' risk of Type I errors and chance to correctly classify the effect size.
-#' Additionally the probability is estimated that the statistics of the sample
-#' deviate with no or only a weak effect from an error free sample.
-#' @note The classification of effect sizes uses the work of Cohen (1988)
-#' which differentiates effect sizes by their relevance for practice.
+#' Additionally, the probability is estimated so that the statistics of the sample
+#' deviate from an error free sample with no or only a weak effect .
+#' @note The classification of effect sizes uses the work of Cohen (1988),
+#' who differentiates effect sizes by their relevance for practice.
 #'
-#' For nominal data all statistics refer to Cramer's V. For ordinal data all
+#' For nominal data, all statistics refer to Cramer's V. For ordinal data, all
 #' statistics refer to Kendall's Tau.
 #'
 #' The models for calculating the consequences are taken from Berding and

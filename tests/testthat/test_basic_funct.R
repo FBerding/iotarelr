@@ -11,8 +11,7 @@ test_iota2_dgf<-check_dgf(
   trace = FALSE)
 test_iota2_new_rater<-check_new_rater(
   true_values = iotarelr_written_exams$`Coder A`,
-  assigned_values = iotarelr_new_rater,
-  categorical_levels = c("average","good","poor"))
+  assigned_values = iotarelr_new_rater)
 #------------------------------------------------------------------------------
 test_that("object classes", {
   testthat::expect_s3_class(test_iota2,
@@ -192,4 +191,51 @@ test_that("consequences ordinal", {
                          .999)
 
 
+})
+##Test input------------------------------------------------------------------
+test_that("Input types for check new rater", {
+
+  #assigned values as factor
+  expect_equal(
+    check_new_rater(
+      true_values = iotarelr_written_exams$`Coder A`,
+      assigned_values = iotarelr_new_rater),
+    check_new_rater(
+      true_values = iotarelr_written_exams$`Coder A`,
+      assigned_values = as.factor(iotarelr_new_rater)),
+    tolerance=1e-2
+  )
+
+  #assigned values as data.frame
+  expect_equal(
+    check_new_rater(
+      true_values = iotarelr_written_exams$`Coder A`,
+      assigned_values = iotarelr_new_rater),
+    check_new_rater(
+      true_values = iotarelr_written_exams$`Coder A`,
+      assigned_values = as.data.frame(iotarelr_new_rater)),
+    tolerance=1e-2
+  )
+
+  #true values as factor
+  expect_equal(
+    check_new_rater(
+      true_values = as.factor(iotarelr_written_exams$`Coder A`),
+      assigned_values = iotarelr_new_rater),
+    check_new_rater(
+      true_values = iotarelr_written_exams$`Coder A`,
+      assigned_values = iotarelr_new_rater),
+    tolerance=1e-2
+  )
+
+  #true values as data.frame
+  expect_equal(
+    check_new_rater(
+      true_values = as.data.frame(iotarelr_written_exams$`Coder A`),
+      assigned_values = iotarelr_new_rater),
+    check_new_rater(
+      true_values = iotarelr_written_exams$`Coder A`,
+      assigned_values = iotarelr_new_rater),
+    tolerance=1e-2
+  )
 })

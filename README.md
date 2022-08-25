@@ -1,32 +1,31 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# iotarelr - Iota Inter Coder Reliability for Content Analysis
+# iotarelr - Iota Inter-Coder-Reliability for Content Analysis
 
 *iotarelr* provides routines and tools for assessing the quality of
 content analysis on the basis of the Iota Reliability Concept. The
-concept is inspired of Item Response Theory and can be applied for any
+concept is inspired by item response theory and can be applied to any
 kind of content analysis which uses a standardized coding scheme and
 discrete categories. It is also applicable for content analysis
-conducted by an artificial intelligence. The package provides
-reliability measures for a complete scale as well as for every single
-category. Analysis of subgroup invariance and error corrections are
-implemented. This information can support the development process of a
-coding scheme and allows a detailed inspection of the quality of data
-generated.
+conducted by artificial intelligence. The package provides reliability
+measures for a complete scale as well as for every single category.
+Analysis of subgroup-invariance and error corrections are implemented.
+This information can support the development process of a coding scheme
+and allows a detailed inspection of the quality of the generated data.
 
 The tools are able to provide answers to the following questions:
 
--   How reliable is a scale of a coding scheme? [Vignette: Get
+-   How reliable is the scale of a coding scheme? [Vignette: Get
     started](iotarelr.html)
 -   How reliable is a single category within a scale? [Vignette: Get
     started](iotarelr.html)
--   Does the coding scheme works similar for different groups of
-    materials or different groups of persons? [Vignette: Different
+-   Does the coding scheme work similarly for different groups of
+    materials or different groups of people? [Vignette: Different
     Guidance Functioning](dgf.html)
--   How do codings error bias the generated data? [Vignette: Different
+-   How do coding errors bias the generated data? [Vignette: Different
     Guidance Functioning](dgf.html)
--   How can the generated data corrected for errors? [Vignette: Error
+-   How can the generated data be corrected for errors? [Vignette: Error
     Correction](error_correction.html)
 
 <!-- badges: start -->
@@ -39,11 +38,12 @@ checks](https://cranchecks.info/badges/summary/iotarelr)](https://cran.r-project
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+
 <!-- badges: end -->
 
 ## Introduction
 
-A brief introduction in how to use the package can be found via [Get
+A brief introduction on how to use the package can be found via [Get
 started](iotarelr.html). Articles describing how to conduct advanced
 analysis can be found via articles.
 
@@ -71,13 +71,12 @@ Concept*.
 -   ***Beta Reliability:*** Probability to assign a coding unit of
     category j to category i.
 -   ***Iota Reliability:***
-    -   ***Iota:*** Value ranging between 0 and 1 reflecting how well
+    -   ***Iota:*** Value ranging between 0 and 1, reflecting how well
         the generated data of category i really reflects category i.
-    -   ***Iota Error I:*** Value describing the extent how many coding
-        units are missing in the data for category i.
-    -   ***Iota Error II:*** Value describing the extent how many coding
-        units from *other* categories are part of the data for
-        category i.
+    -   ***Iota Error I:*** Value describing how many coding units are
+        missing in the data for category i.
+    -   ***Iota Error II:*** Value describing how many coding units from
+        *other* categories are part of the data for category i.
 
 **On the scale level:**
 
@@ -91,46 +90,62 @@ Concept*.
 
 ## Accuracy of Reliability Estimates
 
-Parameter estimation of the components makes use of Maximum Likelihood
-Estimation (Expectation Maximization Algorithm) which comprises an
-additional condition stage. The following Figure shows the extend to
-which the estimated parameters correspond to their true values based on
-a simulation study (Berding & Pargmann 2022). Click
-[here](reference/figures/README-accuracy.png) to enlarge the Figure.
+The parameter estimation of the components makes use of Maximum
+Likelihood Estimation (Expectation Maximization Algorithm), which
+comprises an additional conditioning stage. The following figure shows
+the extend to which the estimated parameters correspond to their true
+values based on a simulation study (Berding & Pargmann 2022). Click
+[here](reference/figures/README-accuracy.png) to enlarge the figure.
 
-![accuracy](man/figures/README-accuracy.png) In general the parameters
-(Primary Parameters, Alpha and Beta Reliability) estimates do not
-deviate more than 5 percentage points from their true values (see median
-in the Figure). In most cases *Iota Index* deviates not more than .026
-from its true value. The estimates are more accurate the greater the
-sample size and the more raters are involved into coding. Furthermore,
-the estimates are more accurate for higher values of true reliability.
+![Figure 1 - Accuracy of Parameter
+Estimation](man/figures/README-accuracy.png)
+
+In general, the parameter (Primary Parameters, Alpha and Beta
+Reliability) estimates do not deviate from their true values by more
+than 5 percentage points (see median in the figure). In most cases,
+*Iota Index* deviates no more than .043 from its true value. The
+estimates are more accurate, the greater the sample size and the more
+raters are involved in coding. Furthermore, the estimates are more
+accurate for higher values of true reliability.
+
+Please note that the high deviation for Beta Reliability under the
+condition of very high reliability results from rare cases with perfect
+Alpha Reliability. For more details please refer to Berding & Pargmann
+(2022).
 
 ## Predictive Power
 
 Studies investigated the power of the Iota Concept for predicting the
 quality of data generated by content analysis and compared the Iota
 measures with other existing measures of inter coder reliability. The
-Figure shows *R²* for nominal and ordinal data. To enlarge the Figure
-for nominal data click
+figure shows *R²* for both nominal and ordinal data. To enlarge the
+figure for nominal data, click
 [here](reference/figures/README-pred_power_nominal.png).
-![prediction_power_nominal](man/figures/README-pred_power_nominal.png)
-In the case of nominal data *Dynamic Iota Index* performs similar as
-*Krippendorff’s Alpha* or even better in predicting the deviation
-between the estimated sample association and the true sample
-association. Similar applies for estimating the risk of Type I errors
-and the chance for correctly classifying the effect size into categories
+
+![Figure 2 - Predictive Power for Nominal
+Data](man/figures/README-pred_power_nominal.png)
+
+For the case of nominal data, the *Dynamic Iota Index* performs
+similarly to *Krippendorff’s Alpha* or even better when predicting the
+deviation between the estimated sample association and the true sample
+association. Alike applies for estimating the risk of Type I errors and
+the chance for correctly classifying the effect size into categories
 proposed by Cohen (1988).
-![prediction_power_ordinal](man/figures/README-pred_power_ordinal.png)
-In the case of ordinal data *Dynamic Iota Index* shows a slightly
-smaller performance as *Krippendorff’s Alpha* but the predictive power
-of both measures is very high. To enlarge the Figure for ordinal data
-click [here](reference/figures/README-pred_power_ordinal.png).
+
+![Figure 3 - Predictive Power for Ordinal
+Data](man/figures/README-pred_power_ordinal.png)
+
+In the case of ordinal data, the *Dynamic Iota Index* shows a slightly
+inferior performance compared to *Krippendorff’s Alpha*, but the
+predictive power of both measures remains very high. To enlarge the
+figure for ordinal data, click
+[here](reference/figures/README-pred_power_ordinal.png).
 
 ## Cut-Off Values
 
 Iota Concept provides cut-off values for several measures on the scale
-level. The following Table reports the currently recommended values.
+level. The following table reports the values that are currently
+recommended.
 
 | measure            | minimum | satisfactory | good  | excellent |
 |:-------------------|:--------|:-------------|:------|:----------|
@@ -140,30 +155,30 @@ level. The following Table reports the currently recommended values.
 | Minimum Iota       | 0.623   | 0.785        | 0.812 | 1\*       |
 
 The *minimal* values imply the expectation that the estimated and true
-association/correlation do not deviate more than 0.3. Furthermore, these
+association/correlation do not deviate more than .3. Furthermore, these
 values justify the expectation that the risk of Type I errors is less
 than 10 %.
 
 The cut-off value for *satisfactory* justifies the expectation that the
-estimated and true association/correlation do not deviate more than 0.1
-and that the risk of Type I errors is less 5 %.
+estimated and true association/correlation do not deviate more than .1
+and that the risk of Type I errors is less than 5 %.
 
 The values for *good* imply that the estimated and true
-association/correlation do not deviate more than 0.3 with a certainty of
-95 %. Furthermore, this values guarantees that the risk of Type I errors
-is less 10 % with a certainty of 95 %.
+association/correlation do not deviate more than .3 with a certainty of
+95 %. Furthermore, these values guarantee that the risk of Type I errors
+is less than 10 % with a certainty of 95 %.
 
-Values of the category *excellent* ensure with a certainty of 95 % that
-the risk of Type I errors is less 5 % and the deviation between
+Values of the category *excellent* ensure with a certainty of 95 %, that
+the risk of Type I errors is less than 5 % and the deviation between
 estimated and true sample association/correlation exceeds not more than
-0.1. Please note that this degree of certainty is not completely reached
-for the measures.
+.1. Please note that this degree of certainty is not completely reached
+for all measures.
 
 The presented cut-off values are only rules of thumb. They are derived
-from the most reliability demanding situations. More situation specific
-cut-off values can be calculated with the function `get_consequences()`.
-Please refer to the vignette “Calculating consequences and cut-off
-values”.
+from the situations demanding the most reliability. More
+situation-specific cut-off values can be calculated with the function
+`get_consequences()`. Please refer to the vignette “Calculating
+consequences and cut-off values”.
 
 ## Further Readings
 

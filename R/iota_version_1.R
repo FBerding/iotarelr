@@ -17,7 +17,7 @@
 #' alpha errors of that category. The other elements in each row represent the
 #' conditioned probabilities that a coding unit is wrongly assigned to another
 #' category.}
-#' \item{average_iota}{A numeric value ranging between 0 and 1 representing the
+#' \item{average_iota}{A numeric value ranging between 0 and 1, representing the
 #' Average Iota values on a categorical level. It describes the reliability of
 #' the whole scale.}
 #' @references Berding, F., Riebenbauer, E., Stuetz, S., Jahncke, H.,
@@ -75,7 +75,7 @@ compute_iota1<-function(data){
       N_Condition[1,k]<-N_Condition[1,k]+N_Condition_Category
       P_Marginal[k,r]<-nrow(subset(data[r],data[r]==k))/N
     }
-    #Correction for over counting the diagonal cells
+    #Correction for over-counting the diagonal cells
     N_Condition[1,k]<-N_Condition[1,k]-(n_rater-1)*N_Aggrement_Table[1,k]
   }
   P_Condition<-N_Condition/N
@@ -110,7 +110,7 @@ compute_iota1<-function(data){
   P_Beta_Error<-P_Target_Beta/P_Condition_Beta
   P_Beta_Reliability<-1-P_Beta_Error
 
-  #Estimatin the Assignment-Error-Matrix
+  #Estimating the Assignment-Error-Matrix
   assignment_error_matrix<-matrix(nrow=n_categories,ncol=n_categories,data=NA)
   rownames(assignment_error_matrix)<-categorical_levels
   colnames(assignment_error_matrix)<-categorical_levels
@@ -125,7 +125,7 @@ compute_iota1<-function(data){
   }
 
 
-  #Estimating normalized and chance corrected alpha values for iota
+  #Estimating normalized and chance-corrected alpha values for iota
   P_No_K<-p_cell*(n_categories-1)^n_rater
   P_Diagonal<-n_categories*p_cell
 
@@ -133,7 +133,7 @@ compute_iota1<-function(data){
   Alpha_Error_Chance<-1-Alpha_Rel_Chance
   alpha<-abs((P_Alpha_Reliability-Alpha_Rel_Chance)/(1-Alpha_Rel_Chance))
 
-  #Estimating normalized and chance corrected beta values for iota
+  #Estimating normalized and chance-corrected beta values for iota
   P_Beta_Error_Chance_Target<-1-P_No_K-p_cell
   Beta_Error_Chance<-P_Beta_Error_Chance_Target/(1-P_Diagonal)
   Beta_Rel_Chance<-1-Beta_Error_Chance
