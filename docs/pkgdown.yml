@@ -1,5 +1,5 @@
 pandoc: 2.14.0.3
-pkgdown: 2.0.2
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   cons_and_values: cons_and_values.html
@@ -8,5 +8,5 @@ articles:
   iotarelr: iotarelr.html
   new_rater: new_rater.html
   vig_Iota_1: vig_Iota_1.html
-last_built: 2022-08-03T13:14Z
+last_built: 2022-09-19T10:22Z
 

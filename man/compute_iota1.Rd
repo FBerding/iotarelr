@@ -24,7 +24,7 @@ refer to the assigned categories. The elements on the diagonal represent the
 alpha errors of that category. The other elements in each row represent the
 conditioned probabilities that a coding unit is wrongly assigned to another
 category.}
-\item{average_iota}{A numeric value ranging between 0 and 1 representing the
+\item{average_iota}{A numeric value ranging between 0 and 1, representing the
 Average Iota values on a categorical level. It describes the reliability of
 the whole scale.}
 }

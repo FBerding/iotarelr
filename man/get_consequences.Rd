@@ -17,20 +17,20 @@ get_consequences(
 \arguments{
 \item{measure_typ}{Type of measure used for estimation. Set "iota_index" for
 the original Iota Index, "static_iota_index" for the static transformation
-of Iota Index with d=4 or "dynamic_iota_index" for the dynamic transformation
-of Iota Index with d=2.}
+of the Iota Index with d=4 or "dynamic_iota_index" for the dynamic transformation
+of the Iota Index with d=2.}
 
 \item{measure_1_val}{Reliability value for the independent variable.}
 
 \item{measure_2_val}{Reliability value for the dependent variable. If not
-set the function uses the same value as for the independent variable.}
+set, the function uses the same value as for the independent variable.}
 
 \item{level}{Level of certainty for calculating the prediction intervals.}
 
-\item{strength}{True strength of the relationship between independent and
-depended variable. Possible value are "no", "weak", "medium" and "strong". If
-no value is supplied a strong relationship is assumed for deviation and a weak
-relationship for all others. They represent the most demanding situations for
+\item{strength}{True strength of the relationship between the independent and
+dependent variable. Possible values are "no", "weak", "medium" and "strong". If
+no value is supplied, a strong relationship is assumed for deviation and a weak
+relationship for all others. They represent the most demanding situations for the
 reliability.}
 
 \item{data_type}{Type of data. Possible values are "nominal" or "ordinal".}
@@ -41,17 +41,17 @@ reliability.}
 Returns a \code{data.frame} which contains the prediction intervals
 for the deviation between  true and estimated sample association/correlation,
 risk of Type I errors and chance to correctly classify the effect size.
-Additionally the probability is estimated that the statistics of the sample
-deviate with no or only a weak effect from an error free sample.
+Additionally, the probability is estimated so that the statistics of the sample
+deviate from an error free sample with no or only a weak effect .
 }
 \description{
 Function estimating the consequences of reliability for subsequent analysis.
 }
 \note{
-The classification of effect sizes uses the work of Cohen (1988)
-which differentiates effect sizes by their relevance for practice.
+The classification of effect sizes uses the work of Cohen (1988),
+who differentiates effect sizes by their relevance for practice.
 
-For nominal data all statistics refer to Cramer's V. For ordinal data all
+For nominal data, all statistics refer to Cramer's V. For ordinal data, all
 statistics refer to Kendall's Tau.
 
 The models for calculating the consequences are taken from Berding and

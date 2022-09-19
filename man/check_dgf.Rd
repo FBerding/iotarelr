@@ -39,7 +39,7 @@ the EM algorithm.}
 EM algorithm.}
 
 \item{con_step_size}{\code{Double} for specifying the size for increasing or
-decreasing the probabilities during the condition stage of estimation.
+decreasing the probabilities during the conditioning stage of estimation.
 This value should not be less than 1e-3.}
 
 \item{con_random_starts}{\code{Integer} for the number of random starts
@@ -54,19 +54,19 @@ is smaller than this criterion.}
 
 \item{b_min}{Value ranging between 0 and 1 determining the minimal size of
 the categories for checking if boundary values occurred. The algorithm tries
-to select solution that are not considered to be boundary values.}
+to select solutions that are not considered to be boundary values.}
 
 \item{trace}{\code{TRUE} for printing progress information on the console.
-\code{FALSE} if this information should not be printed.}
+\code{FALSE} if this information is not to be printed.}
 
 \item{con_trace}{\code{TRUE} for printing progress information on the console
 during estimations in the condition stage. \code{FALSE} if this information
-should not be printed.}
+is not to be printed.}
 }
 \value{
-Returns an object of class \code{iotarelr_iota2_dif}. For each group
+Returns an object of class \code{iotarelr_iota2_dif}. For each group,
 the results of the estimation are saved separately. The structure within each
-group is similar to the results from \code{\link{compute_iota2()}}. Please check
+group is similar to the results from \code{compute_iota2()}. Please check
 that documentation.
 }
 \description{

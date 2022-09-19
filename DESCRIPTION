@@ -1,7 +1,7 @@
 Package: iotarelr
 Type: Package
 Title: Iota Inter Coder Reliability for Content Analysis
-Version: 0.1.2
+Version: 0.1.2.9011
 Authors@R: 
   c(
   person("Berding", "Florian",
@@ -24,13 +24,14 @@ Description:
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1
 Depends: 
-    R (>= 2.10)
+    R (>= 3.5.0)
 LinkingTo: Rcpp
 Imports: 
     Rcpp,
-    ggplot2, 
+    ggplot2,
+    gridExtra,
     rlang,
     stats
 Suggests: 

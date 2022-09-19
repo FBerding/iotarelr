@@ -33,29 +33,29 @@ the EM algorithm.}
 EM algorithm.}
 
 \item{con_step_size}{\code{Double} for specifying the size for increasing or
-decreasing the probabilities during the condition stage of estimation.
+decreasing the probabilities during the conditioning stage of estimation.
 This value should not be less than 1e-3.}
 
 \item{con_rel_convergence}{\code{Double} for determining the convergence
-criterion during condition stage. The algorithm stops if the relative change
+criterion during the conditioning stage. The algorithm stops if the relative change
 is smaller than this criterion.}
 
 \item{con_max_iterations}{\code{Integer} for the maximum number of iterations
-during the condition stage.}
+during the conditioning stage.}
 
 \item{con_random_starts}{\code{Integer} for the number of random starts
-within the condition stage.}
+within the conditioning stage.}
 
-\item{b_min}{Value ranging between 0 and 1 determining the minimal size of
+\item{b_min}{Value ranging between 0 and 1, determining the minimal size of
 the categories for checking if boundary values occurred. The algorithm tries
 to select solutions that are not considered to be boundary values.}
 
 \item{trace}{\code{TRUE} for printing progress information on the console.
-\code{FALSE} if this information should not be printed.}
+\code{FALSE} if this information is not to be printed.}
 
 \item{con_trace}{\code{TRUE} for printing progress information on the console
-during estimations in the condition stage. \code{FALSE} if this information
-should not be printed.}
+during estimations in the conditioning stage. \code{FALSE} if this information
+is not to be printed.}
 }
 \value{
 Returns a \code{list} with the following three components:
@@ -77,9 +77,9 @@ probabilities for assigning a unit of category i to categories 1 to n.}
 \item{\code{elements_chance_corrected}}{
 \itemize{
 \item{\code{alpha_reliability: }}
-{A vector containing the chance corrected Alpha Reliabilities for each category.}
+{A vector containing the chance-corrected Alpha Reliabilities for each category.}
 \item{\code{beta_reliability: }}
-{A vector containing the chance corrected Beta Reliabilities for each category.}
+{A vector containing the chance-corrected Beta Reliabilities for each category.}
 }}
 }
 The second component \code{estimates_scale_level} contains elements for
@@ -87,22 +87,22 @@ describing the quality of the ratings on a scale level. It comprises the
 following elements:
 \itemize{
 \item{\code{iota_index: }}
-{Iota Index representing the reliability on a scale level.}
+{The Iota Index, representing the reliability on a scale level.}
 \item{\code{iota_index_d4: }}
-{Static Iota Index which is a transformation of the original Iota Index
+{The Static Iota Index, which is a transformation of the original Iota Index,
 in order to consider the uncertainty of estimation.}
 \item{\code{iota_index_dyn2: }}
-{Dynamic Iota Index which is a transformation of the original Iota Index
+{The Dynamic Iota Index, which is a transformation of the original Iota Index,
 in order to consider the uncertainty of estimation.}
 }
 The third component \code{information} contains important information
 regarding the parameter estimation. It comprises the following elements:
 \itemize{
 \item{\code{log_likelihood: }}
-{Log likelihood of the best solution.}
+{Log-likelihood of the best solution.}
 \item{\code{convergence: }}
-{If estimation converged 0 else 1.}
-\item{\code{p_class_sizes: }}
+{If estimation converged 0, otherwise 1.}
+\item{\code{est_true_cat_sizes: }}
 {Estimated categorical sizes. This is the estimated amount of the categories.}
 \item{\code{conformity: }}
 {\code{0} if the solution is in line with assumptions of weak superiority.
@@ -114,7 +114,7 @@ regarding the parameter estimation. It comprises the following elements:
 {\code{False} if the best solution does not contain boundary values.
 \code{True} if the best solution does contain boundary values}
 \item{\code{p_boundaries: }}
-{Percentage of solutions with boundary values during estimation.}
+{Percentage of solutions with boundary values during the estimation.}
 \item{\code{call: }}
 {Name of the function that created the object.}
 \item{\code{n_rater: }}

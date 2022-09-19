@@ -131,7 +131,7 @@ get_patterns<-function(data,categorical_levels){
 #' {Log-likelihood of the best solution.}
 #' \item{\code{convergence: }}
 #' {If estimation converged 0, otherwise 1.}
-#' \item{\code{p_class_sizes: }}
+#' \item{\code{est_true_cat_sizes: }}
 #' {Estimated categorical sizes. This is the estimated amount of the categories.}
 #' \item{\code{conformity: }}
 #' {\code{0} if the solution is in line with assumptions of weak superiority.
@@ -255,15 +255,15 @@ compute_iota2<-function(data,
   rownames(aem)=categorical_levels
 
   #Class Sizes
-  p_classes<-estimates$categorial_sizes
-  names(p_classes)<-categorical_levels
+  #p_classes<-estimates$categorial_sizes
+  #names(p_classes)<-categorical_levels
 
   #-------------------------------------------------------------------------
   #Summary
   #Request Reliability Estimates
   results<-NULL
   results<-get_iota2_measures(aem = aem,
-                              categorical_sizes = p_classes,
+                              categorical_sizes = estimates$categorial_sizes,
                               categorical_levels = categorical_levels
   )
   #Summarizing central information
@@ -272,7 +272,7 @@ compute_iota2<-function(data,
   Esimtates_Information["random_starts"]<-list(random_starts)
   Esimtates_Information["iteration"]<-list(estimates$iteration)
   Esimtates_Information["convergence"]<-list(estimates$convergence)
-  Esimtates_Information["p_class_sizes"]<-list(estimates$categorial_sizes)
+  Esimtates_Information["est_true_cat_sizes"]<-list(estimates$categorial_sizes)
   Esimtates_Information["conformity"]<-list(estimates$con_violations)
   Esimtates_Information["boundaries"]<-list(boundaries)
   Esimtates_Information["p_boundaries"]<-list(p_boundaries)

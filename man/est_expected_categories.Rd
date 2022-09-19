@@ -11,11 +11,11 @@ est_expected_categories(data, aem)
 coding units must be in the rows and the raters must be in the columns. At
 least two raters are necessary.}
 
-\item{aem}{Assignment Error Matrix based on Iota Concept generation two (Iota2).}
+\item{aem}{Assignment Error Matrix based on the second generation of the Iota Concept (Iota2).}
 }
 \value{
 Returns a \code{matrix} with the original data, the conditioned
-probability each true category, and the expected category for every coding unit.
+probability of each true category, and the expected category for every coding unit.
 }
 \description{
 Function for estimating the expected category of coding units.

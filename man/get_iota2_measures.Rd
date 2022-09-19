@@ -35,9 +35,9 @@ probabilities for assigning a unit of category i to categories 1 to n.}
 \item{\code{elements_chance_corrected}}{
 \itemize{
 \item{\code{alpha_reliability: }}
-{A vector containing the chance corrected Alpha Reliabilities for each category.}
+{A vector containing the chance-corrected Alpha Reliabilities for each category.}
 \item{\code{beta_reliability: }}
-{A vector containing the chance corrected Beta Reliabilities for each category.}
+{A vector containing the chance-corrected Beta Reliabilities for each category.}
 }}
 }
 The second component \code{estimates_scale_level} contains elements for
@@ -45,12 +45,12 @@ describing the quality of the ratings on a scale level. It comprises the
 following elements:
 \itemize{
 \item{\code{iota_index: }}
-{Iota Index representing the reliability on a scale level.}
+{The Iota Index, representing the reliability on a scale level.}
 \item{\code{iota_index_d4: }}
-{Static Iota Index which is a transformation of the original Iota Index
+{The Static Iota Index, which is a transformation of the original Iota Index,
 in order to consider the uncertainty of estimation.}
 \item{\code{iota_index_dyn2: }}
-{Dynamic Iota Index which is a transformation of the original Iota Index
+{The Dynamic Iota Index, which is a transformation of the original Iota Index,
 in order to consider the uncertainty of estimation.}
 }
 }

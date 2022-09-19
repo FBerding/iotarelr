@@ -10,7 +10,11 @@ plot_iota(
   ylab = "Categories",
   liota = "Assignment of the true category (Iota)",
   lcase2 = "Assignment to the false category",
-  lcase3 = "Assignment from the false true category"
+  lcase3 = "Assignment from the false true category",
+  number_size = 6,
+  key_size = 0.5,
+  text_size = 10,
+  scale = "none"
 )
 }
 \arguments{
@@ -31,6 +35,20 @@ Label for the amount of cases that are assigned to a false category.}
 
 \item{lcase3}{\code{Character} passed to labels() from scale_fill_manual().
 Label for the amount of cases that are assigned from a false category.}
+
+\item{number_size}{\code{Double} passed to geom_text() determining the size
+of the numbers within the plot.}
+
+\item{key_size}{\code{Double} passed to theme() determining the size of the
+legend keys.}
+
+\item{text_size}{\code{Double} passed to theme() determining the size of the
+text within the legend.}
+
+\item{scale}{\code{String} for requesting an additional plot of reliability
+on the scale level. If \code{scale="dynamic_iota_index"} Dynamic Iota Index
+is used.  If \code{scale="static_iota_index"} Static Iota Index
+is used. If \code{scale="none"} no additional plot is created.}
 }
 \value{
 Function returns an object of class \code{gg, ggplot} illustrating how

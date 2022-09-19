@@ -15,6 +15,16 @@
 #'Label for the amount of cases that are assigned to a false category.
 #'@param lcase3 \code{Character} passed to labels() from scale_fill_manual().
 #'Label for the amount of cases that are assigned from a false category.
+#'@param number_size \code{Double} passed to geom_text() determining the size
+#'of the numbers within the plot.
+#'@param key_size \code{Double} passed to theme() determining the size of the
+#'legend keys.
+#'@param text_size \code{Double} passed to theme() determining the size of the
+#'text within the legend.
+#'@param scale \code{String} for requesting an additional plot of reliability
+#'on the scale level. If \code{scale="dynamic_iota_index"} Dynamic Iota Index
+#'is used.  If \code{scale="static_iota_index"} Static Iota Index
+#'is used. If \code{scale="none"} no additional plot is created.
 #'@return Function returns an object of class \code{gg, ggplot} illustrating how
 #'the data of the different categories influence each other.
 #'@note An example for interpreting the plot can be found in:
@@ -25,7 +35,11 @@ plot_iota<-function(object,
                     ylab="Categories",
                     liota="Assignment of the true category (Iota)",
                     lcase2="Assignment to the false category",
-                    lcase3="Assignment from the false true category"){
+                    lcase3="Assignment from the false true category",
+                    number_size=6,
+                    key_size=0.5,
+                    text_size=10,
+                    scale="none"){
 
   if(class(object)%in% c("iotarelr_iota2",
                         "iotarelr_iota2_dgf")==FALSE){
@@ -46,7 +60,7 @@ plot_iota<-function(object,
       tmp_object<-object[[g]]
     }
 
-    p_classes=tmp_object$information$p_class_sizes
+    p_classes=tmp_object$information$est_true_cat_sizes
     p_alpha_reliability=tmp_object$categorical_level$raw_estimates$alpha_reliability
     p_alpha_error=1-p_alpha_reliability
     n_categories=length(p_classes)
@@ -77,10 +91,10 @@ plot_iota<-function(object,
       for (j in 1:3){
         if(class(object)=="iotarelr_iota2"){
           tmp_category=rownames(tmp)[i]
+          tmp_group<-NA
         } else if(class(object)=="iotarelr_iota2_dgf") {
-          tmp_category=paste0(rownames(tmp)[i],
-                              "-",
-                              names(object)[g])
+          tmp_category=rownames(tmp)[i]
+          tmp_group<-names(object)[g]
         }
 
         tmp_image_data<-rbind(tmp_image_data,c(tmp_category,
@@ -88,11 +102,13 @@ plot_iota<-function(object,
                                        tmp[i,j]/sum(tmp[i,]),
                                        sum(tmp[i,0:(j-1)])/sum(tmp[i,]),
                                        sum(tmp[i,1:j])/sum(tmp[i,]),
-                                       colnames(tmp)[j]))
+                                       colnames(tmp)[j],
+                                       tmp_group)
+                              )
       }
     }
     tmp_image_data<-as.data.frame(tmp_image_data)
-    colnames(tmp_image_data)<-c("category","value", "amount","position_l","position_r","case")
+    colnames(tmp_image_data)<-c("category","value", "amount","position_l","position_r","case","group")
     tmp_image_data$amount<-as.numeric(tmp_image_data$amount)
     tmp_image_data$value<-as.numeric(tmp_image_data$value)
     tmp_image_data$position_l<-as.numeric(tmp_image_data$position_l)
@@ -105,10 +121,32 @@ plot_iota<-function(object,
   }
 
 
-  image_plot<-ggplot2::ggplot(data=image_data)+
-    ggplot2::geom_col(ggplot2::aes(y=.data$category,
-                                x=.data$amount,
-                                fill=.data$case))+
+  image_plot<-ggplot2::ggplot(data=image_data)
+  if(class(object)=="iotarelr_iota2"){
+    image_plot<-image_plot+
+      ggplot2::geom_col(position="stack",
+                        ggplot2::aes(y=.data$category,
+                                     x=.data$amount,
+                                     fill=.data$case))+
+      ggplot2::geom_text(ggplot2::aes(x=(.data$position_l+.data$position_r)*0.5,
+                                    y=.data$category,
+                                    label = round(.data$amount,digits=3)),
+                         size = number_size, hjust = 0.5, vjust = 0, check_overlap=TRUE)+
+      ggplot2::ylab(ylab)
+  } else if(class(object)=="iotarelr_iota2_dgf"){
+    image_plot<-image_plot+
+      ggplot2::geom_col(position="stack",
+                                 ggplot2::aes(y=.data$group,
+                                              x=.data$amount,
+                                              fill=.data$case))+
+      ggplot2::facet_grid(category ~ .)+
+      ggplot2::geom_text(ggplot2::aes(x=(.data$position_l+.data$position_r)*0.5,
+                                      y=.data$group,
+                                      label = round(.data$amount,digits=3)),
+                         size = number_size, hjust = 0.5, vjust = 0, check_overlap=TRUE)+
+      ggplot2::ylab(ylab)
+  }
+  image_plot<-image_plot+
     ggplot2::scale_fill_manual(
       values=c("case_1"="darkgreen",
                "case_2"="orange",
@@ -118,15 +156,118 @@ plot_iota<-function(object,
                "case_3"=lcase3),
       name="")+
     ggplot2::xlab(xlab)+
-    ggplot2::ylab(ylab)+
-    ggplot2::geom_text(ggplot2::aes(x=(.data$position_l+.data$position_r)*0.5,y=.data$category,label = round(.data$amount,digits=3)),
-              size = 6, hjust = 0.5, vjust = 0, check_overlap=TRUE)+
     ggplot2::theme_classic()+
     ggplot2::theme(legend.position="bottom",
                    legend.justification = "left",
-                   legend.key.size = ggplot2::unit(0.2, "cm"))
+                   legend.key.size = ggplot2::unit(key_size, "cm"),
+                   legend.text = ggplot2::element_text(size=text_size),
+                   legend.direction="vertical")
 
-  return(image_plot)
+  ##-------------------------------Image for the scale level
+  cut_off_values<-matrix(c(0.829, 0.961, 0.985, 1,
+                         0.686, 0.853, 0.898, 1),
+                         byrow=TRUE,
+                         nrow = 2)
+  rownames(cut_off_values)<-c("dynamic_iota_index",
+                              "static_iota_index")
+
+  if(scale!="none"){
+    image_scale<-ggplot2::ggplot()+
+      ggplot2::geom_rect(ggplot2::aes(xmin = 0,
+                                      xmax = cut_off_values[scale,1],
+                                      ymin = 0,
+                                      ymax = 1,
+                                      fill="insufficent"),
+                         color="black")+
+      ggplot2::geom_rect(ggplot2::aes(xmin = cut_off_values[scale,1],
+                                      xmax = cut_off_values[scale,2],
+                                      ymin = 0,
+                                      ymax = 1,
+                                      fill="minimum"),
+                         color="black")+
+      ggplot2::geom_rect(ggplot2::aes(xmin = cut_off_values[scale,2],
+                                      xmax = cut_off_values[scale,3],
+                                      ymin = 0,
+                                      ymax = 1,
+                                      fill="satisfactory"),
+                         color="black")+
+      ggplot2::geom_rect(ggplot2::aes(xmin = cut_off_values[scale,3],
+                                      xmax = cut_off_values[scale,4],
+                                      ymin = 0,
+                                      ymax = 1,
+                                      fill="good"),
+                         color="black")+
+      ggplot2::geom_rect(ggplot2::aes(xmin = cut_off_values[scale,4],
+                                      xmax = 1,
+                                      ymin = 0,
+                                      ymax = 1,
+                                      fill="excellent"),
+                         color="black")+
+      ggplot2::scale_fill_manual(values=c("insufficent"="red",
+                                          "minimum"="orange",
+                                          "satisfactory"="yellow",
+                                          "good"="green",
+                                          "excellent"="darkgreen"),
+                                 name="Scale Quality")+
+      ggplot2::theme_classic()+
+      ggplot2::theme(axis.line.y = ggplot2::element_blank(),
+                     axis.ticks.y = ggplot2::element_blank(),
+                     axis.text.y = ggplot2::element_blank())
+    if(class(object)=="iotarelr_iota2"){
+      if(scale=="dynamic_iota_index"){
+        image_scale=image_scale+
+          ggplot2::geom_vline(xintercept = object$scale_level$iota_index_dyn2,
+                              size=2)+
+          ggplot2::labs(x="Dynamic Iota Index",
+                        y="")
+      } else if(scale=="static_iota_index") {
+        image_scale=image_scale+
+          ggplot2::geom_vline(xintercept = object$scale_level$iota_index_d4,
+                              size=2)+
+          ggplot2::labs(x="Static Iota Index",
+                        y="")
+      }
+    } else if(class(object)=="iotarelr_iota2_dgf"){
+        for(g in 1:n_group){
+          if(scale=="dynamic_iota_index"){
+            image_scale=image_scale+
+              ggplot2::geom_vline(xintercept = object[[g]]$scale_level$iota_index_dyn2,
+                                  size=1.5)+
+              ggplot2::annotate(geom = "text",
+                                x = object[[g]]$scale_level$iota_index_dyn2-.02,
+                                y = 0.5,
+                                label = names(object)[g],
+                                angle = 90,
+                                check_overlap = TRUE)+
+              ggplot2::labs(x="Dynamic Iota Index",
+                            y="")
+          } else if(scale=="static_iota_index") {
+            image_scale=image_scale+
+              ggplot2::geom_vline(xintercept = object[[g]]$scale_level$iota_index_d4,
+                                  size=1.5)+
+              ggplot2::annotate(geom = "text",
+                                x = object[[g]]$scale_level$iota_index_dyn2-.02,
+                                y = 0.5,
+                                label = names(object)[g],
+                                angle = 90,
+                                check_overlap = TRUE)+
+              ggplot2::labs(x="Static Iota Index",
+                            y="")
+          }
+        }
+    }
+
+  }
+
+  if(scale=="none"){
+    return(image_plot)
+  } else {
+    image_complete<-gridExtra::arrangeGrob(image_plot,
+                                            image_scale,
+                                            layout_matrix=matrix(c(1,1,1,2),
+                                                                 ncol = 1))
+    return(image_complete)
+  }
 }
 
 #'Check new rater
@@ -197,7 +338,7 @@ plot_iota<-function(object,
 #' {Log-likelihood of the best solution.}
 #' \item{\code{convergence: }}
 #' {If estimation converged 0, otherwise 1.}
-#' \item{\code{p_class_sizes: }}
+#' \item{\code{est_true_cat_sizes: }}
 #' {Estimated categorical sizes. This is the estimated amount of the categories.}
 #' \item{\code{conformity: }}
 #' {\code{0} if the solution is in line with assumptions of weak superiority.
@@ -311,7 +452,7 @@ check_new_rater<-function(true_values,
   Esimtates_Information["log_likelihood"]<-list(NA)
   Esimtates_Information["iteration"]<-list(NA)
   Esimtates_Information["convergence"]<-list(NA)
-  Esimtates_Information["p_class_sizes"]<-list(categorical_sizes)
+  Esimtates_Information["est_true_cat_sizes"]<-list(categorical_sizes)
   Esimtates_Information["conformity"]<-list(check_conformity_c(aem=aem))
   Esimtates_Information["boundaries"]<-list(NA)
   Esimtates_Information["p_boundaries"]<-list(NA)
@@ -485,9 +626,9 @@ get_summary<-function(object){
   call=object$information$call
 
   n_starts<-object$information$random_starts
-  n_categories<-length(object$information$p_class_sizes)
+  n_categories<-length(object$information$est_true_cat_sizes)
   n_cunits<-object$information$n_cunits
-  category_levels<-names(object$information$p_class_sizes)
+  category_levels<-names(object$information$est_true_cat_sizes)
 
   log_likelihood<-object$information$log_likelihood
   convergence<-object$information$convergence
@@ -546,7 +687,7 @@ get_summary<-function(object){
   cat(sep="\n",
       "",
       "Categorical Sizes")
-  print(round(object$information$p_class_sizes,digits=3))
+  print(round(object$information$est_true_cat_sizes,digits=3))
   cat(sep="\n",
       "",
       "Categorical Level")
@@ -559,7 +700,7 @@ get_summary<-function(object){
       paste("Dynamic Iota Index:",iota_index_dyn2)
       )
 }
-
+summary.iotarelr_iota2<-get_summary
 
 #'Get Consequences
 #'

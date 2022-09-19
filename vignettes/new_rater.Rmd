@@ -84,12 +84,9 @@ estimate for this rater by requesting the function `check_new_rater()`.
 ```{r}
 res_new_rater<-check_new_rater(
   true_values = true_values,
-  assigned_values = iotarelr_new_rater,
-  categorical_levels = c("average","good","poor"))
+  assigned_values = iotarelr_new_rater)
 ```
-It is very important to pass the categorical levels to the function since
-it cannot be ensured that a new rater uses all categories of a coding scheme. The
-resulting object is of the class `iotarelr_iota2`. Thus, we can use the function
+The resulting object is of the class `iotarelr_iota2`. Thus, we can use the function
 `get_summary()` to look into the results.
 ```{r}
 get_summary(res_new_rater)

@@ -8,29 +8,29 @@
 <meta name="description" content="
     iotarelr provides routines and tools for assessing the quality
     of content analysis on the basis of the Iota Reliability Concept. The concept
-    is inspired of Item Response Theory and can be applied for any kind of 
+    is inspired by item response theory and can be applied to any kind of 
     content analysis which uses a standardized coding scheme and discrete categories.
-    It is also applicable for content analysis conducted by an artificial intelligence. 
+    It is also applicable for content analysis conducted by artificial intelligence. 
     The package provides reliability measures for a complete scale as well as for 
-    every single category. Analysis of subgroup invariance and error corrections 
+    every single category. Analysis of subgroup-invariance and error corrections 
     are implemented. This information can support the development process of a 
-    coding scheme and allows a detailed inspection of the quality of data generated.">
+    coding scheme and allows a detailed inspection of the quality of the generated data.">
 <title>Iota Inter Coder Reliability for Content Analysis • iotarelr</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Iota Inter Coder Reliability for Content Analysis">
 <meta property="og:description" content="
     iotarelr provides routines and tools for assessing the quality
     of content analysis on the basis of the Iota Reliability Concept. The concept
-    is inspired of Item Response Theory and can be applied for any kind of 
+    is inspired by item response theory and can be applied to any kind of 
     content analysis which uses a standardized coding scheme and discrete categories.
-    It is also applicable for content analysis conducted by an artificial intelligence. 
+    It is also applicable for content analysis conducted by artificial intelligence. 
     The package provides reliability measures for a complete scale as well as for 
-    every single category. Analysis of subgroup invariance and error corrections 
+    every single category. Analysis of subgroup-invariance and error corrections 
     are implemented. This information can support the development process of a 
-    coding scheme and allows a detailed inspection of the quality of data generated.">
+    coding scheme and allows a detailed inspection of the quality of the generated data.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -44,7 +44,7 @@
     
     <a class="navbar-brand me-2" href="index.html">iotarelr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2.9011</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,7 +62,7 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="articles/cons_and_values.html">2) Estimating Consequences for Subsequent Analysis</a>
+    <a class="dropdown-item" href="articles/cons_and_values.html">2) Estimating Consequences for Subsequent Analyses</a>
     <a class="dropdown-item" href="articles/dgf.html">3) Different Guidance Functioning</a>
     <a class="dropdown-item" href="articles/error_correction.html">4) Error Correction</a>
     <a class="dropdown-item" href="articles/new_rater.html">5) Training New Raters</a>
@@ -85,35 +85,35 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="iotarelr---iota-inter-coder-reliability-for-content-analysis">iotarelr - Iota Inter Coder Reliability for Content Analysis<a class="anchor" aria-label="anchor" href="#iotarelr---iota-inter-coder-reliability-for-content-analysis"></a>
+<div class="page-header"><h1 id="iotarelr---iota-inter-coder-reliability-for-content-analysis">iotarelr - Iota Inter-Coder-Reliability for Content Analysis<a class="anchor" aria-label="anchor" href="#iotarelr---iota-inter-coder-reliability-for-content-analysis"></a>
 </h1></div>
-<p><em>iotarelr</em> provides routines and tools for assessing the quality of content analysis on the basis of the Iota Reliability Concept. The concept is inspired of Item Response Theory and can be applied for any kind of content analysis which uses a standardized coding scheme and discrete categories. It is also applicable for content analysis conducted by an artificial intelligence. The package provides reliability measures for a complete scale as well as for every single category. Analysis of subgroup invariance and error corrections are implemented. This information can support the development process of a coding scheme and allows a detailed inspection of the quality of data generated.</p>
+<p><em>iotarelr</em> provides routines and tools for assessing the quality of content analysis on the basis of the Iota Reliability Concept. The concept is inspired by item response theory and can be applied to any kind of content analysis which uses a standardized coding scheme and discrete categories. It is also applicable for content analysis conducted by artificial intelligence. The package provides reliability measures for a complete scale as well as for every single category. Analysis of subgroup-invariance and error corrections are implemented. This information can support the development process of a coding scheme and allows a detailed inspection of the quality of the generated data.</p>
 <p>The tools are able to provide answers to the following questions:</p>
 <ul>
-<li>How reliable is a scale of a coding scheme? <a href="iotarelr.html">Vignette: Get started</a>
+<li>How reliable is the scale of a coding scheme? <a href="iotarelr.html">Vignette: Get started</a>
 </li>
 <li>How reliable is a single category within a scale? <a href="iotarelr.html">Vignette: Get started</a>
 </li>
-<li>Does the coding scheme works similar for different groups of materials or different groups of persons? <a href="dgf.html">Vignette: Different Guidance Functioning</a>
+<li>Does the coding scheme work similarly for different groups of materials or different groups of people? <a href="dgf.html">Vignette: Different Guidance Functioning</a>
 </li>
-<li>How do codings error bias the generated data? <a href="dgf.html">Vignette: Different Guidance Functioning</a>
+<li>How do coding errors bias the generated data? <a href="dgf.html">Vignette: Different Guidance Functioning</a>
 </li>
-<li>How can the generated data corrected for errors? <a href="error_correction.html">Vignette: Error Correction</a>
+<li>How can the generated data be corrected for errors? <a href="error_correction.html">Vignette: Error Correction</a>
 </li>
 </ul>
 <!-- badges: start -->
-<div class="section level2">
+<!-- badges: end --><div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>A brief introduction in how to use the package can be found via <a href="iotarelr.html">Get started</a>. Articles describing how to conduct advanced analysis can be found via articles.</p>
+<p>A brief introduction on how to use the package can be found via <a href="iotarelr.html">Get started</a>. Articles describing how to conduct advanced analysis can be found via articles.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p>You can install the development version of <em>iotarelr</em> from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"FBerding/iotarelr"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"FBerding/iotarelr"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="components">Components<a class="anchor" aria-label="anchor" href="#components"></a>
@@ -128,14 +128,13 @@
 <li>
 <strong><em>Beta Reliability:</em></strong> Probability to assign a coding unit of category j to category i.</li>
 <li>
-<strong><em>Iota Reliability:</em></strong>
-<ul>
+<strong><em>Iota Reliability:</em></strong><ul>
 <li>
-<strong><em>Iota:</em></strong> Value ranging between 0 and 1 reflecting how well the generated data of category i really reflects category i.</li>
+<strong><em>Iota:</em></strong> Value ranging between 0 and 1, reflecting how well the generated data of category i really reflects category i.</li>
 <li>
-<strong><em>Iota Error I:</em></strong> Value describing the extent how many coding units are missing in the data for category i.</li>
+<strong><em>Iota Error I:</em></strong> Value describing how many coding units are missing in the data for category i.</li>
 <li>
-<strong><em>Iota Error II:</em></strong> Value describing the extent how many coding units from <em>other</em> categories are part of the data for category i.</li>
+<strong><em>Iota Error II:</em></strong> Value describing how many coding units from <em>other</em> categories are part of the data for category i.</li>
 </ul>
 </li>
 </ul>
@@ -150,18 +149,30 @@
 <div class="section level2">
 <h2 id="accuracy-of-reliability-estimates">Accuracy of Reliability Estimates<a class="anchor" aria-label="anchor" href="#accuracy-of-reliability-estimates"></a>
 </h2>
-<p>Parameter estimation of the components makes use of Maximum Likelihood Estimation (Expectation Maximization Algorithm) which comprises an additional condition stage. The following Figure shows the extend to which the estimated parameters correspond to their true values based on a simulation study (Berding &amp; Pargmann 2022). Click <a href="reference/figures/README-accuracy.png">here</a> to enlarge the Figure.</p>
-<p><img src="reference/figures/README-accuracy.png" alt="accuracy"> In general the parameters (Primary Parameters, Alpha and Beta Reliability) estimates do not deviate more than 5 percentage points from their true values (see median in the Figure). In most cases <em>Iota Index</em> deviates not more than .026 from its true value. The estimates are more accurate the greater the sample size and the more raters are involved into coding. Furthermore, the estimates are more accurate for higher values of true reliability.</p>
+<p>The parameter estimation of the components makes use of Maximum Likelihood Estimation (Expectation Maximization Algorithm), which comprises an additional conditioning stage. The following figure shows the extend to which the estimated parameters correspond to their true values based on a simulation study (Berding &amp; Pargmann 2022). Click <a href="reference/figures/README-accuracy.png">here</a> to enlarge the figure.</p>
+<div class="figure">
+<img src="reference/figures/README-accuracy.png" alt=""><p class="caption">Figure 1 - Accuracy of Parameter Estimation</p>
+</div>
+<p>In general, the parameter (Primary Parameters, Alpha and Beta Reliability) estimates do not deviate from their true values by more than 5 percentage points (see median in the figure). In most cases, <em>Iota Index</em> deviates no more than .043 from its true value. The estimates are more accurate, the greater the sample size and the more raters are involved in coding. Furthermore, the estimates are more accurate for higher values of true reliability.</p>
+<p>Please note that the high deviation for Beta Reliability under the condition of very high reliability results from rare cases with perfect Alpha Reliability. For more details please refer to Berding &amp; Pargmann (2022).</p>
 </div>
 <div class="section level2">
 <h2 id="predictive-power">Predictive Power<a class="anchor" aria-label="anchor" href="#predictive-power"></a>
 </h2>
-<p>Studies investigated the power of the Iota Concept for predicting the quality of data generated by content analysis and compared the Iota measures with other existing measures of inter coder reliability. The Figure shows <em>R²</em> for nominal and ordinal data. To enlarge the Figure for nominal data click <a href="reference/figures/README-pred_power_nominal.png">here</a>. <img src="reference/figures/README-pred_power_nominal.png" alt="prediction_power_nominal"> In the case of nominal data <em>Dynamic Iota Index</em> performs similar as <em>Krippendorff’s Alpha</em> or even better in predicting the deviation between the estimated sample association and the true sample association. Similar applies for estimating the risk of Type I errors and the chance for correctly classifying the effect size into categories proposed by Cohen (1988). <img src="reference/figures/README-pred_power_ordinal.png" alt="prediction_power_ordinal"> In the case of ordinal data <em>Dynamic Iota Index</em> shows a slightly smaller performance as <em>Krippendorff’s Alpha</em> but the predictive power of both measures is very high. To enlarge the Figure for ordinal data click <a href="reference/figures/README-pred_power_ordinal.png">here</a>.</p>
+<p>Studies investigated the power of the Iota Concept for predicting the quality of data generated by content analysis and compared the Iota measures with other existing measures of inter coder reliability. The figure shows <em>R²</em> for both nominal and ordinal data. To enlarge the figure for nominal data, click <a href="reference/figures/README-pred_power_nominal.png">here</a>.</p>
+<div class="figure">
+<img src="reference/figures/README-pred_power_nominal.png" alt=""><p class="caption">Figure 2 - Predictive Power for Nominal Data</p>
+</div>
+<p>For the case of nominal data, the <em>Dynamic Iota Index</em> performs similarly to <em>Krippendorff’s Alpha</em> or even better when predicting the deviation between the estimated sample association and the true sample association. Alike applies for estimating the risk of Type I errors and the chance for correctly classifying the effect size into categories proposed by Cohen (1988).</p>
+<div class="figure">
+<img src="reference/figures/README-pred_power_ordinal.png" alt=""><p class="caption">Figure 3 - Predictive Power for Ordinal Data</p>
+</div>
+<p>In the case of ordinal data, the <em>Dynamic Iota Index</em> shows a slightly inferior performance compared to <em>Krippendorff’s Alpha</em>, but the predictive power of both measures remains very high. To enlarge the figure for ordinal data, click <a href="reference/figures/README-pred_power_ordinal.png">here</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="cut-off-values">Cut-Off Values<a class="anchor" aria-label="anchor" href="#cut-off-values"></a>
 </h2>
-<p>Iota Concept provides cut-off values for several measures on the scale level. The following Table reports the currently recommended values.</p>
+<p>Iota Concept provides cut-off values for several measures on the scale level. The following table reports the values that are currently recommended.</p>
 <table class="table">
 <thead><tr class="header">
 <th align="left">measure</th>
@@ -201,19 +212,17 @@
 </tr>
 </tbody>
 </table>
-<p>The <em>minimal</em> values imply the expectation that the estimated and true association/correlation do not deviate more than 0.3. Furthermore, these values justify the expectation that the risk of Type I errors is less than 10 %.</p>
-<p>The cut-off value for <em>satisfactory</em> justifies the expectation that the estimated and true association/correlation do not deviate more than 0.1 and that the risk of Type I errors is less 5 %.</p>
-<p>The values for <em>good</em> imply that the estimated and true association/correlation do not deviate more than 0.3 with a certainty of 95 %. Furthermore, this values guarantees that the risk of Type I errors is less 10 % with a certainty of 95 %.</p>
-<p>Values of the category <em>excellent</em> ensure with a certainty of 95 % that the risk of Type I errors is less 5 % and the deviation between estimated and true sample association/correlation exceeds not more than 0.1. Please note that this degree of certainty is not completely reached for the measures.</p>
-<p>The presented cut-off values are only rules of thumb. They are derived from the most reliability demanding situations. More situation specific cut-off values can be calculated with the function <code><a href="reference/get_consequences.html">get_consequences()</a></code>. Please refer to the vignette “Calculating consequences and cut-off values”.</p>
+<p>The <em>minimal</em> values imply the expectation that the estimated and true association/correlation do not deviate more than .3. Furthermore, these values justify the expectation that the risk of Type I errors is less than 10 %.</p>
+<p>The cut-off value for <em>satisfactory</em> justifies the expectation that the estimated and true association/correlation do not deviate more than .1 and that the risk of Type I errors is less than 5 %.</p>
+<p>The values for <em>good</em> imply that the estimated and true association/correlation do not deviate more than .3 with a certainty of 95 %. Furthermore, these values guarantee that the risk of Type I errors is less than 10 % with a certainty of 95 %.</p>
+<p>Values of the category <em>excellent</em> ensure with a certainty of 95 %, that the risk of Type I errors is less than 5 % and the deviation between estimated and true sample association/correlation exceeds not more than .1. Please note that this degree of certainty is not completely reached for all measures.</p>
+<p>The presented cut-off values are only rules of thumb. They are derived from the situations demanding the most reliability. More situation-specific cut-off values can be calculated with the function <code><a href="reference/get_consequences.html">get_consequences()</a></code>. Please refer to the vignette “Calculating consequences and cut-off values”.</p>
 </div>
 <div class="section level2">
 <h2 id="further-readings">Further Readings<a class="anchor" aria-label="anchor" href="#further-readings"></a>
 </h2>
-<ul>
-<li>Berding, Florian, Elisabeth Riebenbauer, Simone Stuetz, Heike Jahncke, Andreas Slopinski, and Karin Rebmann. 2022. Performance and Configuration of Artificial Intelligence in Educational Settings.Introducing a New Reliability Concept Based on Content Analysis. Frontiers in Education. <a href="https://10.3389/feduc.2022.818365" class="external-link uri">https://10.3389/feduc.2022.818365</a>
-</li>
-</ul>
+<ul><li>Berding, Florian, Elisabeth Riebenbauer, Simone Stuetz, Heike Jahncke, Andreas Slopinski, and Karin Rebmann. 2022. Performance and Configuration of Artificial Intelligence in Educational Settings.Introducing a New Reliability Concept Based on Content Analysis. Frontiers in Education. <a href="https://10.3389/feduc.2022.818365" class="external-link uri">https://10.3389/feduc.2022.818365</a>
+</li></ul>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="license">
@@ -235,6 +244,7 @@
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Berding Florian <br><small class="roles"> Author, maintainer </small>  </li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
 
@@ -260,7 +270,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer>

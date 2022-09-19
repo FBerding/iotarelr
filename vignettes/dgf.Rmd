@@ -134,8 +134,9 @@ How the different degrees of reliability affect the labeled data can be
 explored with the function `plot_iota()`. Here we can directly pass the
 object `dgf_exam` to the function.
 
-```{r, fig.height = 3, fig.width = 7.2, fig.align = "center", fig.cap = "Figure 1: Plot of Iota for different Groups"}
-plot_iota(dgf_exam)
+```{r, fig.height = 6, fig.width = 7.2, fig.align = "center", fig.cap = "Figure 1: Plot of Iota for different Groups"}
+plot_iota(dgf_exam,
+          ylab = "Groups")
 ```
 
 Let us start with the average exams of the females. The red rectangle

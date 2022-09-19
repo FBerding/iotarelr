@@ -38,6 +38,19 @@ test_that("plots", {
   testthat::expect_s3_class(plot_iota(test_iota2_dgf),
                          c("gg","ggplot")
   )
+
+  testthat::expect_s3_class(plot_iota(test_iota2,
+                                      scale="dynamic_iota_index"),
+                          c("gtable","gTree","grob", "gDesc")
+  )
+  testthat::expect_s3_class(plot_iota(test_iota2_new_rater,
+                            scale="dynamic_iota_index"),
+                          c("gtable","gTree","grob", "gDesc")
+  )
+  testthat::expect_s3_class(plot_iota(test_iota2_dgf,
+                            scale="dynamic_iota_index"),
+                          c("gtable","gTree","grob", "gDesc")
+  )
   testthat::expect_error(plot_iota(test_iota1)
   )
 })
