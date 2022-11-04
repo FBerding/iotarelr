@@ -49,6 +49,10 @@ get_random_start_values_class_sizes <- function(n_categories) {
 #' @param categorical_levels \code{Vector} containing all possible categories of
 #' the content analysis.
 #' @return Returns the log likelihood as a single numeric value.
+#'@references  Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
+#'of the Second Generation.Measures for Content Analysis Done by
+#'Humans or Artificial Intelligences. Berlin: Logos.
+#'https://doi.org/10.30819/5581
 #'@importFrom Rcpp sourceCpp
 #'@useDynLib iotarelr
 fct_log_likelihood_c <- function(categorial_sizes, aem, obs_pattern_shape, obs_pattern_frq, categorical_levels) {
@@ -68,6 +72,10 @@ fct_log_likelihood_c <- function(categorial_sizes, aem, obs_pattern_shape, obs_p
 #' @return Returns the log likelihood as a single numeric value.
 #'@importFrom Rcpp sourceCpp
 #'@useDynLib iotarelr
+#'@references  Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
+#'of the Second Generation.Measures for Content Analysis Done by
+#'Humans or Artificial Intelligences. Berlin: Logos.
+#'https://doi.org/10.30819/5581
 log_likelihood_multi_c <- function(probabilities, observations) {
     .Call('_iotarelr_log_likelihood_multi_c', PACKAGE = 'iotarelr', probabilities, observations)
 }
@@ -86,6 +94,10 @@ log_likelihood_multi_c <- function(probabilities, observations) {
 #' @return Returns the gradient as a \code{NumericVector}.
 #'@importFrom Rcpp sourceCpp
 #'@useDynLib iotarelr
+#'@references  Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
+#'of the Second Generation.Measures for Content Analysis Done by
+#'Humans or Artificial Intelligences. Berlin: Logos.
+#'https://doi.org/10.30819/5581
 grad_ll <- function(param_values, observations) {
     .Call('_iotarelr_grad_ll', PACKAGE = 'iotarelr', param_values, observations)
 }
@@ -114,6 +126,10 @@ grad_ll <- function(param_values, observations) {
 #' @return Returns the log likelihood as a single numeric value.
 #' @importFrom Rcpp sourceCpp
 #' @useDynLib iotarelr
+#'@references  Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
+#'of the Second Generation.Measures for Content Analysis Done by
+#'Humans or Artificial Intelligences. Berlin: Logos.
+#'https://doi.org/10.30819/5581
 #' @export
 est_con_multinominal_c <- function(observations, anchor, max_iter = 500000L, step_size = 1e-4, cr_rel_change = 1e-12, n_random_starts = 10L, trace = FALSE) {
     .Call('_iotarelr_est_con_multinominal_c', PACKAGE = 'iotarelr', observations, anchor, max_iter, step_size, cr_rel_change, n_random_starts, trace)
@@ -129,6 +145,10 @@ est_con_multinominal_c <- function(observations, anchor, max_iter = 500000L, ste
 #'0 if the assumptions are fulfilled.
 #'@importFrom Rcpp sourceCpp
 #'@useDynLib iotarelr
+#'@references  Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
+#'of the Second Generation.Measures for Content Analysis Done by
+#'Humans or Artificial Intelligences. Berlin: Logos.
+#'https://doi.org/10.30819/5581
 #'@export
 check_conformity_c <- function(aem) {
     .Call('_iotarelr_check_conformity_c', PACKAGE = 'iotarelr', aem)
@@ -187,6 +207,10 @@ check_conformity_c <- function(aem) {
 #'@export
 #'@importFrom Rcpp sourceCpp
 #'@useDynLib iotarelr
+#'@references  Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
+#'of the Second Generation.Measures for Content Analysis Done by
+#'Humans or Artificial Intelligences. Berlin: Logos.
+#'https://doi.org/10.30819/5581
 EM_algo_c <- function(obs_pattern_shape, obs_pattern_frq, obs_internal_count, categorical_levels, random_starts, max_iterations, rel_convergence, con_step_size, con_random_starts, con_max_iterations, con_rel_convergence, trace, con_trace) {
     .Call('_iotarelr_EM_algo_c', PACKAGE = 'iotarelr', obs_pattern_shape, obs_pattern_frq, obs_internal_count, categorical_levels, random_starts, max_iterations, rel_convergence, con_step_size, con_random_starts, con_max_iterations, con_rel_convergence, trace, con_trace)
 }

@@ -1,5 +1,5 @@
 .onUnload<-function(libpath){
-  library.dynam.unload("mypackage",libpath)
+  library.dynam.unload("iotarelr",libpath)
 }
 
 #'Get patterns
@@ -100,9 +100,14 @@ get_patterns<-function(data,categorical_levels){
 #' category. These values represent probabilities.}
 #' \item{\code{assignment_error_matrix: }}{Assignment Error Matrix containing the conditional
 #' probabilities for assigning a unit of category i to categories 1 to n.}
-#' #' \item{\code{iota: }}
+#'  \item{\code{iota: }}
 #' {A vector containing the Iota values for each category.}
+#'  \item{\code{iota_error_1: }}
+#' {A vector containing the Iota Error Type I values for each category.}
+#'  \item{\code{iota_error_2: }}
+#' {A vector containing the Iota Error Type II values for each category.}
 #' }}
+#'
 #' \item{\code{elements_chance_corrected}}{
 #' \itemize{
 #' \item{\code{alpha_reliability: }}
@@ -110,7 +115,7 @@ get_patterns<-function(data,categorical_levels){
 #' \item{\code{beta_reliability: }}
 #' {A vector containing the chance-corrected Beta Reliabilities for each category.}
 #' }}
-#' }
+#'
 #' The second component \code{estimates_scale_level} contains elements for
 #' describing the quality of the ratings on a scale level. It comprises the
 #' following elements:
@@ -124,6 +129,7 @@ get_patterns<-function(data,categorical_levels){
 #' {The Dynamic Iota Index, which is a transformation of the original Iota Index,
 #' in order to consider the uncertainty of estimation.}
 #' }
+#'
 #' The third component \code{information} contains important information
 #' regarding the parameter estimation. It comprises the following elements:
 #'\itemize{
@@ -150,7 +156,11 @@ get_patterns<-function(data,categorical_levels){
 #' {Number of raters.}
 #' \item{\code{n_cunits: }}
 #' {Number of coding units.}
-#' }
+#' }}
+#'@references  Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
+#'of the Second Generation.Measures for Content Analysis Done by
+#'Humans or Artificial Intelligences. Berlin: Logos.
+#'https://doi.org/10.30819/5581
 #' @export
 compute_iota2<-function(data,
                         random_starts=10,
@@ -305,6 +315,10 @@ compute_iota2<-function(data,
 #' \itemize{
 #' \item{\code{iota: }}
 #' {A vector containing the Iota values for each category.}
+#'  \item{\code{iota_error_1: }}
+#' {A vector containing the Iota Error Type I values for each category.}
+#'  \item{\code{iota_error_2: }}
+#' {A vector containing the Iota Error Type II values for each category.}
 #' \item{\code{alpha_reliability: }}{A vector containing the Alpha
 #' Reliabilities for each category. These values represent probabilities.}
 #' \item{\code{beta_reliability: }}{A vector containing the Beta Reliabilities for each
@@ -333,6 +347,10 @@ compute_iota2<-function(data,
 #' {The Dynamic Iota Index, which is a transformation of the original Iota Index,
 #' in order to consider the uncertainty of estimation.}
 #' }
+ #'@references  Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
+#'of the Second Generation.Measures for Content Analysis Done by
+#'Humans or Artificial Intelligences. Berlin: Logos.
+#'https://doi.org/10.30819/5581
 #' @export
 get_iota2_measures<-function(aem,
                              categorical_sizes,
@@ -400,6 +418,13 @@ get_iota2_measures<-function(aem,
   iota<-iota_numerator/iota_denominator
   names(iota)<-categorical_levels
 
+  iota_e1_numerator<-categorical_sizes*(1-p_alpha_reliability)
+  iota_e1<-iota_e1_numerator/iota_denominator
+  names(iota_e1)<-categorical_levels
+
+  iota_e2<-1-iota-iota_e1
+  names(iota_e2)<-categorical_levels
+
   #Estimation of Iota Index
   iota_index<-categorical_sizes%*%rowSums(abs(
     aem-matrix(data=1/n_categories,
@@ -430,6 +455,8 @@ get_iota2_measures<-function(aem,
 
   Elements_Raw_Estimates<-NULL
   Elements_Raw_Estimates["iota"]<-list(iota)
+  Elements_Raw_Estimates["iota_error_1"]<-list(iota_e1)
+  Elements_Raw_Estimates["iota_error_2"]<-list(iota_e2)
   Elements_Raw_Estimates["alpha_reliability"]<-list(p_alpha_reliability)
   Elements_Raw_Estimates["beta_reliability"]<-list(p_beta_reliability)
   Elements_Raw_Estimates["assignment_error_matrix"]<-list(aem)

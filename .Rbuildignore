@@ -6,3 +6,7 @@
 ^docs$
 ^_pkgdown\.yml$
 ^pkgdown$
+^doc$
+^docs$
+^Meta$
+cran-comments.md

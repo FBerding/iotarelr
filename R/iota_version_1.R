@@ -20,11 +20,12 @@
 #' \item{average_iota}{A numeric value ranging between 0 and 1, representing the
 #' Average Iota values on a categorical level. It describes the reliability of
 #' the whole scale.}
-#' @references Berding, F., Riebenbauer, E., Stuetz, S., Jahncke, H.,
-#' Slopinski, A., & Rebmann, K. (2022, March 23). Performance and Configuration
-#' of Artificial Intelligence in Business Education Learning Analytics
-#' Applications. A Content Analysis-Based Approach.
-#' https://doi.org/10.31235/osf.io/trvcy
+#' @references -   Berding, Florian, Elisabeth Riebenbauer, Simone Stuetz, Heike
+#'Jahncke, Andreas Slopinski, and Karin Rebmann. 2022. Performance and
+#'Configuration of Artificial Intelligence in Educational
+#'Settings.Introducing a New Reliability Concept Based on Content
+#'Analysis. Frontiers in Education.
+#'https://doi.org/10.3389/feduc.2022.818365
 #' @export
 
 compute_iota1<-function(data){

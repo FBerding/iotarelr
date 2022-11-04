@@ -1,18 +1,19 @@
 Package: iotarelr
 Type: Package
 Title: Iota Inter Coder Reliability for Content Analysis
-Version: 0.1.2.9011
+Version: 0.1.2
 Authors@R: 
   c(
   person("Berding", "Florian",
     email="florian.berding@uni-hamburg.de", 
-    role=c("aut","cre")),
+    role=c("aut","cre"),
+    comment=c(ORCID="0000-0002-3593-1695")),
   person("Pargmann","Julia",
     email="julia.pargmann@uni-hamburg.de", 
     role=c("ctb"))
   )
 Description: 
-    iotarelr provides routines and tools for assessing the quality
+    Routines and tools for assessing the quality
     of content analysis on the basis of the Iota Reliability Concept. The concept
     is inspired by item response theory and can be applied to any kind of 
     content analysis which uses a standardized coding scheme and discrete categories.
@@ -33,12 +34,13 @@ Imports:
     ggplot2,
     gridExtra,
     rlang,
-    stats
+    stats,
+    methods
 Suggests: 
     rmarkdown,
     knitr,
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
 URL: https://fberding.github.io/iotarelr/
-BugReport: https://github.com/FBerding/iotarelr/issues
+BugReports: https://github.com/FBerding/iotarelr/issues
 Config/testthat/edition: 3

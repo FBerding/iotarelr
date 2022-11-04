@@ -16,25 +16,18 @@ and allows a detailed inspection of the quality of the generated data.
 
 The tools are able to provide answers to the following questions:
 
--   How reliable is the scale of a coding scheme? [Vignette: Get
-    started](iotarelr.html)
--   How reliable is a single category within a scale? [Vignette: Get
-    started](iotarelr.html)
--   Does the coding scheme work similarly for different groups of
-    materials or different groups of people? [Vignette: Different
-    Guidance Functioning](dgf.html)
--   How do coding errors bias the generated data? [Vignette: Different
-    Guidance Functioning](dgf.html)
--   How can the generated data be corrected for errors? [Vignette: Error
-    Correction](error_correction.html)
+- How reliable is the scale of a coding scheme?
+- How reliable is a single category within a scale?
+- Does the coding scheme work similarly for different groups of
+  materials or different groups of people?
+- How do coding errors bias the generated data?
+- How can the generated data be corrected for errors?
 
 <!-- badges: start -->
 
 [![](https://www.r-pkg.org/badges/version/iotarelr?color=green)](https://cran.r-project.org/package=iotarelr)
-[![CRAN
-checks](https://cranchecks.info/badges/summary/iotarelr)](https://cran.r-project.org/web/checks/check_results_iotarelr.html)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/iotarelr)](https://cran.r-project.org/package=iotarelr)
-[![](https://img.shields.io/badge/devel%20version-0.1.2-green.svg)](https://github.com/iotarelr)
+[![](https://img.shields.io/badge/devel%20version-0.1.2-green.svg)](https://github.com/fberding/iotarelr)
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
@@ -43,9 +36,9 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 ## Introduction
 
-A brief introduction on how to use the package can be found via [Get
-started](iotarelr.html). Articles describing how to conduct advanced
-analysis can be found via articles.
+A brief introduction on how to use the package can be found via Get
+started. Articles describing how to conduct advanced analysis can be
+found via articles.
 
 ## Installation
 
@@ -64,29 +57,29 @@ Concept*.
 
 **On the level of every single category:**
 
--   ***Assignment Error Matrix:*** Matrix containing the probabilities
-    to assign a coding unit truly belonging to category i to category j.
--   ***Alpha Reliability:*** Probability to assign a coding unit of
-    category i to category i.
--   ***Beta Reliability:*** Probability to assign a coding unit of
-    category j to category i.
--   ***Iota Reliability:***
-    -   ***Iota:*** Value ranging between 0 and 1, reflecting how well
-        the generated data of category i really reflects category i.
-    -   ***Iota Error I:*** Value describing how many coding units are
-        missing in the data for category i.
-    -   ***Iota Error II:*** Value describing how many coding units from
-        *other* categories are part of the data for category i.
+- ***Assignment Error Matrix:*** Matrix containing the probabilities to
+  assign a coding unit truly belonging to category i to category j.
+- ***Alpha Reliability:*** Probability to assign a coding unit of
+  category i to category i.
+- ***Beta Reliability:*** Probability to assign a coding unit of
+  category j to category i.
+- ***Iota Reliability:***
+  - ***Iota:*** Value ranging between 0 and 1, reflecting how well the
+    generated data of category i really reflects category i.
+  - ***Iota Error I:*** Value describing how many coding units are
+    missing in the data for category i.
+  - ***Iota Error II:*** Value describing how many coding units from
+    *other* categories are part of the data for category i.
 
 **On the scale level:**
 
--   ***Iota Index:*** Measure for describing the reliability of a scale.
-    Zero indicates the absence of reliability. One indicates perfect
-    reliability.
--   ***Dynamic Iota Index:*** Transformation of the original *Iota
-    Index* to account for the uncertainty of reliability estimation.
-    Zero indicates the absence of reliability. One indicates perfect
-    reliability.
+- ***Iota Index:*** Measure for describing the reliability of a scale.
+  Zero indicates the absence of reliability. One indicates perfect
+  reliability.
+- ***Dynamic Iota Index:*** Transformation of the original *Iota Index*
+  to account for the uncertainty of reliability estimation. Zero
+  indicates the absence of reliability. One indicates perfect
+  reliability.
 
 ## Accuracy of Reliability Estimates
 
@@ -95,7 +88,7 @@ Likelihood Estimation (Expectation Maximization Algorithm), which
 comprises an additional conditioning stage. The following figure shows
 the extend to which the estimated parameters correspond to their true
 values based on a simulation study (Berding & Pargmann 2022). Click
-[here](reference/figures/README-accuracy.png) to enlarge the figure.
+[here](man/figures/README-accuracy.png) to enlarge the figure.
 
 ![Figure 1 - Accuracy of Parameter
 Estimation](man/figures/README-accuracy.png)
@@ -120,7 +113,7 @@ quality of data generated by content analysis and compared the Iota
 measures with other existing measures of inter coder reliability. The
 figure shows *R²* for both nominal and ordinal data. To enlarge the
 figure for nominal data, click
-[here](reference/figures/README-pred_power_nominal.png).
+[here](man/figures/README-pred_power_nominal.png).
 
 ![Figure 2 - Predictive Power for Nominal
 Data](man/figures/README-pred_power_nominal.png)
@@ -139,7 +132,7 @@ In the case of ordinal data, the *Dynamic Iota Index* shows a slightly
 inferior performance compared to *Krippendorff’s Alpha*, but the
 predictive power of both measures remains very high. To enlarge the
 figure for ordinal data, click
-[here](reference/figures/README-pred_power_ordinal.png).
+[here](man/figures/README-pred_power_ordinal.png).
 
 ## Cut-Off Values
 
@@ -182,9 +175,13 @@ consequences and cut-off values”.
 
 ## Further Readings
 
--   Berding, Florian, Elisabeth Riebenbauer, Simone Stuetz, Heike
-    Jahncke, Andreas Slopinski, and Karin Rebmann. 2022. Performance and
-    Configuration of Artificial Intelligence in Educational
-    Settings.Introducing a New Reliability Concept Based on Content
-    Analysis. Frontiers in Education.
-    <https://10.3389/feduc.2022.818365>
+- Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
+  of the Second Generation.Measures for Content Analysis Done by Humans
+  or Artificial Intelligences. Berlin: Logos.
+
+- Berding, Florian, Elisabeth Riebenbauer, Simone Stuetz, Heike Jahncke,
+  Andreas Slopinski, and Karin Rebmann. 2022. Performance and
+  Configuration of Artificial Intelligence in Educational
+  Settings.Introducing a New Reliability Concept Based on Content
+  Analysis. Frontiers in Education.
+  <https://doi.org/10.3389/feduc.2022.818365>

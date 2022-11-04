@@ -9,6 +9,6 @@
 #'   \item{Coder A}{Ratings of coder A.}
 #'   \item{Coder B}{Ratings of coder B.}
 #'   \item{Coder C}{Ratings of coder C.}
-#'   \item{Gender}{Gender of the person who took the exam.}
+#'   \item{Sex}{Referring to the biological aspects of an individual.}
 #' }
 "iotarelr_written_exams"

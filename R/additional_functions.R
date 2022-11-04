@@ -15,6 +15,11 @@
 #'Label for the amount of cases that are assigned to a false category.
 #'@param lcase3 \code{Character} passed to labels() from scale_fill_manual().
 #'Label for the amount of cases that are assigned from a false category.
+#'@param lscale_quality \code{character} passed to scale_fill_manual() determining
+#'the title for the quality of a scale. Only used in conjunction with
+#'\code{scale}.
+#'@param lscale_cat Vector of strings with length 5. This vector contains the
+#'labels for each category of quality for the scale.
 #'@param number_size \code{Double} passed to geom_text() determining the size
 #'of the numbers within the plot.
 #'@param key_size \code{Double} passed to theme() determining the size of the
@@ -29,6 +34,11 @@
 #'the data of the different categories influence each other.
 #'@note An example for interpreting the plot can be found in:
 #'@importFrom rlang .data
+#'@importFrom methods is
+#'@references  Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
+#'of the Second Generation.Measures for Content Analysis Done by
+#'Humans or Artificial Intelligences. Berlin: Logos.
+#'https://doi.org/10.30819/5581
 #'@export
 plot_iota<-function(object,
                     xlab="Amount on all cases",
@@ -36,27 +46,32 @@ plot_iota<-function(object,
                     liota="Assignment of the true category (Iota)",
                     lcase2="Assignment to the false category",
                     lcase3="Assignment from the false true category",
+                    lscale_quality="Scale Quality",
+                    lscale_cat=c("insufficent",
+                                 "minimum",
+                                 "satisfactory",
+                                 "good",
+                                 "excellent"),
                     number_size=6,
                     key_size=0.5,
                     text_size=10,
                     scale="none"){
 
-  if(class(object)%in% c("iotarelr_iota2",
-                        "iotarelr_iota2_dgf")==FALSE){
+  if((methods::is(object,"iotarelr_iota2") | methods::is(object,"iotarelr_iota2_dgf"))==FALSE){
     stop("Class of object for iota is not supported by this function.")
   }
 
   image_data<-NULL
-  if(class(object)=="iotarelr_iota2"){
+  if(methods::is(object,"iotarelr_iota2")){
     n_group=1
-  } else if(class(object)=="iotarelr_iota2_dgf"){
+  } else if(methods::is(object,"iotarelr_iota2_dgf")){
     n_group<-length(object)
   }
 
   for(g in 1:n_group){
-    if(class(object)=="iotarelr_iota2"){
+    if(methods::is(object,"iotarelr_iota2")){
       tmp_object<-object
-    } else if(class(object)=="iotarelr_iota2_dgf"){
+    } else if(methods::is(object,"iotarelr_iota2_dgf")){
       tmp_object<-object[[g]]
     }
 
@@ -89,10 +104,10 @@ plot_iota<-function(object,
     tmp_image_data<-NULL
     for(i in 1:nrow(tmp)){
       for (j in 1:3){
-        if(class(object)=="iotarelr_iota2"){
+        if(methods::is(object,"iotarelr_iota2")){
           tmp_category=rownames(tmp)[i]
           tmp_group<-NA
-        } else if(class(object)=="iotarelr_iota2_dgf") {
+        } else if(methods::is(object,"iotarelr_iota2_dgf")) {
           tmp_category=rownames(tmp)[i]
           tmp_group<-names(object)[g]
         }
@@ -122,7 +137,7 @@ plot_iota<-function(object,
 
 
   image_plot<-ggplot2::ggplot(data=image_data)
-  if(class(object)=="iotarelr_iota2"){
+  if(methods::is(object,"iotarelr_iota2")){
     image_plot<-image_plot+
       ggplot2::geom_col(position="stack",
                         ggplot2::aes(y=.data$category,
@@ -133,7 +148,7 @@ plot_iota<-function(object,
                                     label = round(.data$amount,digits=3)),
                          size = number_size, hjust = 0.5, vjust = 0, check_overlap=TRUE)+
       ggplot2::ylab(ylab)
-  } else if(class(object)=="iotarelr_iota2_dgf"){
+  } else if(methods::is(object,"iotarelr_iota2_dgf")){
     image_plot<-image_plot+
       ggplot2::geom_col(position="stack",
                                  ggplot2::aes(y=.data$group,
@@ -148,10 +163,10 @@ plot_iota<-function(object,
   }
   image_plot<-image_plot+
     ggplot2::scale_fill_manual(
-      values=c("case_1"="darkgreen",
+      values=c("iota"="darkgreen",
                "case_2"="orange",
                "case_3"="red"),
-      labels=c("case_1"=liota,
+      labels=c("iota"=liota,
                "case_2"=lcase2,
                "case_3"=lcase3),
       name="")+
@@ -172,48 +187,50 @@ plot_iota<-function(object,
                               "static_iota_index")
 
   if(scale!="none"){
+    scale_cat_colors<-c("red",
+                       "orange",
+                       "yellow",
+                       "green",
+                       "darkgreen")
+    names(scale_cat_colors)<-lscale_cat
     image_scale<-ggplot2::ggplot()+
       ggplot2::geom_rect(ggplot2::aes(xmin = 0,
                                       xmax = cut_off_values[scale,1],
                                       ymin = 0,
                                       ymax = 1,
-                                      fill="insufficent"),
+                                      fill=lscale_cat[1]),
                          color="black")+
       ggplot2::geom_rect(ggplot2::aes(xmin = cut_off_values[scale,1],
                                       xmax = cut_off_values[scale,2],
                                       ymin = 0,
                                       ymax = 1,
-                                      fill="minimum"),
+                                      fill=lscale_cat[2]),
                          color="black")+
       ggplot2::geom_rect(ggplot2::aes(xmin = cut_off_values[scale,2],
                                       xmax = cut_off_values[scale,3],
                                       ymin = 0,
                                       ymax = 1,
-                                      fill="satisfactory"),
+                                      fill=lscale_cat[3]),
                          color="black")+
       ggplot2::geom_rect(ggplot2::aes(xmin = cut_off_values[scale,3],
                                       xmax = cut_off_values[scale,4],
                                       ymin = 0,
                                       ymax = 1,
-                                      fill="good"),
+                                      fill=lscale_cat[4]),
                          color="black")+
       ggplot2::geom_rect(ggplot2::aes(xmin = cut_off_values[scale,4],
                                       xmax = 1,
                                       ymin = 0,
                                       ymax = 1,
-                                      fill="excellent"),
+                                      fill=lscale_cat[5]),
                          color="black")+
-      ggplot2::scale_fill_manual(values=c("insufficent"="red",
-                                          "minimum"="orange",
-                                          "satisfactory"="yellow",
-                                          "good"="green",
-                                          "excellent"="darkgreen"),
-                                 name="Scale Quality")+
+      ggplot2::scale_fill_manual(values=scale_cat_colors,
+                                 name=lscale_quality)+
       ggplot2::theme_classic()+
       ggplot2::theme(axis.line.y = ggplot2::element_blank(),
                      axis.ticks.y = ggplot2::element_blank(),
                      axis.text.y = ggplot2::element_blank())
-    if(class(object)=="iotarelr_iota2"){
+    if(methods::is(object,"iotarelr_iota2")){
       if(scale=="dynamic_iota_index"){
         image_scale=image_scale+
           ggplot2::geom_vline(xintercept = object$scale_level$iota_index_dyn2,
@@ -227,7 +244,7 @@ plot_iota<-function(object,
           ggplot2::labs(x="Static Iota Index",
                         y="")
       }
-    } else if(class(object)=="iotarelr_iota2_dgf"){
+    } else if(methods::is(object,"iotarelr_iota2_dgf")){
         for(g in 1:n_group){
           if(scale=="dynamic_iota_index"){
             image_scale=image_scale+
@@ -361,6 +378,10 @@ plot_iota<-function(object,
 #'@note The returned object contains further slots since the returned object is
 #'of class \code{iotarelr_iota2}. These slots are empty because they are not part of the
 #'estimation within this function.
+#'@references  Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
+#'of the Second Generation.Measures for Content Analysis Done by
+#'Humans or Artificial Intelligences. Berlin: Logos.
+#'https://doi.org/10.30819/5581
 #'@export
 check_new_rater<-function(true_values,
                           assigned_values,
@@ -515,6 +536,10 @@ check_new_rater<-function(true_values,
 #'the results of the estimation are saved separately. The structure within each
 #'group is similar to the results from \code{compute_iota2()}. Please check
 #'that documentation.
+#'@references  Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
+#'of the Second Generation.Measures for Content Analysis Done by
+#'Humans or Artificial Intelligences. Berlin: Logos.
+#'https://doi.org/10.30819/5581
 #'@export
 
 check_dgf<-function(data,
@@ -617,9 +642,10 @@ est_expected_categories<-function(data,
 #' \code{\link{compute_iota2}}, \code{\link{check_new_rater}}, or
 #' \code{\link{check_dgf}}.
 #' @return Prints central statistics of the estimated model.
+#' @importFrom methods is
 #' @export
 get_summary<-function(object){
-  if(class(object)%in% c("iotarelr_iota2")==FALSE){
+  if(methods::is(object,"iotarelr_iota2")==FALSE){
     stop("Class of object is not supported by this function.")
   }
 
@@ -653,11 +679,15 @@ get_summary<-function(object){
 
   dimensions<-c("Alpha",
                 "Beta",
-                "Iota")
+                "Iota",
+                "Iota Error Type I",
+                "Iota Error Type II")
   summary_table<-NULL
   summary_table<-rbind(summary_table,object$categorical_level$raw_estimates$alpha_reliability)
   summary_table<-rbind(summary_table,object$categorical_level$raw_estimates$beta_reliability)
   summary_table<-rbind(summary_table,object$categorical_level$raw_estimates$iota)
+  summary_table<-rbind(summary_table,object$categorical_level$raw_estimates$iota_error_1)
+  summary_table<-rbind(summary_table,object$categorical_level$raw_estimates$iota_error_2)
   summary_table<-round(summary_table,digits=4)
   summary_table<-cbind(dimensions,summary_table)
   summary_table<-as.data.frame(summary_table)
@@ -736,6 +766,10 @@ summary.iotarelr_iota2<-get_summary
 #' Pargmann (2022).
 #' @references Cohen, J. (1988). Statistical Power Analysis for the Behavioral
 #' Sciences (2nd Ed.). Taylor & Francis.
+#' @references  Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
+#'of the Second Generation.Measures for Content Analysis Done by
+#'Humans or Artificial Intelligences. Berlin: Logos.
+#'https://doi.org/10.30819/5581
 #' @export
 get_consequences<-function(measure_typ="dynamic_iota_index",
                            measure_1_val,
