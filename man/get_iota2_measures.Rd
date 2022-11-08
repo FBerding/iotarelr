@@ -25,6 +25,10 @@ sub-divided into raw estimates and chance-corrected estimates.
 \itemize{
 \item{\code{iota: }}
 {A vector containing the Iota values for each category.}
+ \item{\code{iota_error_1: }}
+{A vector containing the Iota Error Type I values for each category.}
+ \item{\code{iota_error_2: }}
+{A vector containing the Iota Error Type II values for each category.}
 \item{\code{alpha_reliability: }}{A vector containing the Alpha
 Reliabilities for each category. These values represent probabilities.}
 \item{\code{beta_reliability: }}{A vector containing the Beta Reliabilities for each
@@ -56,4 +60,10 @@ in order to consider the uncertainty of estimation.}
 }
 \description{
 Function for calculating the elements of the Iota Concept 2
+}
+\references{
+Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
+of the Second Generation.Measures for Content Analysis Done by
+Humans or Artificial Intelligences. Berlin: Logos.
+https://doi.org/10.30819/5581
 }

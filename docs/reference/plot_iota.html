@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">iotarelr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2.9011</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,7 +40,13 @@
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
-      <ul class="navbar-nav"></ul></div>
+      <ul class="navbar-nav"><li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/FBerding/iotarelr/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul></div>
 
     
   </div>
@@ -48,7 +54,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Plot Iota</h1>
-      
+      <small class="dont-index">Source: <a href="https://github.com/FBerding/iotarelr/blob/HEAD/R/additional_functions.R" class="external-link"><code>R/additional_functions.R</code></a></small>
       <div class="d-none name"><code>plot_iota.Rd</code></div>
     </div>
 
@@ -65,6 +71,8 @@
 <span>  liota <span class="op">=</span> <span class="st">"Assignment of the true category (Iota)"</span>,</span>
 <span>  lcase2 <span class="op">=</span> <span class="st">"Assignment to the false category"</span>,</span>
 <span>  lcase3 <span class="op">=</span> <span class="st">"Assignment from the false true category"</span>,</span>
+<span>  lscale_quality <span class="op">=</span> <span class="st">"Scale Quality"</span>,</span>
+<span>  lscale_cat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"insufficent"</span>, <span class="st">"minimum"</span>, <span class="st">"satisfactory"</span>, <span class="st">"good"</span>, <span class="st">"excellent"</span><span class="op">)</span>,</span>
 <span>  number_size <span class="op">=</span> <span class="fl">6</span>,</span>
 <span>  key_size <span class="op">=</span> <span class="fl">0.5</span>,</span>
 <span>  text_size <span class="op">=</span> <span class="fl">10</span>,</span>
@@ -104,6 +112,17 @@ Label for the amount of cases that are assigned to a false category.</p></dd>
 Label for the amount of cases that are assigned from a false category.</p></dd>
 
 
+<dt>lscale_quality</dt>
+<dd><p><code>character</code> passed to scale_fill_manual() determining
+the title for the quality of a scale. Only used in conjunction with
+<code>scale</code>.</p></dd>
+
+
+<dt>lscale_cat</dt>
+<dd><p>Vector of strings with length 5. This vector contains the
+labels for each category of quality for the scale.</p></dd>
+
+
 <dt>number_size</dt>
 <dd><p><code>Double</code> passed to geom_text() determining the size
 of the numbers within the plot.</p></dd>
@@ -136,6 +155,13 @@ the data of the different categories influence each other.</p>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
     <p>An example for interpreting the plot can be found in:</p>
+    </div>
+    <div class="section level2">
+    <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
+    <p>Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
+of the Second Generation.Measures for Content Analysis Done by
+Humans or Artificial Intelligences. Berlin: Logos.
+https://doi.org/10.30819/5581</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

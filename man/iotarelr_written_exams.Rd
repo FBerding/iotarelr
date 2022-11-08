@@ -10,7 +10,7 @@ A data frame with 318 rows and 4 variables:
   \item{Coder A}{Ratings of coder A.}
   \item{Coder B}{Ratings of coder B.}
   \item{Coder C}{Ratings of coder C.}
-  \item{Gender}{Gender of the person who took the exam.}
+  \item{Sex}{Referring to the biological aspects of an individual.}
 }
 }
 \usage{

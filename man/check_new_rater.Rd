@@ -116,3 +116,9 @@ The returned object contains further slots since the returned object is
 of class \code{iotarelr_iota2}. These slots are empty because they are not part of the
 estimation within this function.
 }
+\references{
+Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
+of the Second Generation.Measures for Content Analysis Done by
+Humans or Artificial Intelligences. Berlin: Logos.
+https://doi.org/10.30819/5581
+}

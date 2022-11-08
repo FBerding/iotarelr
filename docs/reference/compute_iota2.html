@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">iotarelr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2.9011</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,7 +40,13 @@
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
-      <ul class="navbar-nav"></ul></div>
+      <ul class="navbar-nav"><li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/FBerding/iotarelr/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul></div>
 
     
   </div>
@@ -48,7 +54,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Computes Iota and its elements in version 2</h1>
-      
+      <small class="dont-index">Source: <a href="https://github.com/FBerding/iotarelr/blob/HEAD/R/iota_version_2.R" class="external-link"><code>R/iota_version_2.R</code></a></small>
       <div class="d-none name"><code>compute_iota2.Rd</code></div>
     </div>
 
@@ -149,11 +155,15 @@ Reliabilities for each category. These values represent probabilities.</p></li>
 <li><p><code>beta_reliability: </code>A vector containing the Beta Reliabilities for each
 category. These values represent probabilities.</p></li>
 <li><p><code>assignment_error_matrix: </code>Assignment Error Matrix containing the conditional
-probabilities for assigning a unit of category i to categories 1 to n.
-#'</p></li>
+probabilities for assigning a unit of category i to categories 1 to n.</p></li>
 <li><p><code>iota: </code>
 A vector containing the Iota values for each category.</p></li>
+<li><p><code>iota_error_1: </code>
+A vector containing the Iota Error Type I values for each category.</p></li>
+<li><p><code>iota_error_2: </code>
+A vector containing the Iota Error Type II values for each category.</p></li>
 </ul></dd>
+
 
 <dt><code>elements_chance_corrected</code></dt>
 <dd>
@@ -164,41 +174,55 @@ A vector containing the chance-corrected Beta Reliabilities for each category.</
 </ul></dd>
 
 
-</dl><p>The second component <code>estimates_scale_level</code> contains elements for
+The second component estimates_scale_level contains elements for
 describing the quality of the ratings on a scale level. It comprises the
-following elements:</p><ul><li><p><code>iota_index: </code>
-The Iota Index, representing the reliability on a scale level.</p></li>
-<li><p><code>iota_index_d4: </code>
+following elements:
+
+<code>iota_index: </code>
+The Iota Index, representing the reliability on a scale level.
+<code>iota_index_d4: </code>
 The Static Iota Index, which is a transformation of the original Iota Index,
-in order to consider the uncertainty of estimation.</p></li>
-<li><p><code>iota_index_dyn2: </code>
+in order to consider the uncertainty of estimation.
+<code>iota_index_dyn2: </code>
 The Dynamic Iota Index, which is a transformation of the original Iota Index,
-in order to consider the uncertainty of estimation.</p></li>
-</ul><p>The third component <code>information</code> contains important information
-regarding the parameter estimation. It comprises the following elements:</p><ul><li><p><code>log_likelihood: </code>
-Log-likelihood of the best solution.</p></li>
-<li><p><code>convergence: </code>
-If estimation converged 0, otherwise 1.</p></li>
-<li><p><code>est_true_cat_sizes: </code>
-Estimated categorical sizes. This is the estimated amount of the categories.</p></li>
-<li><p><code>conformity: </code>
+in order to consider the uncertainty of estimation.
+
+
+The third component information contains important information
+regarding the parameter estimation. It comprises the following elements:
+
+<code>log_likelihood: </code>
+Log-likelihood of the best solution.
+<code>convergence: </code>
+If estimation converged 0, otherwise 1.
+<code>est_true_cat_sizes: </code>
+Estimated categorical sizes. This is the estimated amount of the categories.
+<code>conformity: </code>
 <code>0</code> if the solution is in line with assumptions of weak superiority.
  A number greater 0 indicates the number of violations of the assumption
- of weak superiority.</p></li>
-<li><p><code>random_starts: </code>
-Numer of random starts for the EM algorithm.</p></li>
-<li><p><code>boundaries: </code>
+ of weak superiority.
+ <code>random_starts: </code>
+Numer of random starts for the EM algorithm.
+<code>boundaries: </code>
 <code>False</code> if the best solution does not contain boundary values.
-<code>True</code> if the best solution does contain boundary values</p></li>
-<li><p><code>p_boundaries: </code>
-Percentage of solutions with boundary values during the estimation.</p></li>
-<li><p><code>call: </code>
-Name of the function that created the object.</p></li>
-<li><p><code>n_rater: </code>
-Number of raters.</p></li>
-<li><p><code>n_cunits: </code>
-Number of coding units.</p></li>
-</ul></div>
+<code>True</code> if the best solution does contain boundary values
+<code>p_boundaries: </code>
+Percentage of solutions with boundary values during the estimation.
+<code>call: </code>
+Name of the function that created the object.
+<code>n_rater: </code>
+Number of raters.
+<code>n_cunits: </code>
+Number of coding units.
+
+</dl></div>
+    <div class="section level2">
+    <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
+    <p>Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
+of the Second Generation.Measures for Content Analysis Done by
+Humans or Artificial Intelligences. Berlin: Logos.
+https://doi.org/10.30819/5581</p>
+    </div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>

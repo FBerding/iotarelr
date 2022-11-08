@@ -99,6 +99,6 @@ In the current example average iota is about .49. At the moment only a rule of t
 - Berding, F., Elisabeth r., Simone S., Jahncke, H., Slopinski, A., and Rebmann, K. (2022). 
 Performance and Configuration of Artificial Intelligence in Educational Settings.
 Introducing a New Reliability Concept Based on Content Analysis. 
-Frontiers in Education. https://10.3389/feduc.2022.818365
+Frontiers in Education. https://doi.org/10.3389/feduc.2022.818365
 - Krippendorff, K. (2019). Content Analysis: An Introduction to Its Methodology 
 - Schreier, M. (2012). Qualitative Content Analysis in Practice. SAGE. 

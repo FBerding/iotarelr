@@ -326,6 +326,10 @@ package's website for news.
 
 For more details, we would like to refer to the following literature:
 
-- Berding, Florian, Elisabeth Riebenbauer, Simone Stuetz, Heike Jahncke, Andreas Slopinski, and Karin Rebmann. 2022. Performance and Configuration of Artificial Intelligence in Educational Settings.Introducing a New Reliability Concept Based on Content Analysis. Frontiers in Education. https://10.3389/feduc.2022.818365
+-   Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
+    of the Second Generation.Measures for Content Analysis Done by
+    Humans or Artificial Intelligences. Berlin: Logos.
+    
+- Berding, Florian, Elisabeth Riebenbauer, Simone Stuetz, Heike Jahncke, Andreas Slopinski, and Karin Rebmann. 2022. Performance and Configuration of Artificial Intelligence in Educational Settings.Introducing a New Reliability Concept Based on Content Analysis. Frontiers in Education. https://doi.org/10.3389/feduc.2022.818365
 
 

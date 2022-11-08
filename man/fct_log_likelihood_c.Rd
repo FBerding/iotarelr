@@ -38,3 +38,9 @@ Returns the log likelihood as a single numeric value.
 Function written in \code{C++} estimating the log likelihood of a given
 parameter set.
 }
+\references{
+Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
+of the Second Generation.Measures for Content Analysis Done by
+Humans or Artificial Intelligences. Berlin: Logos.
+https://doi.org/10.30819/5581
+}

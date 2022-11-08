@@ -6,7 +6,7 @@ test_iota2<-compute_iota2(
   trace = FALSE)
 test_iota2_dgf<-check_dgf(
   data=iotarelr_written_exams[c("Coder A","Coder B","Coder C")],
-  splitcr = iotarelr_written_exams$Gender,
+  splitcr = iotarelr_written_exams$Sex,
   random_starts = 1,
   trace = FALSE)
 test_iota2_new_rater<-check_new_rater(
@@ -212,10 +212,12 @@ test_that("Input types for check new rater", {
   expect_equal(
     check_new_rater(
       true_values = iotarelr_written_exams$`Coder A`,
-      assigned_values = iotarelr_new_rater),
+      assigned_values = iotarelr_new_rater,
+      con_random_starts = 20),
     check_new_rater(
       true_values = iotarelr_written_exams$`Coder A`,
-      assigned_values = as.factor(iotarelr_new_rater)),
+      assigned_values = as.factor(iotarelr_new_rater),
+      con_random_starts = 20),
     tolerance=1e-2
   )
 
@@ -223,10 +225,12 @@ test_that("Input types for check new rater", {
   expect_equal(
     check_new_rater(
       true_values = iotarelr_written_exams$`Coder A`,
-      assigned_values = iotarelr_new_rater),
+      assigned_values = iotarelr_new_rater,
+      con_random_starts = 20),
     check_new_rater(
       true_values = iotarelr_written_exams$`Coder A`,
-      assigned_values = as.data.frame(iotarelr_new_rater)),
+      assigned_values = as.data.frame(iotarelr_new_rater),
+      con_random_starts = 20),
     tolerance=1e-2
   )
 
@@ -234,10 +238,12 @@ test_that("Input types for check new rater", {
   expect_equal(
     check_new_rater(
       true_values = as.factor(iotarelr_written_exams$`Coder A`),
-      assigned_values = iotarelr_new_rater),
+      assigned_values = iotarelr_new_rater,
+      con_random_starts = 20),
     check_new_rater(
       true_values = iotarelr_written_exams$`Coder A`,
-      assigned_values = iotarelr_new_rater),
+      assigned_values = iotarelr_new_rater,
+      con_random_starts = 20),
     tolerance=1e-2
   )
 
@@ -245,10 +251,12 @@ test_that("Input types for check new rater", {
   expect_equal(
     check_new_rater(
       true_values = as.data.frame(iotarelr_written_exams$`Coder A`),
-      assigned_values = iotarelr_new_rater),
+      assigned_values = iotarelr_new_rater,
+      con_random_starts = 20),
     check_new_rater(
       true_values = iotarelr_written_exams$`Coder A`,
-      assigned_values = iotarelr_new_rater),
+      assigned_values = iotarelr_new_rater,
+      con_random_starts = 20),
     tolerance=1e-2
   )
 })

@@ -68,7 +68,7 @@ head(iotarelr_written_exams)
 ```
 
 The data set contains the ratings of exams from three raters and an
-additional column called "Gender". This column stores the information if
+additional column called "Sex". This column stores the information if
 the participant of the exam identifies as male or a female. Since an
 exam should only measure participants' performance and should be fair,
 the *Assignment Error Matrix* in both groups should not differ. That is,
@@ -83,12 +83,12 @@ calling this function may take some time.
 
 ```{r}
 dgf_exam<-check_dgf(data=iotarelr_written_exams[c("Coder A","Coder B","Coder C")],
-                    splitcr = iotarelr_written_exams$Gender,
+                    splitcr = iotarelr_written_exams$Sex,
                      random_starts = 2)
 ```
 
 The results are stored in the object `dgf_exam`. For every group
-specified in the column "Gender" a model of Iota2 is fitted. The results
+specified in the column "Sex" a model of Iota2 is fitted. The results
 an be accessed in the same way as for objects created with
 `compute_iota2()`. The only thing to do is to request the function
 `get_summary()`with the results for the specific group. Let's start with

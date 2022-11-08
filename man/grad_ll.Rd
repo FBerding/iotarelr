@@ -22,3 +22,9 @@ Returns the gradient as a \code{NumericVector}.
 Function written in \code{C++} estimating the gradient of the log likelihood
 function for a given parameter set and given observations.
 }
+\references{
+Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
+of the Second Generation.Measures for Content Analysis Done by
+Humans or Artificial Intelligences. Berlin: Logos.
+https://doi.org/10.30819/5581
+}

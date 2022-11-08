@@ -102,6 +102,10 @@ Rcpp::NumericVector get_random_start_values_class_sizes(int n_categories){
 //' @param categorical_levels \code{Vector} containing all possible categories of
 //' the content analysis.
 //' @return Returns the log likelihood as a single numeric value.
+//'@references  Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
+//'of the Second Generation.Measures for Content Analysis Done by
+//'Humans or Artificial Intelligences. Berlin: Logos.
+//'https://doi.org/10.30819/5581
 //'@importFrom Rcpp sourceCpp
 //'@useDynLib iotarelr
 // [[Rcpp::export]]
@@ -155,6 +159,10 @@ double fct_log_likelihood_c(Rcpp::NumericVector categorial_sizes,
 //' @return Returns the log likelihood as a single numeric value.
 //'@importFrom Rcpp sourceCpp
 //'@useDynLib iotarelr
+//'@references  Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
+//'of the Second Generation.Measures for Content Analysis Done by
+//'Humans or Artificial Intelligences. Berlin: Logos.
+//'https://doi.org/10.30819/5581
 // [[Rcpp::export]]
 double log_likelihood_multi_c(Rcpp::NumericVector probabilities,
                               Rcpp::NumericVector observations){
@@ -165,9 +173,9 @@ double log_likelihood_multi_c(Rcpp::NumericVector probabilities,
   for(i=0;i<n_categories;i++){
     if(observations(i)>0){
       log_likelihood=log_likelihood+observations(i)*log(probabilities(i));
-    } else {
-      log_likelihood=log_likelihood;
-    }
+    } //else {
+      //log_likelihood=log_likelihood;
+    //}
   }
   log_likelihood=-log_likelihood;
     return(log_likelihood);
@@ -187,6 +195,10 @@ double log_likelihood_multi_c(Rcpp::NumericVector probabilities,
 //' @return Returns the gradient as a \code{NumericVector}.
 //'@importFrom Rcpp sourceCpp
 //'@useDynLib iotarelr
+//'@references  Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
+//'of the Second Generation.Measures for Content Analysis Done by
+//'Humans or Artificial Intelligences. Berlin: Logos.
+//'https://doi.org/10.30819/5581
 // [[Rcpp::export]]
 Rcpp::NumericVector grad_ll(Rcpp::NumericVector param_values,
                             Rcpp::NumericVector observations){
@@ -225,6 +237,10 @@ Rcpp::NumericVector grad_ll(Rcpp::NumericVector param_values,
 //' @return Returns the log likelihood as a single numeric value.
 //' @importFrom Rcpp sourceCpp
 //' @useDynLib iotarelr
+//'@references  Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
+//'of the Second Generation.Measures for Content Analysis Done by
+//'Humans or Artificial Intelligences. Berlin: Logos.
+//'https://doi.org/10.30819/5581
 //' @export
 // [[Rcpp::export]]
 Rcpp::NumericVector est_con_multinominal_c(Rcpp::NumericVector observations,
@@ -410,6 +426,10 @@ Rcpp::NumericVector est_con_multinominal_c(Rcpp::NumericVector observations,
 //'0 if the assumptions are fulfilled.
 //'@importFrom Rcpp sourceCpp
 //'@useDynLib iotarelr
+//'@references  Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
+//'of the Second Generation.Measures for Content Analysis Done by
+//'Humans or Artificial Intelligences. Berlin: Logos.
+//'https://doi.org/10.30819/5581
 //'@export
 // [[Rcpp::export]]
 int check_conformity_c(Rcpp::NumericMatrix aem){
@@ -477,6 +497,10 @@ int check_conformity_c(Rcpp::NumericMatrix aem){
 //'@export
 //'@importFrom Rcpp sourceCpp
 //'@useDynLib iotarelr
+//'@references  Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
+//'of the Second Generation.Measures for Content Analysis Done by
+//'Humans or Artificial Intelligences. Berlin: Logos.
+//'https://doi.org/10.30819/5581
 // [[Rcpp::export]]
 Rcpp::List EM_algo_c (Rcpp::CharacterMatrix obs_pattern_shape,
                       Rcpp::NumericVector obs_pattern_frq,

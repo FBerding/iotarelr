@@ -71,9 +71,14 @@ Reliabilities for each category. These values represent probabilities.}
 category. These values represent probabilities.}
 \item{\code{assignment_error_matrix: }}{Assignment Error Matrix containing the conditional
 probabilities for assigning a unit of category i to categories 1 to n.}
-#' \item{\code{iota: }}
+ \item{\code{iota: }}
 {A vector containing the Iota values for each category.}
+ \item{\code{iota_error_1: }}
+{A vector containing the Iota Error Type I values for each category.}
+ \item{\code{iota_error_2: }}
+{A vector containing the Iota Error Type II values for each category.}
 }}
+
 \item{\code{elements_chance_corrected}}{
 \itemize{
 \item{\code{alpha_reliability: }}
@@ -81,7 +86,7 @@ probabilities for assigning a unit of category i to categories 1 to n.}
 \item{\code{beta_reliability: }}
 {A vector containing the chance-corrected Beta Reliabilities for each category.}
 }}
-}
+
 The second component \code{estimates_scale_level} contains elements for
 describing the quality of the ratings on a scale level. It comprises the
 following elements:
@@ -95,6 +100,7 @@ in order to consider the uncertainty of estimation.}
 {The Dynamic Iota Index, which is a transformation of the original Iota Index,
 in order to consider the uncertainty of estimation.}
 }
+
 The third component \code{information} contains important information
 regarding the parameter estimation. It comprises the following elements:
 \itemize{
@@ -121,8 +127,14 @@ regarding the parameter estimation. It comprises the following elements:
 {Number of raters.}
 \item{\code{n_cunits: }}
 {Number of coding units.}
-}
+}}
 }
 \description{
 Fits a model of Iota2 to the data
+}
+\references{
+Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
+of the Second Generation.Measures for Content Analysis Done by
+Humans or Artificial Intelligences. Berlin: Logos.
+https://doi.org/10.30819/5581
 }

@@ -32,9 +32,10 @@ the whole scale.}
 Computes all elements of the Iota Reliability Concept
 }
 \references{
-Berding, F., Riebenbauer, E., Stuetz, S., Jahncke, H.,
-Slopinski, A., & Rebmann, K. (2022, March 23). Performance and Configuration
-of Artificial Intelligence in Business Education Learning Analytics
-Applications. A Content Analysis-Based Approach.
-https://doi.org/10.31235/osf.io/trvcy
+-   Berding, Florian, Elisabeth Riebenbauer, Simone Stuetz, Heike
+Jahncke, Andreas Slopinski, and Karin Rebmann. 2022. Performance and
+Configuration of Artificial Intelligence in Educational
+Settings.Introducing a New Reliability Concept Based on Content
+Analysis. Frontiers in Education.
+https://doi.org/10.3389/feduc.2022.818365
 }

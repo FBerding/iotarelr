@@ -11,6 +11,8 @@ plot_iota(
   liota = "Assignment of the true category (Iota)",
   lcase2 = "Assignment to the false category",
   lcase3 = "Assignment from the false true category",
+  lscale_quality = "Scale Quality",
+  lscale_cat = c("insufficent", "minimum", "satisfactory", "good", "excellent"),
   number_size = 6,
   key_size = 0.5,
   text_size = 10,
@@ -36,6 +38,13 @@ Label for the amount of cases that are assigned to a false category.}
 \item{lcase3}{\code{Character} passed to labels() from scale_fill_manual().
 Label for the amount of cases that are assigned from a false category.}
 
+\item{lscale_quality}{\code{character} passed to scale_fill_manual() determining
+the title for the quality of a scale. Only used in conjunction with
+\code{scale}.}
+
+\item{lscale_cat}{Vector of strings with length 5. This vector contains the
+labels for each category of quality for the scale.}
+
 \item{number_size}{\code{Double} passed to geom_text() determining the size
 of the numbers within the plot.}
 
@@ -59,4 +68,10 @@ Function for creating a plot object that can be plotted via \link{ggplot2}.
 }
 \note{
 An example for interpreting the plot can be found in:
+}
+\references{
+Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
+of the Second Generation.Measures for Content Analysis Done by
+Humans or Artificial Intelligences. Berlin: Logos.
+https://doi.org/10.30819/5581
 }

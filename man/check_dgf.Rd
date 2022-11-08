@@ -72,3 +72,9 @@ that documentation.
 \description{
 Function for checking if the coding scheme is the same for different sub-groups.
 }
+\references{
+Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
+of the Second Generation.Measures for Content Analysis Done by
+Humans or Artificial Intelligences. Berlin: Logos.
+https://doi.org/10.30819/5581
+}
