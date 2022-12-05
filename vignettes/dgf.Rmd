@@ -4,7 +4,7 @@ author: "Florian Berding and Julia Pargmann"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{dgf}
+  %\VignetteIndexEntry{03_dgf}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 

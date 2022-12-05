@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">iotarelr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,11 +44,14 @@
 <li class="active nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/cons_and_values.html">2) Estimating Consequences for Subsequent Analyses</a>
-    <a class="dropdown-item" href="../articles/dgf.html">3) Different Guidance Functioning</a>
-    <a class="dropdown-item" href="../articles/error_correction.html">4) Error Correction</a>
-    <a class="dropdown-item" href="../articles/new_rater.html">5) Training New Raters</a>
-    <a class="dropdown-item" href="../articles/vig_Iota_1.html">How to use Iota1</a>
+    <a class="dropdown-item" href="../articles/iotarelr.html">01 Get started</a>
+    <a class="dropdown-item" href="../articles/cons_and_values.html">02 Estimating Consequences for Subsequent Analyses</a>
+    <a class="dropdown-item" href="../articles/dgf.html">03 Different Guidance Functioning</a>
+    <a class="dropdown-item" href="../articles/error_correction.html">04 Error Correction</a>
+    <a class="dropdown-item" href="../articles/new_rater.html">05 Test New Raters</a>
+    <div class="dropdown-divider"></div>
+    <h6 class="dropdown-header" data-toc-skip>Old concepts</h6>
+    <a class="dropdown-item" href="../articles/vig_Iota_1.html">Old 01 How to use Iota1</a>
   </div>
 </li>
 <li class="nav-item">
@@ -82,7 +85,7 @@
                         <h4 data-toc-skip class="author">Florian Berding
 and Julia Pargmann</h4>
             
-            <h4 data-toc-skip class="date">2022-11-04</h4>
+            <h4 data-toc-skip class="date">2022-12-05</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/FBerding/iotarelr/blob/HEAD/vignettes/dgf.Rmd" class="external-link"><code>vignettes/dgf.Rmd</code></a></small>
       <div class="d-none name"><code>dgf.Rmd</code></div>
@@ -177,7 +180,7 @@ group. Let’s start with the females.</p>
 <span><span class="co">#&gt; Number of Coding Units: 173</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Random Start: 2</span></span>
-<span><span class="co">#&gt; Log-Likelihood: 549.189068930566</span></span>
+<span><span class="co">#&gt; Log-Likelihood: 549.189068930537</span></span>
 <span><span class="co">#&gt; The best log-likelihood has been replicated.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Primary Parameters</span></span>
@@ -193,11 +196,11 @@ group. Let’s start with the females.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Categorical Level</span></span>
 <span><span class="co">#&gt;           dimensions average   good   poor</span></span>
-<span><span class="co">#&gt; 1              Alpha  0.8869 0.5069 0.5066</span></span>
-<span><span class="co">#&gt; 2               Beta   0.382 0.7897 0.5348</span></span>
-<span><span class="co">#&gt; 3               Iota  0.3061 0.4848 0.3124</span></span>
-<span><span class="co">#&gt; 4  Iota Error Type I   0.039 0.4716 0.3042</span></span>
-<span><span class="co">#&gt; 5 Iota Error Type II  0.6549 0.0436 0.3833</span></span>
+<span><span class="co">#&gt; 1              Alpha  0.8869 0.5068 0.5067</span></span>
+<span><span class="co">#&gt; 2               Beta  0.3819 0.7898 0.5348</span></span>
+<span><span class="co">#&gt; 3               Iota   0.306 0.4848 0.3124</span></span>
+<span><span class="co">#&gt; 4  Iota Error Type I   0.039 0.4717 0.3042</span></span>
+<span><span class="co">#&gt; 5 Iota Error Type II  0.6549 0.0435 0.3834</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Scale Level</span></span>
 <span><span class="co">#&gt; Iota Index: 0.378</span></span>
@@ -228,7 +231,7 @@ results for the men.</p>
 <span><span class="co">#&gt; Number of Coding Units: 145</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Random Start: 2</span></span>
-<span><span class="co">#&gt; Log-Likelihood: 461.504149583752</span></span>
+<span><span class="co">#&gt; Log-Likelihood: 461.503913494901</span></span>
 <span><span class="co">#&gt; The best log-likelihood has not been replicated. Increase the</span></span>
 <span><span class="co">#&gt;       number of random stars and/or inspect the Assignment Error Matrices and</span></span>
 <span><span class="co">#&gt;       categorical sizes.</span></span>
@@ -236,26 +239,26 @@ results for the men.</p>
 <span><span class="co">#&gt; Primary Parameters</span></span>
 <span><span class="co">#&gt; Assignment Error Matrix</span></span>
 <span><span class="co">#&gt;         average  good  poor</span></span>
-<span><span class="co">#&gt; average   0.546 0.259 0.195</span></span>
+<span><span class="co">#&gt; average   0.543 0.260 0.196</span></span>
 <span><span class="co">#&gt; good      0.333 0.333 0.333</span></span>
-<span><span class="co">#&gt; poor      0.089 0.159 0.753</span></span>
+<span><span class="co">#&gt; poor      0.090 0.160 0.750</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Categorical Sizes</span></span>
 <span><span class="co">#&gt; average    good    poor </span></span>
-<span><span class="co">#&gt;   0.575   0.242   0.183 </span></span>
+<span><span class="co">#&gt;   0.584   0.230   0.186 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Categorical Level</span></span>
 <span><span class="co">#&gt;           dimensions average   good   poor</span></span>
-<span><span class="co">#&gt; 1              Alpha  0.5458 0.3333 0.7526</span></span>
-<span><span class="co">#&gt; 2               Beta  0.5311 0.4188 0.5437</span></span>
-<span><span class="co">#&gt; 3               Iota   0.467  0.192  0.367</span></span>
-<span><span class="co">#&gt; 4  Iota Error Type I  0.3887  0.384 0.1207</span></span>
-<span><span class="co">#&gt; 5 Iota Error Type II  0.1443  0.424 0.5123</span></span>
+<span><span class="co">#&gt; 1              Alpha  0.5432 0.3333 0.7503</span></span>
+<span><span class="co">#&gt; 2               Beta  0.5328 0.4193 0.5446</span></span>
+<span><span class="co">#&gt; 3               Iota  0.4683 0.1862 0.3695</span></span>
+<span><span class="co">#&gt; 4  Iota Error Type I  0.3938 0.3724  0.123</span></span>
+<span><span class="co">#&gt; 5 Iota Error Type II  0.1379 0.4414 0.5074</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Scale Level</span></span>
-<span><span class="co">#&gt; Iota Index: 0.298</span></span>
-<span><span class="co">#&gt; Static Iota Index: 0.036</span></span>
-<span><span class="co">#&gt; Dynamic Iota Index: 0.268</span></span></code></pre></div>
+<span><span class="co">#&gt; Iota Index: 0.3</span></span>
+<span><span class="co">#&gt; Static Iota Index: 0.035</span></span>
+<span><span class="co">#&gt; Dynamic Iota Index: 0.269</span></span></code></pre></div>
 <p>For the men, the result is very different. According to their
 <em>Assignment Error Matrix</em>, an average exam is assigned as an
 average exam only in 54.4% of the cases. If it is not recognized as an

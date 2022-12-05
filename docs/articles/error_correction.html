@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">iotarelr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,11 +44,14 @@
 <li class="active nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/cons_and_values.html">2) Estimating Consequences for Subsequent Analyses</a>
-    <a class="dropdown-item" href="../articles/dgf.html">3) Different Guidance Functioning</a>
-    <a class="dropdown-item" href="../articles/error_correction.html">4) Error Correction</a>
-    <a class="dropdown-item" href="../articles/new_rater.html">5) Training New Raters</a>
-    <a class="dropdown-item" href="../articles/vig_Iota_1.html">How to use Iota1</a>
+    <a class="dropdown-item" href="../articles/iotarelr.html">01 Get started</a>
+    <a class="dropdown-item" href="../articles/cons_and_values.html">02 Estimating Consequences for Subsequent Analyses</a>
+    <a class="dropdown-item" href="../articles/dgf.html">03 Different Guidance Functioning</a>
+    <a class="dropdown-item" href="../articles/error_correction.html">04 Error Correction</a>
+    <a class="dropdown-item" href="../articles/new_rater.html">05 Test New Raters</a>
+    <div class="dropdown-divider"></div>
+    <h6 class="dropdown-header" data-toc-skip>Old concepts</h6>
+    <a class="dropdown-item" href="../articles/vig_Iota_1.html">Old 01 How to use Iota1</a>
   </div>
 </li>
 <li class="nav-item">
@@ -82,7 +85,7 @@
                         <h4 data-toc-skip class="author">Florian Berding
 and Julia Pargmann</h4>
             
-            <h4 data-toc-skip class="date">2022-11-04</h4>
+            <h4 data-toc-skip class="date">2022-12-05</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/FBerding/iotarelr/blob/HEAD/vignettes/error_correction.Rmd" class="external-link"><code>vignettes/error_correction.Rmd</code></a></small>
       <div class="d-none name"><code>error_correction.Rmd</code></div>
@@ -162,13 +165,13 @@ source. The results are saved in the object
 <span>  data<span class="op">=</span><span class="va">iotarelr_written_exams</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Coder A"</span>,<span class="st">"Coder B"</span>,<span class="st">"Coder C"</span><span class="op">)</span><span class="op">]</span>,</span>
 <span>  aem<span class="op">=</span><span class="va">res_iota2</span><span class="op">$</span><span class="va">categorical_level</span><span class="op">$</span><span class="va">raw_estimates</span><span class="op">$</span><span class="va">assignment_error_matrix</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">expected_categories</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Coder A Coder B Coder C prob_average prob_good  prob_poor expected_category</span></span>
-<span><span class="co">#&gt; 1 average average    good 4.843046e-01 0.3635480 0.15214742           average</span></span>
-<span><span class="co">#&gt; 2 average    poor average 2.565281e-08 0.2760773 0.72392263              poor</span></span>
-<span><span class="co">#&gt; 3    poor average    poor 4.998143e-17 0.1291721 0.87082787              poor</span></span>
-<span><span class="co">#&gt; 4 average average average 9.169906e-01 0.0410957 0.04191366           average</span></span>
-<span><span class="co">#&gt; 5    poor average    good 2.672200e-09 0.4816998 0.51830022              poor</span></span>
-<span><span class="co">#&gt; 6    poor    poor average 4.998143e-17 0.1291721 0.87082787              poor</span></span></code></pre></div>
+<span><span class="co">#&gt;   Coder A Coder B Coder C prob_average  prob_good  prob_poor expected_category</span></span>
+<span><span class="co">#&gt; 1 average average    good 4.842773e-01 0.36360640 0.15211634           average</span></span>
+<span><span class="co">#&gt; 2 average    poor average 5.158899e-07 0.27617770 0.72382178              poor</span></span>
+<span><span class="co">#&gt; 3    poor average    poor 2.021407e-14 0.12924732 0.87075268              poor</span></span>
+<span><span class="co">#&gt; 4 average average average 9.169924e-01 0.04110183 0.04190578           average</span></span>
+<span><span class="co">#&gt; 5    poor average    good 5.373066e-08 0.48183219 0.51816776              poor</span></span>
+<span><span class="co">#&gt; 6    poor    poor average 2.021407e-14 0.12924732 0.87075268              poor</span></span></code></pre></div>
 <p>The resulting object contains the ratings and additional columns. The
 columns contain the probability that a coding unit belongs to a specific
 true category. For the first two rows, the probability that these exams

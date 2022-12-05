@@ -6,4 +6,22 @@ navbar:
   structure:
     left:  [intro, reference, articles, tutorials, news]
     right: [search, github]
+  components:
+    articles:
+      text: "Articles"
+      menu:
+      - text: "01 Get started"
+        href: "articles/iotarelr.html"
+      - text: "02 Estimating Consequences for Subsequent Analyses"
+        href: "articles/cons_and_values.html"
+      - text: "03 Different Guidance Functioning"
+        href: "articles/dgf.html"
+      - text: "04 Error Correction"
+        href: "articles/error_correction.html"
+      - text: "05 Test New Raters"
+        href: "articles/new_rater.html"
+      - text: "-------"
+      - text: "Old concepts"
+      - text: "Old 01 How to use Iota1"
+        href: "articles/vig_Iota_1.html"
 

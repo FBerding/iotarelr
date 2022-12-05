@@ -1,10 +1,10 @@
 ---
-title: "How to use Iota1"
+title: "Old 1) How to use Iota1"
 author: "Florian Berding and Julia Pargmann"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{my-vignette}
+  %\VignetteIndexEntry{Old 1) How to use Iota1}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

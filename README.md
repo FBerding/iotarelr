@@ -42,6 +42,12 @@ found via articles.
 
 ## Installation
 
+You can install the package from CRAN with:
+
+``` r
+install.packages("iotarelr")
+```
+
 You can install the development version of *iotarelr* from
 [GitHub](https://github.com/) with:
 
@@ -175,12 +181,13 @@ consequences and cut-off values”.
 
 ## Further Readings
 
-- Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
-  of the Second Generation.Measures for Content Analysis Done by Humans
-  or Artificial Intelligences. Berlin: Logos.
+- Florian Berding and Julia Pargmann (2022).Iota Reliability Concept of
+  the Second Generation.Measures for Content Analysis Done by Humans or
+  Artificial Intelligence. Berlin: Logos.
+  <https://doi.org/10.30819/5581>
 
-- Berding, Florian, Elisabeth Riebenbauer, Simone Stuetz, Heike Jahncke,
-  Andreas Slopinski, and Karin Rebmann. 2022. Performance and
+- Florian Berding, Elisabeth Riebenbauer, Simone Stuetz, Heike Jahncke,
+  Andreas Slopinski, and Karin Rebmann (2022). Performance and
   Configuration of Artificial Intelligence in Educational
   Settings.Introducing a New Reliability Concept Based on Content
   Analysis. Frontiers in Education.

@@ -4,7 +4,7 @@ author: "Florian Berding and Julia Pargmann"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Estimating_Consequences_for_Subsequent_Analysis}
+  %\VignetteIndexEntry{02_estimating_cons}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

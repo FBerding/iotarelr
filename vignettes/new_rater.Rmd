@@ -1,10 +1,10 @@
 ---
-title: "5) Training New Raters"
+title: "5) Test New Raters"
 author: "Florian Berding and Julia Pargmann"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{new_rater}
+  %\VignetteIndexEntry{05_new_rater}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

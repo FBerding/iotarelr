@@ -5,32 +5,38 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="
-    Routines and tools for assessing the quality
-    of content analysis on the basis of the Iota Reliability Concept. The concept
-    is inspired by item response theory and can be applied to any kind of 
-    content analysis which uses a standardized coding scheme and discrete categories.
-    It is also applicable for content analysis conducted by artificial intelligence. 
-    The package provides reliability measures for a complete scale as well as for 
-    every single category. Analysis of subgroup-invariance and error corrections 
-    are implemented. This information can support the development process of a 
-    coding scheme and allows a detailed inspection of the quality of the generated data.">
+<meta name="description" content="Routines and tools for assessing the quality of content
+    analysis on the basis of the Iota Reliability Concept. The concept is
+    inspired by item response theory and can be applied to any kind of
+    content analysis which uses a standardized coding scheme and discrete
+    categories.  It is also applicable for content analysis conducted by
+    artificial intelligence.  The package provides reliability measures
+    for a complete scale as well as for every single category. Analysis of
+    subgroup-invariance and error corrections are implemented. This
+    information can support the development process of a coding scheme and
+    allows a detailed inspection of the quality of the generated data.
+    Equations and formulas working in this package are part of Berding et
+    al. (2022)&lt;doi:10.3389/feduc.2022.818365&gt; and Berding and Pargmann
+    (2022) &lt;doi:10.30819/5581&gt;.">
 <title>Iota Inter Coder Reliability for Content Analysis • iotarelr</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Iota Inter Coder Reliability for Content Analysis">
-<meta property="og:description" content="
-    Routines and tools for assessing the quality
-    of content analysis on the basis of the Iota Reliability Concept. The concept
-    is inspired by item response theory and can be applied to any kind of 
-    content analysis which uses a standardized coding scheme and discrete categories.
-    It is also applicable for content analysis conducted by artificial intelligence. 
-    The package provides reliability measures for a complete scale as well as for 
-    every single category. Analysis of subgroup-invariance and error corrections 
-    are implemented. This information can support the development process of a 
-    coding scheme and allows a detailed inspection of the quality of the generated data.">
+<meta property="og:description" content="Routines and tools for assessing the quality of content
+    analysis on the basis of the Iota Reliability Concept. The concept is
+    inspired by item response theory and can be applied to any kind of
+    content analysis which uses a standardized coding scheme and discrete
+    categories.  It is also applicable for content analysis conducted by
+    artificial intelligence.  The package provides reliability measures
+    for a complete scale as well as for every single category. Analysis of
+    subgroup-invariance and error corrections are implemented. This
+    information can support the development process of a coding scheme and
+    allows a detailed inspection of the quality of the generated data.
+    Equations and formulas working in this package are part of Berding et
+    al. (2022)&lt;doi:10.3389/feduc.2022.818365&gt; and Berding and Pargmann
+    (2022) &lt;doi:10.30819/5581&gt;.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -44,7 +50,7 @@
     
     <a class="navbar-brand me-2" href="index.html">iotarelr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,11 +68,14 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="articles/cons_and_values.html">2) Estimating Consequences for Subsequent Analyses</a>
-    <a class="dropdown-item" href="articles/dgf.html">3) Different Guidance Functioning</a>
-    <a class="dropdown-item" href="articles/error_correction.html">4) Error Correction</a>
-    <a class="dropdown-item" href="articles/new_rater.html">5) Training New Raters</a>
-    <a class="dropdown-item" href="articles/vig_Iota_1.html">How to use Iota1</a>
+    <a class="dropdown-item" href="articles/iotarelr.html">01 Get started</a>
+    <a class="dropdown-item" href="articles/cons_and_values.html">02 Estimating Consequences for Subsequent Analyses</a>
+    <a class="dropdown-item" href="articles/dgf.html">03 Different Guidance Functioning</a>
+    <a class="dropdown-item" href="articles/error_correction.html">04 Error Correction</a>
+    <a class="dropdown-item" href="articles/new_rater.html">05 Test New Raters</a>
+    <div class="dropdown-divider"></div>
+    <h6 class="dropdown-header" data-toc-skip>Old concepts</h6>
+    <a class="dropdown-item" href="articles/vig_Iota_1.html">Old 01 How to use Iota1</a>
   </div>
 </li>
 <li class="nav-item">
@@ -113,8 +122,11 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the development version of <em>iotarelr</em> from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+<p>You can install the package from CRAN with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"iotarelr"</span><span class="op">)</span></span></code></pre></div>
+<p>You can install the development version of <em>iotarelr</em> from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"FBerding/iotarelr"</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -226,14 +238,15 @@
 <h2 id="further-readings">Further Readings<a class="anchor" aria-label="anchor" href="#further-readings"></a>
 </h2>
 <ul>
-<li><p>Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept of the Second Generation.Measures for Content Analysis Done by Humans or Artificial Intelligences. Berlin: Logos.</p></li>
-<li><p>Berding, Florian, Elisabeth Riebenbauer, Simone Stuetz, Heike Jahncke, Andreas Slopinski, and Karin Rebmann. 2022. Performance and Configuration of Artificial Intelligence in Educational Settings.Introducing a New Reliability Concept Based on Content Analysis. Frontiers in Education. <a href="https://doi.org/10.3389/feduc.2022.818365" class="external-link uri">https://doi.org/10.3389/feduc.2022.818365</a></p></li>
+<li><p>Florian Berding and Julia Pargmann (2022).Iota Reliability Concept of the Second Generation.Measures for Content Analysis Done by Humans or Artificial Intelligence. Berlin: Logos. <a href="https://doi.org/10.30819/5581" class="external-link uri">https://doi.org/10.30819/5581</a></p></li>
+<li><p>Florian Berding, Elisabeth Riebenbauer, Simone Stuetz, Heike Jahncke, Andreas Slopinski, and Karin Rebmann. 2022. Performance and Configuration of Artificial Intelligence in Educational Settings.Introducing a New Reliability Concept Based on Content Analysis. Frontiers in Education. <a href="https://doi.org/10.3389/feduc.2022.818365" class="external-link uri">https://doi.org/10.3389/feduc.2022.818365</a></p></li>
 </ul>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
+<li><a href="https://cloud.r-project.org/package=iotarelr" class="external-link">View on CRAN</a></li>
 <li><a href="https://github.com/FBerding/iotarelr/" class="external-link">Browse source code</a></li>
 <li><a href="https://github.com/FBerding/iotarelr/issues" class="external-link">Report a bug</a></li>
 </ul>
