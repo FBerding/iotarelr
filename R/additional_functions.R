@@ -94,8 +94,8 @@
 #'@note The returned object contains further slots since the returned object is
 #'of class \code{iotarelr_iota2}. These slots are empty because they are not part of the
 #'estimation within this function.
-#'@references  Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
-#'of the Second Generation.Measures for Content Analysis Done by
+#'@references  Florian Berding and Julia Pargmann (2022).Iota Reliability Concept
+#'of the Second Generation. Measures for Content Analysis Done by
 #'Humans or Artificial Intelligences. Berlin: Logos.
 #'https://doi.org/10.30819/5581
 #'@export
@@ -258,8 +258,8 @@ check_new_rater<-function(true_values,
 #'the results of the estimation are saved separately. The structure within each
 #'group is similar to the results from \code{compute_iota2()}. Please check
 #'that documentation.
-#'@references  Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
-#'of the Second Generation.Measures for Content Analysis Done by
+#'@references  Florian Berding and Julia Pargmann (2022).Iota Reliability Concept
+#'of the Second Generation. Measures for Content Analysis Done by
 #'Humans or Artificial Intelligences. Berlin: Logos.
 #'https://doi.org/10.30819/5581
 #'@export
@@ -319,6 +319,10 @@ check_dgf<-function(data,
 #' @param aem Assignment Error Matrix based on the second generation of the Iota Concept (Iota2).
 #' @return Returns a \code{matrix} with the original data, the conditioned
 #' probability of each true category, and the expected category for every coding unit.
+#'@references  Florian Berding and Julia Pargmann (2022).Iota Reliability Concept
+#'of the Second Generation. Measures for Content Analysis Done by
+#'Humans or Artificial Intelligences. Berlin: Logos.
+#'https://doi.org/10.30819/5581
 #' @export
 
 est_expected_categories<-function(data,

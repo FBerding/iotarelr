@@ -62,8 +62,8 @@ in order to consider the uncertainty of estimation.}
 Function for calculating the elements of the Iota Concept 2
 }
 \references{
-Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
-of the Second Generation.Measures for Content Analysis Done by
+Florian Berding and Julia Pargmann (2022).Iota Reliability Concept
+of the Second Generation. Measures for Content Analysis Done by
 Humans or Artificial Intelligences. Berlin: Logos.
 https://doi.org/10.30819/5581
 }

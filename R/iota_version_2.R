@@ -161,8 +161,8 @@ get_patterns<-function(data,categorical_levels){
 #' \item{\code{n_cunits: }}
 #' {Number of coding units.}
 #' }}
-#'@references  Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
-#'of the Second Generation.Measures for Content Analysis Done by
+#'@references  Florian Berding and Julia Pargmann (2022).Iota Reliability Concept
+#'of the Second Generation. Measures for Content Analysis Done by
 #'Humans or Artificial Intelligences. Berlin: Logos.
 #'https://doi.org/10.30819/5581
 #' @export
@@ -353,8 +353,8 @@ compute_iota2<-function(data,
 #' {The Dynamic Iota Index, which is a transformation of the original Iota Index,
 #' in order to consider the uncertainty of estimation.}
 #' }
- #'@references  Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
-#'of the Second Generation.Measures for Content Analysis Done by
+ #'@references  Florian Berding and Julia Pargmann (2022).Iota Reliability Concept
+#'of the Second Generation. Measures for Content Analysis Done by
 #'Humans or Artificial Intelligences. Berlin: Logos.
 #'https://doi.org/10.30819/5581
 #' @export

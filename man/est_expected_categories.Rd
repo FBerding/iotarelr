@@ -20,3 +20,9 @@ probability of each true category, and the expected category for every coding un
 \description{
 Function for estimating the expected category of coding units.
 }
+\references{
+Florian Berding and Julia Pargmann (2022).Iota Reliability Concept
+of the Second Generation. Measures for Content Analysis Done by
+Humans or Artificial Intelligences. Berlin: Logos.
+https://doi.org/10.30819/5581
+}
