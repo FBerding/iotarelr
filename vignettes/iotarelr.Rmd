@@ -33,7 +33,7 @@ library(iotarelr)
 
 In this introduction, we use a sample data set which is called "iotarelr_written_exams". 
 The data set does not contain real data from written exams. It is a data set which 
-was created for illustrating purposes only. Let us have a look at it.
+was created for illustration purposes only. Let us have a look at it.
 ```{r}
 head(iotarelr_written_exams)
 ```
@@ -57,7 +57,7 @@ is important to understand how the *Iota Concept* uses these terms. Figure 1 ill
 ![Figure 1: Scale and Categories in Iota Concept](iotarelr-terms.png){width=100%}
 
 Regarding our example, the performance in the exams is the scale which is made up
-by three categories: "good", "average" and "poor". Since the categories can be
+of three categories: "good", "average" and "poor". Since the categories can be
 sorted by degree or performance, they form an ordinal scale. An example for
 a nominal scale are colors. Here, the different colors are the categories. They
 make up the scale "color".
@@ -83,7 +83,7 @@ and true category should match, but this is not certain.
 
 Since the assigned category and the true category may differ, the labeled data can vary
 in the degree of how well it reflects the true data. That is, the degree of
-overlapping between true data and labeled data can vary. In Figure 2, three exams
+overlapping between the true data and labeled data can vary. In Figure 2, three exams
 are assigned to be good exams. Thus, the data set contains three cases which are 
 labeled as good exams. Although the cases
 are labeled as good, only one case really is a good exam. Thus, the true data
@@ -107,7 +107,7 @@ object, request the estimation of Iota2 and save the results.
 ```{r}
 codings<-iotarelr_written_exams[c("Coder A","Coder B","Coder C")]
 res_iota2<-compute_iota2(data=codings,
-                         random_starts = 5,
+                         random_starts = 10,
                          trace = FALSE)
 ```
 The estimation of all components of Iota2 can take a moment. If you would like to 
@@ -117,7 +117,7 @@ we can request a summary with the function `get_summary()`.
 get_summary(res_iota2)
 ```
 The summary first shows basic information such as the number of raters, the 
-number of categories,the concrete categories and the number of coding units. 
+number of categories, the concrete categories and the number of coding units. 
 Next, the summary presents the
 log-likelihood which to some extent describes  the quality of the model. Lower
 values imply a better fitting model than higher values. Additionally, the summary
@@ -127,6 +127,7 @@ solutions to ensure that the subsequent analyses are based on the best model pos
 .
 
 ## 2.2 Analysing the reliability on the categorical level
+### 2.2.1 Interpretation of the central components
 Next, the summary shows the results for the primary parameters. These are the
 *Assignment Error Matrix* and the *categorical sizes*, which are the basis for all
 other measures of the *Iota Concept*. 
@@ -135,9 +136,9 @@ The *Assignment Error Matrix* describes the rating process. The true category is
 always in the rows and the assigned categories are always in the columns. In
 the current example, the first row describes how exams representing an average
 performance are assigned to the three different categories. An exam
-representing an average performance is assigned as such an exam in about 91.7
-of cases. In about 8.3% of cases, an average exam is assigned as a good
-exam. Finally, an average exam is never assigned as a poor exam. Here, the corresponding
+representing an average performance is assigned to be such an exam in about 91.7%
+of cases. In about 8.3% of cases, an average exam is assigned to be a good
+exam. Finally, an average exam is never assigned to be a poor exam. Here, the corresponding
 probability is about 0%.
 
 When concentrating on the exams which reflect a good performance, the second row of
@@ -146,8 +147,7 @@ exam is assigned as a good exam. In other words: The probability to recognize a
 good exam as a good exam equals flipping a coin. In about 32.6% of cases, a good exam is assigned
 to the category "average". That is, this exam is judged as showing an average performance, although it
 is truly a good exam. Finally, a good exam is rated as a "poor" exam in about 18.1%
-of the cases. Thus, the raters make more mistakes in evaluating a good exam than in
-evaluating an average exam (49.3% for good exams compared to 91.7% for average
+of cases. Thus, the raters make more mistakes in evaluating a good exam than an average exam (49.3% for good exams compared to 91.7% for average
 exams). 
 
 The *categorical sizes* represent an estimate for the distribution of the **true** categories
@@ -156,14 +156,13 @@ average, 39.6% to be good and 48.5% to be poor.
 
 Based on the *Assignment Error Matrix* and the *categorical sizes*, additional measures
 of reliability can be derived. These are shown in the next lines of the summary.
-The first is the *Alpha Reliability*, which correspondents to the diagonal of 
+The first is the *Alpha Reliability*, which corresponds to the diagonal of 
 the *Assignment Error Matrix*. This determines the probability that a coding unit of a specific 
 category is correctly assigned to that category. In this example, a coding unit truly
 belonging to the category "average" is assigned to the category "average" in about 91.71%
 of cases. In other words: An exam truly representing an average performance is
 rated as an average exam in about 91.71% of cases. This value is quite high. 
-In contrast, the *Alpha Reliability* of the category "good" is only .4933. This means 
-that a coding unit truly belonging to the category "good" is assigned "good" only in
+In contrast, the *Alpha Reliability* of the category "good" is only .4933. This means that a coding unit truly belonging to the category "good" is assigned "good" only in
 about 50% of cases. This is quite a bad result.
 Alike applies for the category "poor".
 
@@ -202,24 +201,24 @@ are necessary. Figure 3 illustrates all three cases.
 ![Figure 3: Illustrating Iota](iotarelr-iota.png){width=100%}
 
 Referring to the first row in Figure 3, the box represents all coding units that
-**truly** belong to category *i*. In the case of perfect reliability, the **labeled data**
-corresponds with these coding units. 
+**truly** belong to category *i*. In case of perfect reliability, the **labeled data**
+corresponds to these coding units. 
 
 Row two in Figure 3 splits the coding units of that category. The green part of the box
-represents the coding units, which in truth belong to category *i* and which are part
+represents the coding units which in truth belong to category *i* and which are part
 of the labeled data. The yellow part of the box represents the number of coding
 units which in truth belong to category *i*, but which are not assigned to category *i*.
 These coding units are missing in the labeled data. In the situation presented 
 in row two, the total number of coding units representing category *i*
-is underestimated with the labeled data. 
+is underestimated in the labeled data. 
 
 Let us now turn to the third row to provide a complete view. The 
 **labeled data** of category *i* can also include coding units that **truly** belong
-to **other** categories. These coding units are represented with the red box.
+to **other** categories. These coding units are represented by the red box.
 They are results from coding errors made in other categories and
 increase the number of units labeled as category *i*, although in truth, they do not belong
 to category *i*. Thus, these units contribute to an overestimation of 
-the number of coding units truly belong to category *i*.
+the number of coding units truly belonging to category *i*.
 
 *Iota* refers to the green box of row 3, *Iota Error I* refers to the yellow box
 and *Iota Error II* refers to the red box. All three measures are expressed as a
@@ -232,7 +231,7 @@ visualizing the values. This can be done with the function `plot_iota()`.
 plot_iota(res_iota2)
 ```
 
-***Category average:*** Let's start with the category "average". For this category, *Iota* is about .268.
+***Category average:*** Let us start with the category "average". For this category, *Iota* is about .268.
 This means that about 26.8% of the relevant labeled data really are average exams. 
 The remaining 73.2% represent average exams that are missing in the results (*Iota Error I*) or
 represent exams that truly belong to other categories (*Iota Error II*). With the help 
@@ -241,11 +240,11 @@ represents the average exams which are not part of the labeled data. The number
 .024 indicates that only a few exams
 are "forgotten". The red rectangle describes the amount of exams that are part of 
 the labeled data for the average exams, but which are in truth good or poor exams.
-They made up about 70% of the labeled data. To sum up, the data representing the average
+They make up about 70% of the labeled data. To sum up, the data representing the average
 exams 
 
 - recovers most of the exams that really are average exams (*Iota*).
-- ignores only a small amount of exams which are really average exams (*Iota Error I*).
+- ignores only a small amount of exams which really are average exams (*Iota Error I*).
 - is extremely biased by exams which in truth are good or poor (*Iota Error II*). Their
 amount is greater than *Iota* and *Iota Error I* combined, indicating that the number of
 coding units for average exams is extremely overestimated by the labeled data compared 
@@ -253,7 +252,7 @@ to the true data.
 
 Thus, although the category "average" is quite reliable, the low 
 reliability of both of the other categories destroys the high quality of the part of 
-data that should represent the average exams. 
+the data that should represent the average exams. 
 
 ***Category good:*** Turning to the category "good", *Iota* is about .387, implying that about 38.7%
 of the data labeled as "good exams" really are good exams. However, nearly the 
@@ -264,7 +263,7 @@ With a value of .215, only about 21.5% of the data is made up by
 exams that truly represent an average or a poor performance. Thus, the data 
 labeled as "good exams"
 
-- only consists to about 39 % of exams which are in truth good exams (*Iota*).
+- only consists of exams which are in truth good exams to about 39% (*Iota*).
 - ignores about 50 % of the exams which are in truth good exams (*Iota Error I*).
 - is weakly biased by exams that are in truth average or poor exams (*Iota Error II*).
 
@@ -278,10 +277,10 @@ of truly good exams compared to the true data.
 correct coding units/exams. However, *Iota Error I* is about .463, implying that
 a high number of truly poor exams is not represented within the labeled data for
 that category. *Iota Error II* is about .129 which is quite low, implying that about
-12.9% of the relevant data is made up by coding units truly representing good or
+12.9% of the relevant data is made up of coding units truly representing good or
 average exams. Thus, the data representing the poor exams
 
-- consists  of exams which are in truth poor exams only to about 40.8% (*Iota*).
+- consists only to about 40.8%  of exams which are in truth poor exams (*Iota*).
 - ignores about 53.2% of the exams which are in truth poor exams (*Iota Error I*).
 - is weakly biased by exams that are in truth good or average exams (*Iota Error II*).
 
@@ -295,6 +294,58 @@ and poor exams is underestimated. Since the *Alpha Reliability* of the category
 "average" is quite high, a revision should focus on the categories "good" 
 and "poor". This revision should aim to provide more precise definitions and clearer
 or more suitable examples that support raters in perceiving the true categories of the exams.
+
+### 2.2.2 Coding Stream Analysis
+Since version 0.1.3, *ioatrelr* provides an additional analysis possibility via
+the function `plot_iota2_alluvial()`. This function takes an an estimated object
+of Iota2 and returns a plot representing the coding process guided by a coding scheme.
+For the current example, the plot is shown in Figure 5.
+```{r, fig.height = 5, fig.width = 7.2, fig.align = "center", fig.cap="Figure 5: Alluvial Plot of Iota2"}
+plot_alluvial<-plot_iota2_alluvial(res_iota2)
+plot(plot_alluvial)
+```
+The boxes on the left side represent how the true categories are distributed in 
+the population. Their height directly reflects the estimated true categorical sizes. 
+The boxes on the right side show the amounts in the labeled data.
+The curves between the two pairs of boxes illustrate the coding process. 
+
+**Average exams:** Concentrating on the true average exams, the plot illustrates that most of the
+true average exams are part of the labeled data. This can be seen by the big red
+curve ranging from the true average exams to the labeled average exams. Only
+a very small number of true average exams is assigned as good exams. This can be
+seen on the very small red curve ranging from the true average exams to the good exams.
+Thus, most of the true average exams are correctly assigned. 
+
+However, the box for the labeled average exams is several times larger than the box 
+for the true average exams. This indicates that the coding scheme tends to 
+overestimate the number of average exams. Figure 5 illustrates that the source for
+this overestimation is in the truly good and the truly poor exams. This can be seen
+by the big green curve ranging from the truly good exams to the labeled average exams
+and by the big blue curve ranging from the truly poor exams to the labeled average
+exams. 
+
+**Good exams:** A similar analysis is possible for the good exams. The three green curves
+ranging from the truly good exams to the other categories illustrate how the truly
+good exams are assigned to the different possible categories. The two big curves
+show that most of the truly good exams are assigned to the categories "good" and
+"average". The smaller green curve indicates that a smaller number of truly good
+exams are assigned to the category of poor exams. The box for the truly good exams 
+is smaller than the box for the labeled good exams indicating that the labeled
+data underestimates the number of good exams. The coding units behind the labeled
+data for the good exams is made up mostly by truly good exams (big green curve) followed by a high
+number of truly poor exams (big blue curve) and only a very small number of truly average exams (red curve). 
+
+**Poor exams:** Finally, the box for the labeled poor exams is about 0.5 times 
+smaller than the box for the truly poor exams, indicating that the total
+number of poor exams is underestimated by the coding scheme. The three blue curves
+illustrate that most of the truly poor exams are assigned to the category "poor"
+in the labeled data. A similar number of truly poor exams is assigned to the
+category "average" and only a smaller number is assigned to the category "good".
+
+Summing up, the alluvial plot for Iota2 provides additional insights into 
+how a coding scheme works by illustrating the coding stream and splitting up
+*Iota*, *Iota Error I* and *Iota Error II* into more detail.This can be very helpful
+for judging the quality of data and for reviewing a coding scheme. 
 
 ## 2.3 Analysing the reliability on the scale level
 In many cases, not only the reliability of singles categories is important but
@@ -313,8 +364,8 @@ high deviations from the true sample correlation and suffers from a high risk of
 drawing wrong conclusions from statistical analyses.
 
 # 3 Further readings
-In this vignette, we presented the very basic usage of *Iota Concept*. If you would
-like to lean more on the consequences of reliability on the scale level, we would
+In this vignette, we presented the very basic usage of the *Iota Concept*. If you would
+like to lean more about the consequences of reliability on the scale level, we would
 like to recommend the vignette 
 [Estimating Consequences for Subsequent Analysis](cons_and_values.html). 
 If you are interested in how the *Iota Concept* can be used to analyze if a coding
@@ -326,10 +377,16 @@ package's website for news.
 
 For more details, we would like to refer to the following literature:
 
--   Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
-    of the Second Generation.Measures for Content Analysis Done by
-    Humans or Artificial Intelligences. Berlin: Logos.
+-   Florian Berding and Julia Pargmann (2022). Iota Reliability Concept
+    of the Second Generation. Measures for Content Analysis Done by
+    Humans or Artificial Intelligence. Berlin: Logos.
+    <https://doi.org/10.30819/5581>
     
-- Berding, Florian, Elisabeth Riebenbauer, Simone Stuetz, Heike Jahncke, Andreas Slopinski, and Karin Rebmann. 2022. Performance and Configuration of Artificial Intelligence in Educational Settings.Introducing a New Reliability Concept Based on Content Analysis. Frontiers in Education. https://doi.org/10.3389/feduc.2022.818365
+-   Florian Berding, Elisabeth Riebenbauer, Simone Stuetz, Heike
+    Jahncke, Andreas Slopinski, and Karin Rebmann (2022). Performance and
+    Configuration of Artificial Intelligence in Educational
+    Settings. Introducing a New Reliability Concept Based on Content
+    Analysis. Frontiers in Education.
+    <https://doi.org/10.3389/feduc.2022.818365>
 
 

@@ -16,12 +16,12 @@ knitr::opts_chunk$set(
 )
 ```
 # 1 Introduction
-In the first vignette [Get started](iotarelr.html), rules of thumbs are used
+In the first vignette [Get started](iotarelr.html), rules of thumb are used
 to evaluate the degree of reliability. In this vignette, we would like to
 demonstrate that a more situation-specific evaluation of reliability is possible. In
-doing this, we continue the example of the first vignette, which you can find 
-[here](iotarelr.html). In the center of this kind of analysis is the function 
-`get_consequences()` which can be used to evaluate pretests of coding schemes, as well as
+doing so, we continue the example of the first vignette, which you can find 
+[here](iotarelr.html). The focus of this kind of analysis is the function 
+`get_consequences()`, which can be used to evaluate pretests of coding schemes, as well as
 for planning or evaluating existing studies.
 
 The cut-off values for judging reliability are derived in a way that ensures
@@ -30,14 +30,14 @@ the most demanding situations are chosen. Thus, for some applications, these
 rules of thumb may be too strict. Additionally, it may be helpful to understand 
 the consequences induced by specific reliability values.
 
-To illustrate this kind of analysis, we need to extent our example by introducing
+To illustrate this kind of analysis, we need to extend our example by introducing
 a new variable. Let us assume that all participants of the exam were interviewed 
-in order to asses how confident
+in order to assess how confident
 the students are about their abilities to successfully pass the exam. Let us further 
 assume that the degree of confidence varies between "low", "medium" and "high".
 
 In analogy to studies investigating the relationship between achievement and
-self-concept (Huang 2011; Möller et al. 2020), we assume that participants with better exams have a higher 
+self-concept (Huang 2011; Möller et al. 2020), we assume that participants with better exams have higher 
 confidence in their abilities. Figure 1 illustrates this relationship.
 
 ![Figure 1: Assumed Relationship between Performance and Ability Self Concept](con_and_values_intro.png){width=100%}
@@ -62,7 +62,7 @@ example, this is the performance a participant shows in their exam. Here, the va
 `measure_2_val` you can set the reliability of the dependent variable. If this
 value is not set explicitly, the analysis assumes the same reliability as for the
 independent variable. In our example, the dependent variable refers to the data
-of the interviews showing participants' confidence in their abilities. Let`s 
+of the interviews showing participants' confidence in their abilities. Let us 
 assume that the corresponding value of *Dynamic Iota Index* is about .879.
 
 The argument `data_type` sets the scale level. Currently, "nominal" and "ordinal"
@@ -71,7 +71,7 @@ significance tests with *Cramer's V*. In the case of ordinal data, all statistic
 refer to significance tests with *Kendall's Tau*. In our example, both scales
 form an ordinal scale. 
 
-The argument `strength` is closely connected with the data type and refers to the
+The argument `strength` is closely connected to the data type and refers to the
 **true** strength of a relationship between the independent and dependent variable. The
 argument can be set to "no", "weak", "medium" and "strong". These categories are
 based on the work of Cohen (1988), who classified statistical measures according to
@@ -110,22 +110,21 @@ estimated sample effect size and the true sample effect size. Since we are using
 ordinal data, the effect size is  *Kendall's Tau*. The mean value implies that we
 expect that *Kendall's Tau* differs from an error-free assessment by about .260 units.
 This is quite high if we use Cohen's (1988) classification for Pearson correlation. 
-Here, the meaning of a correlation changes every .20 units. The values for lower and
-upper mean that with a certainty of 95%, the estimated value for *Kendall's Tau*
+Here, the meaning of a correlation changes every .20 units. The upper and lower values mean that with a certainty of 95%, the estimated value for *Kendall's Tau*
 differs from an error-free estimation by .107 to .413 units.
 
 The column "practically no effect" reports the probability that the effect size does
 not deviate more than .1 units. With a reliability of .267 for the exams and of
-.879 for the interviews, this chance is about 2 %, which is very low. The last column,
+.879 for the interviews, this chance is about 2%, which is very low. The last column,
 "practically weak effect", reports the probability that *Kendall's Tau* deviates
 less than .3 units from an error-free measurement. This probability is about 70%.
 At first glance, this seems to be very high. However, this probability implies
 that in nearly one third of all studies with the same research design, the values
-deviate more than .3 units.
+deviate by more than .3 units.
 
 **Classification rate:** The second row is closely connected to the deviation. It
 describes the chance to correctly classify an effect size as practically not relevant,
-as weak, medium or strong, based on Cohens's (1988) classification. The mean value
+weak, medium or strong, based on Cohen's (1988) classification. The mean value
 implies that the chance to correctly classify the effect size is about .9%, which is very low.
 The upper and lower values state that with a certainty of 95%, the chance 
 to correctly classify the effect size is between .2 and 2.8%. It becomes 
@@ -140,32 +139,32 @@ cases the probability is zero.
 
 **Type I errors:** The last row refers to the risk of Type I errors. Type I errors
  mean in this context that the significance test implies the acceptance of the null
-hypothesis, while an error free measurement would imply the rejection of the null hypothesis.
+hypothesis, while an error-free measurement would imply the rejection of the null hypothesis.
 In other words: The results of the significance test imply that there is no relationship, although
 an error-free measurement would imply the acceptance of a relationship.
 
 The mean value implies that we have to expect a chance of 21.5% of a Type I error.
-That is, in 21.5% of the cases, the results of the significance tests imply that
+That is, in 21.5% of cases, the results of the significance tests imply that
 there is no relationship between participants' performance in the exam and the
 confidence in their abilities, although an error-free measurement would imply
-the existence of such a relationship. The lower and the upper values imply that
+the existence of such a relationship. The lower and upper values imply that
 with a certainty of 95%, the risk for Type I errors is between 6.4% and 47.9%.
 Thus, there is a high risk for drawing the wrong conclusions.
 
 The column "practically no effect" reports the probability that the risk of Type I
-errors does not exceed 5 % while the last column reports the probability that
-the risk of Type I errors does not exceed 10%. In the current example the probability
+errors does not exceed 5% while the last column reports the probability that
+the risk of Type I errors does not exceed 10%. In the current example, the probability
 for no relevant effect is about 1.1 % and for a weak effect about 9.5%.
 
 Summing up, the information provided by `get_consequences()` helps to make the 
 suggested cut-off values more specific. The information can be used to judge
-the degree of reliability more situation-specific and can support the planning
-and evaluating of studies. 
+the degree of reliability in a more situation-specifical manner and can support both the planning
+and the evaluation of studies. 
 
 # 3 Limitations
 It is important to note that this analysis has some limitations. First,
 only two types of significance tests are supported (*Cramer's V* and *Kendall's Tau*).
-Second, the analysis assumes that both independent and dependent variables have
+Second, the analysis assumes that the independent and dependent variables both have
 the same number of categories. Thus, please use the results as an orientation.
 
 # References

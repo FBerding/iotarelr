@@ -11,6 +11,7 @@ est_con_multinominal_c(
   step_size = 1e-04,
   cr_rel_change = 1e-12,
   n_random_starts = 10L,
+  fast = TRUE,
   trace = FALSE
 )
 }
@@ -34,6 +35,11 @@ stop. That is, if the change in log-likelihood is smaller as this value the
 estimation stops.}
 
 \item{n_random_starts}{\code{Integer} for the number of random start.}
+
+\item{fast}{\code{Bool} If \code{TRUE} a fast estimation is applied. This
+option ignored all other parameters. If
+\code{FALSE} the estimation described in Berding and Pargmann (2022) is used.
+Default is \code{TRUE}.}
 
 \item{trace}{\code{Bool} \code{TRUE} if information about the progress of
 estimation should be printed to the console. \code{FALSE} if not desired.}

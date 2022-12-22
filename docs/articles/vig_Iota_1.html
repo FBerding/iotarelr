@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">iotarelr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,7 +85,7 @@
                         <h4 data-toc-skip class="author">Florian Berding
 and Julia Pargmann</h4>
             
-            <h4 data-toc-skip class="date">2022-12-05</h4>
+            <h4 data-toc-skip class="date">2022-12-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/FBerding/iotarelr/blob/HEAD/vignettes/vig_Iota_1.Rmd" class="external-link"><code>vignettes/vig_Iota_1.Rmd</code></a></small>
       <div class="d-none name"><code>vig_Iota_1.Rmd</code></div>
@@ -98,7 +98,7 @@ and Julia Pargmann</h4>
 </h2>
 <p><strong>Please note that Iota1 is outdated. Please use the new
 version Iota2.</strong> <strong>Central definitions of <em>Iota</em>
-have changed in the new version.</strong> <strong>Please refer to <a href="iotarelr.html">Get startet</a></strong></p>
+have changed in the new version.</strong> <strong>Please refer to <a href="iotarelr.html">Get started</a></strong></p>
 <p><strong>This vignette is not updated to future
 developments.</strong></p>
 </div>
@@ -136,6 +136,10 @@ Let us assume that four coders analyzed 20 textual fragments with a
 coding scheme consisting of three categories A, B, and C.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://fberding.github.io/iotarelr/" class="external-link">iotarelr</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Loading required package: ggplot2</span></span>
+<span><span class="co">#&gt; Warning: package 'ggplot2' was built under R version 4.1.3</span></span>
+<span><span class="co">#&gt; Loading required package: ggalluvial</span></span>
+<span><span class="co">#&gt; Warning: package 'ggalluvial' was built under R version 4.1.3</span></span>
 <span><span class="va">coder_1</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>,<span class="st">"A"</span>,<span class="st">"C"</span>,<span class="st">"C"</span>,<span class="st">"B"</span>,<span class="st">"A"</span>,<span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>,<span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>,<span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>,<span class="st">"A"</span>,<span class="st">"A"</span>,<span class="st">"C"</span><span class="op">)</span></span>
 <span><span class="va">coder_2</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>,<span class="st">"A"</span>,<span class="st">"C"</span>,<span class="st">"B"</span>,<span class="st">"B"</span>,<span class="st">"A"</span>,<span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>,<span class="st">"A"</span>,<span class="st">"A"</span>,<span class="st">"C"</span>,<span class="st">"A"</span>,<span class="st">"C"</span>,<span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"A"</span>,<span class="st">"A"</span>,<span class="st">"A"</span>,<span class="st">"C"</span><span class="op">)</span></span>
 <span><span class="va">coder_3</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>,<span class="st">"A"</span>,<span class="st">"C"</span>,<span class="st">"C"</span>,<span class="st">"B"</span>,<span class="st">"A"</span>,<span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>,<span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>,<span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>,<span class="st">"A"</span>,<span class="st">"A"</span>,<span class="st">"C"</span><span class="op">)</span></span>

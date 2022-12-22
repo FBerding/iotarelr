@@ -121,6 +121,10 @@ grad_ll <- function(param_values, observations) {
 #' @param cr_rel_change \code{Double} for defining when the estimation should
 #' stop. That is, if the change in log-likelihood is smaller as this value the
 #' estimation stops.
+#' @param fast \code{Bool} If \code{TRUE} a fast estimation is applied. This
+#' option ignored all other parameters. If
+#' \code{FALSE} the estimation described in Berding and Pargmann (2022) is used.
+#' Default is \code{TRUE}.
 #' @param trace \code{Bool} \code{TRUE} if information about the progress of
 #' estimation should be printed to the console. \code{FALSE} if not desired.
 #' @return Returns the log likelihood as a single numeric value.
@@ -131,8 +135,8 @@ grad_ll <- function(param_values, observations) {
 #'Humans or Artificial Intelligences. Berlin: Logos.
 #'https://doi.org/10.30819/5581
 #' @export
-est_con_multinominal_c <- function(observations, anchor, max_iter = 500000L, step_size = 1e-4, cr_rel_change = 1e-12, n_random_starts = 10L, trace = FALSE) {
-    .Call('_iotarelr_est_con_multinominal_c', PACKAGE = 'iotarelr', observations, anchor, max_iter, step_size, cr_rel_change, n_random_starts, trace)
+est_con_multinominal_c <- function(observations, anchor, max_iter = 500000L, step_size = 1e-4, cr_rel_change = 1e-12, n_random_starts = 10L, fast = TRUE, trace = FALSE) {
+    .Call('_iotarelr_est_con_multinominal_c', PACKAGE = 'iotarelr', observations, anchor, max_iter, step_size, cr_rel_change, n_random_starts, fast, trace)
 }
 
 #'Check assumptions of weak superiority
@@ -187,6 +191,10 @@ check_conformity_c <- function(aem) {
 #' @param con_rel_convergence \code{Double} for determining the convergence
 #' criterion during condition stage. The algorithm stops if the relative change
 #' is smaller than this criterion.
+#' @param fast \code{Bool} If \code{TRUE} a fast estimation is applied during the
+#' condition stage. This option ignores all parameters beginning with "con_".
+#' If \code{FALSE} the estimation described in Berding and
+#' Pargmann (2022) is used. Default is \code{TRUE}.
 #'@param trace \code{TRUE} for printing progress information on the console.
 #'\code{FALSE} if this information should not be printed.
 #'@param con_trace \code{TRUE} for printing progress information on the console
@@ -211,7 +219,7 @@ check_conformity_c <- function(aem) {
 #'of the Second Generation.Measures for Content Analysis Done by
 #'Humans or Artificial Intelligences. Berlin: Logos.
 #'https://doi.org/10.30819/5581
-EM_algo_c <- function(obs_pattern_shape, obs_pattern_frq, obs_internal_count, categorical_levels, random_starts, max_iterations, rel_convergence, con_step_size, con_random_starts, con_max_iterations, con_rel_convergence, trace, con_trace) {
-    .Call('_iotarelr_EM_algo_c', PACKAGE = 'iotarelr', obs_pattern_shape, obs_pattern_frq, obs_internal_count, categorical_levels, random_starts, max_iterations, rel_convergence, con_step_size, con_random_starts, con_max_iterations, con_rel_convergence, trace, con_trace)
+EM_algo_c <- function(obs_pattern_shape, obs_pattern_frq, obs_internal_count, categorical_levels, random_starts, max_iterations, rel_convergence, con_step_size, con_random_starts, con_max_iterations, con_rel_convergence, fast, trace, con_trace) {
+    .Call('_iotarelr_EM_algo_c', PACKAGE = 'iotarelr', obs_pattern_shape, obs_pattern_frq, obs_internal_count, categorical_levels, random_starts, max_iterations, rel_convergence, con_step_size, con_random_starts, con_max_iterations, con_rel_convergence, fast, trace, con_trace)
 }
 

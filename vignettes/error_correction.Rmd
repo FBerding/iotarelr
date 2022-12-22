@@ -22,7 +22,7 @@ Kuckartz, 2018; Mayring, 2015; Schreier, 2012). If the reliability is
 considered to be sufficient, the main study starts. Often, the reliability of the codings
 of this main study is not further controlled, as it is assumed that the reliability estimates
 of the development phase hold for the entire main study. Sometimes however, researchers
-communicate and discuss about their findings and assign a category to a coding unit by 
+communicate and discuss their findings and assign a category to a coding unit by 
 agreeing on the relevant category when the coding scheme is unclear.
 
 With *Iota Concept*, the reliability of a coding scheme can be taken 
@@ -39,8 +39,8 @@ This idea is similar to the application of multiple items in questionnaires or t
 where each item can be considered as a test for the phenomena of interest. Additional
 test are used to reduce errors.
 
-In this vignette, we would like to continue our example with the exams example from 
-the first [vignette](iotarelr.html) and we want to show you how the error 
+In this vignette, we would like to continue our example of the exams from 
+the first [vignette](iotarelr.html) and now want to show you how the error 
 correction can be applied.
 
 # 2 Using the error correction of the Iota Concept
@@ -69,7 +69,7 @@ are saved in the object `expected_categories`.
 ```{r}
 res_iota2<-compute_iota2(
   data=iotarelr_written_exams[c("Coder A","Coder B","Coder C")],
-  random_starts = 2,
+  random_starts = 10,
   trace = FALSE)
 expected_categories<-est_expected_categories(
   data=iotarelr_written_exams[c("Coder A","Coder B","Coder C")],
@@ -79,22 +79,23 @@ head(expected_categories)
 ```
 The resulting object contains the ratings and additional columns. The columns
 contain the probability that a coding unit belongs to a specific true category.
-For the first two rows, the probability that these exams are truly poor ones is about
-94.5%. The chance that these exams represent truly good exams is about 5.5% and
-that they are truly average exams is nearly 0%.
+The most plausible category is always presented in the last column.
 
-For exams number 3 and 4, the probability to be an average exam is about 48.2%, to
-be a good exam it is about 36.4% and to be a poor exam is about 15.2%. Thus, it is
-most plausible to assign exams number 3 and 4 to the category "average". The
-most plausible category is always presented in the last column. 
+For the first row, the probability that this exam is truly an average one is about
+48.4%. The chance that this exam represents truly a good exam is about 36.3% and
+that is is truly a poor exam is about 15.2%. Thus, it is
+most plausible to assign exam number 1 to the category "average".
 
+For exam number two, the probability that this exam is truly an average one is about 
+0.00%. The chance that this exam represents truly a good exam is about 27.6% and
+that is is truly a poor exam is about 72.4%. Thus, it is
+most plausible to assign exam number 2 to the category "poor". 
+ 
 If the ratings were done by only one rater, these kind of errors would not become
-visible. For example, if the exams were rated only by rater B, exams 3 and 4 were
-assigned as good exams, although it is more plausible to assign them to the category
-"average". 
+visible. For example, if the exams were rated only by rater A, exam 2 would have been assigned as an average exam, although it is more plausible to assign it to the category "poor". 
 
 # 3 Conclusions
-Estimating the most likely true category has several advantages:
+Estimating the category that is most likely true has several advantages:
 
 - It allows multiple testing of coding units by more than two raters. 
 - The additional information can be used to calculate the certainty of an

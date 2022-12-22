@@ -232,6 +232,10 @@ Rcpp::NumericVector grad_ll(Rcpp::NumericVector param_values,
 //' @param cr_rel_change \code{Double} for defining when the estimation should
 //' stop. That is, if the change in log-likelihood is smaller as this value the
 //' estimation stops.
+//' @param fast \code{Bool} If \code{TRUE} a fast estimation is applied. This
+//' option ignored all other parameters. If
+//' \code{FALSE} the estimation described in Berding and Pargmann (2022) is used.
+//' Default is \code{TRUE}.
 //' @param trace \code{Bool} \code{TRUE} if information about the progress of
 //' estimation should be printed to the console. \code{FALSE} if not desired.
 //' @return Returns the log likelihood as a single numeric value.
@@ -249,6 +253,7 @@ Rcpp::NumericVector est_con_multinominal_c(Rcpp::NumericVector observations,
                                          double step_size=1e-4,
                                          double cr_rel_change=1e-12,
                                          int n_random_starts=10,
+                                         bool fast=true,
                                          bool trace=false){
 
   int n_categories=observations.length();
@@ -267,6 +272,7 @@ Rcpp::NumericVector est_con_multinominal_c(Rcpp::NumericVector observations,
   double p_anchor_min=1.0/double(n_categories);
   int index_min=0;
   int index_observation_min=0;
+  int index_observation_max=0;
   double switch_1=0.0;
   double switch_2=0.0;
   Rcpp::NumericVector grad(n_categories-1);
@@ -277,143 +283,153 @@ Rcpp::NumericVector est_con_multinominal_c(Rcpp::NumericVector observations,
   Rcpp::NumericVector tmp_p_vector(n_categories-1);
   Rcpp::NumericVector tmp_obs_vector(n_categories-1);
 
-  //Sorting data into the same order for applying the algorithm
-  //setting anchor at the first position
-  for(i=0;i<n_categories;i++){
-    if(i==(anchor-1)){
-      tmp_observations(0)=observations(anchor-1);
-    } else if(i>(anchor-1)) {
-      tmp_observations(i)=observations(i);
-    } else if(i<(anchor-1)) {
-      tmp_observations(1+i)=observations(i);
+  if(fast==false){
+    //Sorting data into the same order for applying the algorithm
+    //setting anchor at the first position
+    for(i=0;i<n_categories;i++){
+      if(i==(anchor-1)){
+        tmp_observations(0)=observations(anchor-1);
+      } else if(i>(anchor-1)) {
+        tmp_observations(i)=observations(i);
+      } else if(i<(anchor-1)) {
+        tmp_observations(1+i)=observations(i);
+      }
     }
-  }
 
-  //setting smallest observation to the end
-  for(j=1;j<n_categories;j++){
-    tmp_obs_vector(j-1)=tmp_observations(j);
-  }
+    //setting smallest observation to the end
+    for(j=1;j<n_categories;j++){
+      tmp_obs_vector(j-1)=tmp_observations(j);
+    }
 
-  index_observation_min=which_min(tmp_obs_vector)+1;
+    index_observation_min=which_min(tmp_obs_vector)+1;
 
-  switch_1=tmp_observations(index_observation_min);
-  switch_2=tmp_observations(n_categories-1);
+    switch_1=tmp_observations(index_observation_min);
+    switch_2=tmp_observations(n_categories-1);
 
-  tmp_observations(index_observation_min)=switch_2;
-  tmp_observations(n_categories-1)=switch_1;
+    tmp_observations(index_observation_min)=switch_2;
+    tmp_observations(n_categories-1)=switch_1;
 
-  //Starting parameter estimation
-  for(start_iter=0;start_iter<n_random_starts;start_iter++){
-    tmp_aem=get_random_start_values_p(n_categories);
-    tmp_new=tmp_aem(0,_);
+    //Starting parameter estimation
+    for(start_iter=0;start_iter<n_random_starts;start_iter++){
+      tmp_aem=get_random_start_values_p(n_categories);
+      tmp_new=tmp_aem(0,_);
 
-    ll_new=log_likelihood_multi_c(tmp_new,
-                                  tmp_observations);
-    iter=0;
-    rel_change=99999;
-
-    while((rel_change>cr_rel_change) &
-          (iter<(max_iter-1)) &
-          (ll_new>0)
-            ){
-      tmp_old=clone(tmp_new);
-      ll_old=ll_new;
-      for(j=0;j<n_categories-1;j++){
-        tmp_p_vector(j)=tmp_old(j);
-      }
-      grad=grad_ll(tmp_p_vector,
-                   tmp_observations);
-
-      for(i=0;i<(n_categories-1);i++){
-        if(grad(i)>0){
-          delta(i)=-step_size;
-        } else if (grad(i)<0){
-          delta(i)=step_size;
-        } else {
-          delta(i)=0;
-        }
-      }
-
-      for(i=0;i<(n_categories-1);i++){
-        if(i==0){
-          if((tmp_old(i)+delta(i))<p_anchor_min){
-            tmp_new(i)=p_anchor_min;
-          } else if ((tmp_old(i)+delta(i))>1){
-            tmp_new(i)=1.0;
-          } else {
-            tmp_new(i)=tmp_old(i)+delta(i);
-          }
-        } else {
-          if((tmp_old(i)+delta(i))<0.0){
-            tmp_new(i)=0.0;
-          } else if ((tmp_old(i)+delta(i))>tmp_new(0)){
-            tmp_new(i)=tmp_new(0);
-
-          } else {
-            tmp_new(i)=tmp_old(i)+delta(i);
-           }
-        }
-      }
-      for(j=0;j<n_categories-1;j++){
-        tmp_p_vector(j)=tmp_new(j);
-      }
-      tmp_new(n_categories-1)=1-sum(tmp_p_vector);
       ll_new=log_likelihood_multi_c(tmp_new,
                                     tmp_observations);
-      rel_change=(ll_old-ll_new)/ll_old;
+      iter=0;
+      rel_change=99999;
 
-      if(trace==true){
-        Rcout << "Condition Stage Start "<< start_iter+1 <<" Iteration " << iter <<" Log_Likelihood "
-              << ll_new << " relative change "<< rel_change << "\n";
-      }
+      while((rel_change>cr_rel_change) &
+            (iter<(max_iter-1)) &
+            (ll_new>0)
+              ){
+        tmp_old=clone(tmp_new);
+        ll_old=ll_new;
+        for(j=0;j<n_categories-1;j++){
+          tmp_p_vector(j)=tmp_old(j);
+        }
+        grad=grad_ll(tmp_p_vector,
+                     tmp_observations);
 
-      if(ll_new==-2147483648){
-        tmp_new=tmp_old;
+        for(i=0;i<(n_categories-1);i++){
+          if(grad(i)>0){
+            delta(i)=-step_size;
+          } else if (grad(i)<0){
+            delta(i)=step_size;
+          } else {
+            delta(i)=0;
+          }
+        }
+
+        for(i=0;i<(n_categories-1);i++){
+          if(i==0){
+            if((tmp_old(i)+delta(i))<p_anchor_min){
+              tmp_new(i)=p_anchor_min;
+            } else if ((tmp_old(i)+delta(i))>1){
+              tmp_new(i)=1.0;
+            } else {
+              tmp_new(i)=tmp_old(i)+delta(i);
+            }
+          } else {
+            if((tmp_old(i)+delta(i))<0.0){
+              tmp_new(i)=0.0;
+            } else if ((tmp_old(i)+delta(i))>tmp_new(0)){
+              tmp_new(i)=tmp_new(0);
+
+            } else {
+              tmp_new(i)=tmp_old(i)+delta(i);
+             }
+          }
+        }
+        for(j=0;j<n_categories-1;j++){
+          tmp_p_vector(j)=tmp_new(j);
+        }
+        tmp_new(n_categories-1)=1-sum(tmp_p_vector);
         ll_new=log_likelihood_multi_c(tmp_new,
                                       tmp_observations);
+        rel_change=(ll_old-ll_new)/ll_old;
+
+        if(trace==true){
+          Rcout << "Condition Stage Start "<< start_iter+1 <<" Iteration " << iter <<" Log_Likelihood "
+                << ll_new << " relative change "<< rel_change << "\n";
+        }
+
+        if(ll_new==-2147483648){
+          tmp_new=tmp_old;
+          ll_new=log_likelihood_multi_c(tmp_new,
+                                        tmp_observations);
+        }
+
+        if(min(tmp_new)<0){
+          tmp_new=tmp_old;
+          ll_new=log_likelihood_multi_c(tmp_new,
+                                        tmp_observations);
+        }
+
+        if((rel_change<0)){
+          tmp_new=tmp_old;
+          ll_new=log_likelihood_multi_c(tmp_new,
+                                        tmp_observations);
+        }
+        iter=iter+1;
       }
 
-      if(min(tmp_new)<0){
-        tmp_new=tmp_old;
-        ll_new=log_likelihood_multi_c(tmp_new,
-                                      tmp_observations);
-      }
 
-      if((rel_change<0)){
-        tmp_new=tmp_old;
-        ll_new=log_likelihood_multi_c(tmp_new,
-                                      tmp_observations);
+      for(i=0;i<n_categories;i++){
+        estimates(start_iter,i)=tmp_new(i);
       }
-      iter=iter+1;
+      estimates(start_iter,n_categories+0)=ll_new;
     }
 
+    index_min=which_min(estimates(_,n_categories));
+    tmp_result=estimates(index_min,_);
+
+    //Re-Sorting the data
+    switch_1=tmp_result(index_observation_min);
+    switch_2=tmp_result(n_categories-1);
+
+    tmp_result(index_observation_min)=switch_2;
+    tmp_result(n_categories-1)=switch_1;
 
     for(i=0;i<n_categories;i++){
-      estimates(start_iter,i)=tmp_new(i);
+      if(i==0){
+        results(anchor-1)=tmp_result(i);
+      } else if ((i>0) & (i<=(anchor-1))) {
+        results(i-1)=tmp_result(i);
+      } else if ((i>0) & (i>(anchor-1))){
+        results(i)=tmp_result(i);
+      }
     }
-    estimates(start_iter,n_categories+0)=ll_new;
-  }
-
-  index_min=which_min(estimates(_,n_categories));
-  tmp_result=estimates(index_min,_);
-
-  //Re-Sorting the data
-  switch_1=tmp_result(index_observation_min);
-  switch_2=tmp_result(n_categories-1);
-
-  tmp_result(index_observation_min)=switch_2;
-  tmp_result(n_categories-1)=switch_1;
-
-  for(i=0;i<n_categories;i++){
-    if(i==0){
-      results(anchor-1)=tmp_result(i);
-    } else if ((i>0) & (i<=(anchor-1))) {
-      results(i-1)=tmp_result(i);
-    } else if ((i>0) & (i>(anchor-1))){
-      results(i)=tmp_result(i);
+    return(results);
+  } else {
+    tmp_observations=clone(observations);
+    index_observation_max=Rcpp::which_max(observations);
+    if(index_observation_max!=(anchor-1)){
+      tmp_observations[(anchor-1)]=observations[index_observation_max];
     }
+    results=tmp_observations/Rcpp::sum(tmp_observations);
+    return results;
   }
-  return(results);
 }
 
 //'Check assumptions of weak superiority
@@ -477,6 +493,10 @@ int check_conformity_c(Rcpp::NumericMatrix aem){
 //' @param con_rel_convergence \code{Double} for determining the convergence
 //' criterion during condition stage. The algorithm stops if the relative change
 //' is smaller than this criterion.
+//' @param fast \code{Bool} If \code{TRUE} a fast estimation is applied during the
+//' condition stage. This option ignores all parameters beginning with "con_".
+//' If \code{FALSE} the estimation described in Berding and
+//' Pargmann (2022) is used. Default is \code{TRUE}.
 //'@param trace \code{TRUE} for printing progress information on the console.
 //'\code{FALSE} if this information should not be printed.
 //'@param con_trace \code{TRUE} for printing progress information on the console
@@ -513,6 +533,7 @@ Rcpp::List EM_algo_c (Rcpp::CharacterMatrix obs_pattern_shape,
                       int con_random_starts,
                       int con_max_iterations,
                       double con_rel_convergence,
+                      bool fast,
                       bool trace,
                       bool con_trace)
 {
@@ -649,6 +670,7 @@ Rcpp::List EM_algo_c (Rcpp::CharacterMatrix obs_pattern_shape,
                                                con_step_size,
                                                con_rel_convergence,
                                                con_random_starts,
+                                               fast,
                                                con_trace);
             for(j=0;j<n_categories;j++){
               aem_cons(i,j)=tmp_row_aem(j);

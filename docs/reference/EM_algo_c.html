@@ -12,7 +12,7 @@ via Expectation Maximization (EM Algorithm)."><!-- mathjax --><script src="https
     
     <a class="navbar-brand me-2" href="../index.html">iotarelr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,6 +82,7 @@ via Expectation Maximization (EM Algorithm).</p>
 <span>  <span class="va">con_random_starts</span>,</span>
 <span>  <span class="va">con_max_iterations</span>,</span>
 <span>  <span class="va">con_rel_convergence</span>,</span>
+<span>  <span class="va">fast</span>,</span>
 <span>  <span class="va">trace</span>,</span>
 <span>  <span class="va">con_trace</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -148,6 +149,13 @@ during the condition stage.</p></dd>
 <dd><p><code>Double</code> for determining the convergence
 criterion during condition stage. The algorithm stops if the relative change
 is smaller than this criterion.</p></dd>
+
+
+<dt>fast</dt>
+<dd><p><code>Bool</code> If <code>TRUE</code> a fast estimation is applied during the
+condition stage. This option ignores all parameters beginning with "con_".
+If <code>FALSE</code> the estimation described in Berding and
+Pargmann (2022) is used. Default is <code>TRUE</code>.</p></dd>
 
 
 <dt>trace</dt>

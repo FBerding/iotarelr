@@ -11,7 +11,8 @@ check_new_rater(
   con_random_starts = 5,
   con_max_iterations = 5000,
   con_rel_convergence = 1e-12,
-  con_trace = FALSE
+  con_trace = FALSE,
+  fast = TRUE
 )
 }
 \arguments{
@@ -40,6 +41,11 @@ is smaller than this criterion.}
 \item{con_trace}{\code{TRUE} for printing progress information on the console
 during estimations in the conditioning stage. \code{FALSE} if you do not want to have
 this information printed.}
+
+\item{fast}{\code{Bool} If \code{TRUE} a fast estimation is applied during the
+condition stage. This option ignores all parameters beginning with "con_".
+If \code{FALSE} the estimation described in Berding and
+Pargmann (2022) is used. Default is \code{TRUE}.}
 }
 \value{
 Returns a \code{list} with the following three components:

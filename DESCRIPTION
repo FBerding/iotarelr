@@ -1,7 +1,7 @@
 Type: Package
 Package: iotarelr
 Title: Iota Inter Coder Reliability for Content Analysis
-Version: 0.1.3.9000
+Version: 0.1.3
 Authors@R: c(
     person("Berding", "Florian", , "florian.berding@uni-hamburg.de", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-3593-1695")),
@@ -24,9 +24,10 @@ License: GPL-3
 URL: https://fberding.github.io/iotarelr/
 BugReports: https://github.com/FBerding/iotarelr/issues
 Depends: 
-    R (>= 3.5.0)
-Imports: 
+    R (>= 3.5.0),
     ggplot2,
+    ggalluvial,
+Imports: 
     gridExtra,
     methods,
     Rcpp,

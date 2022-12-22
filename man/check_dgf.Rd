@@ -7,7 +7,7 @@
 check_dgf(
   data,
   splitcr,
-  random_starts = 10,
+  random_starts = 300,
   max_iterations = 5000,
   cr_rel_change = 1e-12,
   con_step_size = 1e-04,
@@ -16,7 +16,8 @@ check_dgf(
   con_rel_convergence = 1e-12,
   b_min = 0.01,
   trace = FALSE,
-  con_trace = FALSE
+  con_trace = FALSE,
+  fast = TRUE
 )
 }
 \arguments{
@@ -62,6 +63,11 @@ to select solutions that are not considered to be boundary values.}
 \item{con_trace}{\code{TRUE} for printing progress information on the console
 during estimations in the condition stage. \code{FALSE} if this information
 is not to be printed.}
+
+\item{fast}{\code{Bool} If \code{TRUE} a fast estimation is applied during the
+condition stage. This option ignores all parameters beginning with "con_".
+If \code{FALSE} the estimation described in Berding and
+Pargmann (2022) is used. Default is \code{TRUE}.}
 }
 \value{
 Returns an object of class \code{iotarelr_iota2_dif}. For each group,

@@ -72,8 +72,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // est_con_multinominal_c
-Rcpp::NumericVector est_con_multinominal_c(Rcpp::NumericVector observations, int anchor, int max_iter, double step_size, double cr_rel_change, int n_random_starts, bool trace);
-RcppExport SEXP _iotarelr_est_con_multinominal_c(SEXP observationsSEXP, SEXP anchorSEXP, SEXP max_iterSEXP, SEXP step_sizeSEXP, SEXP cr_rel_changeSEXP, SEXP n_random_startsSEXP, SEXP traceSEXP) {
+Rcpp::NumericVector est_con_multinominal_c(Rcpp::NumericVector observations, int anchor, int max_iter, double step_size, double cr_rel_change, int n_random_starts, bool fast, bool trace);
+RcppExport SEXP _iotarelr_est_con_multinominal_c(SEXP observationsSEXP, SEXP anchorSEXP, SEXP max_iterSEXP, SEXP step_sizeSEXP, SEXP cr_rel_changeSEXP, SEXP n_random_startsSEXP, SEXP fastSEXP, SEXP traceSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -83,8 +83,9 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type step_size(step_sizeSEXP);
     Rcpp::traits::input_parameter< double >::type cr_rel_change(cr_rel_changeSEXP);
     Rcpp::traits::input_parameter< int >::type n_random_starts(n_random_startsSEXP);
+    Rcpp::traits::input_parameter< bool >::type fast(fastSEXP);
     Rcpp::traits::input_parameter< bool >::type trace(traceSEXP);
-    rcpp_result_gen = Rcpp::wrap(est_con_multinominal_c(observations, anchor, max_iter, step_size, cr_rel_change, n_random_starts, trace));
+    rcpp_result_gen = Rcpp::wrap(est_con_multinominal_c(observations, anchor, max_iter, step_size, cr_rel_change, n_random_starts, fast, trace));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -100,8 +101,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // EM_algo_c
-Rcpp::List EM_algo_c(Rcpp::CharacterMatrix obs_pattern_shape, Rcpp::NumericVector obs_pattern_frq, Rcpp::NumericMatrix obs_internal_count, Rcpp::CharacterVector categorical_levels, int random_starts, int max_iterations, double rel_convergence, double con_step_size, int con_random_starts, int con_max_iterations, double con_rel_convergence, bool trace, bool con_trace);
-RcppExport SEXP _iotarelr_EM_algo_c(SEXP obs_pattern_shapeSEXP, SEXP obs_pattern_frqSEXP, SEXP obs_internal_countSEXP, SEXP categorical_levelsSEXP, SEXP random_startsSEXP, SEXP max_iterationsSEXP, SEXP rel_convergenceSEXP, SEXP con_step_sizeSEXP, SEXP con_random_startsSEXP, SEXP con_max_iterationsSEXP, SEXP con_rel_convergenceSEXP, SEXP traceSEXP, SEXP con_traceSEXP) {
+Rcpp::List EM_algo_c(Rcpp::CharacterMatrix obs_pattern_shape, Rcpp::NumericVector obs_pattern_frq, Rcpp::NumericMatrix obs_internal_count, Rcpp::CharacterVector categorical_levels, int random_starts, int max_iterations, double rel_convergence, double con_step_size, int con_random_starts, int con_max_iterations, double con_rel_convergence, bool fast, bool trace, bool con_trace);
+RcppExport SEXP _iotarelr_EM_algo_c(SEXP obs_pattern_shapeSEXP, SEXP obs_pattern_frqSEXP, SEXP obs_internal_countSEXP, SEXP categorical_levelsSEXP, SEXP random_startsSEXP, SEXP max_iterationsSEXP, SEXP rel_convergenceSEXP, SEXP con_step_sizeSEXP, SEXP con_random_startsSEXP, SEXP con_max_iterationsSEXP, SEXP con_rel_convergenceSEXP, SEXP fastSEXP, SEXP traceSEXP, SEXP con_traceSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -116,9 +117,10 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type con_random_starts(con_random_startsSEXP);
     Rcpp::traits::input_parameter< int >::type con_max_iterations(con_max_iterationsSEXP);
     Rcpp::traits::input_parameter< double >::type con_rel_convergence(con_rel_convergenceSEXP);
+    Rcpp::traits::input_parameter< bool >::type fast(fastSEXP);
     Rcpp::traits::input_parameter< bool >::type trace(traceSEXP);
     Rcpp::traits::input_parameter< bool >::type con_trace(con_traceSEXP);
-    rcpp_result_gen = Rcpp::wrap(EM_algo_c(obs_pattern_shape, obs_pattern_frq, obs_internal_count, categorical_levels, random_starts, max_iterations, rel_convergence, con_step_size, con_random_starts, con_max_iterations, con_rel_convergence, trace, con_trace));
+    rcpp_result_gen = Rcpp::wrap(EM_algo_c(obs_pattern_shape, obs_pattern_frq, obs_internal_count, categorical_levels, random_starts, max_iterations, rel_convergence, con_step_size, con_random_starts, con_max_iterations, con_rel_convergence, fast, trace, con_trace));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -129,9 +131,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"_iotarelr_fct_log_likelihood_c", (DL_FUNC) &_iotarelr_fct_log_likelihood_c, 5},
     {"_iotarelr_log_likelihood_multi_c", (DL_FUNC) &_iotarelr_log_likelihood_multi_c, 2},
     {"_iotarelr_grad_ll", (DL_FUNC) &_iotarelr_grad_ll, 2},
-    {"_iotarelr_est_con_multinominal_c", (DL_FUNC) &_iotarelr_est_con_multinominal_c, 7},
+    {"_iotarelr_est_con_multinominal_c", (DL_FUNC) &_iotarelr_est_con_multinominal_c, 8},
     {"_iotarelr_check_conformity_c", (DL_FUNC) &_iotarelr_check_conformity_c, 1},
-    {"_iotarelr_EM_algo_c", (DL_FUNC) &_iotarelr_EM_algo_c, 13},
+    {"_iotarelr_EM_algo_c", (DL_FUNC) &_iotarelr_EM_algo_c, 14},
     {NULL, NULL, 0}
 };
 

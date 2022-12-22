@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">iotarelr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,7 +85,7 @@
                         <h4 data-toc-skip class="author">Florian Berding
 and Julia Pargmann</h4>
             
-            <h4 data-toc-skip class="date">2022-12-05</h4>
+            <h4 data-toc-skip class="date">2022-12-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/FBerding/iotarelr/blob/HEAD/vignettes/new_rater.Rmd" class="external-link"><code>vignettes/new_rater.Rmd</code></a></small>
       <div class="d-none name"><code>new_rater.Rmd</code></div>
@@ -102,7 +102,7 @@ literature of content analysis (Krippendorff, 2019; Kuckartz, 2018;
 Mayring, 2015; Schreier, 2012). In these cases, the reliability can be
 estimated and analyzed as described in the first <a href="iotarelr.html">vignette</a>. In contrast to the literature for new
 coding schemes, less recommendations refer to the application of
-existing coding schemes which are available from published studies or
+existing coding schemes, which are available from published studies or
 other sources. In these cases, it is not necessary to develop a new
 scheme, but rather to apply an existing one to new data, often along
 with new raters. The application of an existing coding scheme to new
@@ -117,7 +117,7 @@ to prove the results of prior studies by trying to reproduce them.</li>
 improvement cycle for developing is not necessary. This saves capacities
 which then become available for other important study characteristics
 (greater sample sizes, refining specific categories, considering more
-categories etc.).</li>
+categories, etc.).</li>
 </ul>
 <p>Estimating the reliability of codings based on an existing coding
 scheme differs from estimating the reliability in the development a
@@ -125,7 +125,7 @@ coding scheme. The phase of developing a coding scheme aims to provide a
 theoretically and empirically sound guide for data analysis. This
 includes that researchers and raters clear up their own interpretation
 of categories and data and develop the same understanding of the
-categories based on theory and empircal evidence. Ideally, the final
+categories based on theory and empirical evidence. Ideally, the final
 coding scheme is precise enough to document this shared understanding
 and to guide users to the same interpretation of data and the same
 assignments of data to categories.</p>
@@ -142,7 +142,7 @@ consider the existence of a predefined understanding.</p>
 <div class="section level2">
 <h2 id="estimating-the-quality-of-ratings-for-a-new-rater">2 Estimating the quality of ratings for a new rater<a class="anchor" aria-label="anchor" href="#estimating-the-quality-of-ratings-for-a-new-rater"></a>
 </h2>
-<p>Within the frame work of the <em>Iota Concept</em>, this is realized
+<p>Within the framework of the <em>Iota Concept</em>, this is realized
 with the function <code><a href="../reference/check_new_rater.html">check_new_rater()</a></code>. In order to estimate
 how well a new rater has developed the understanding documented in a
 coding scheme, data and material from existing sources must be used. The
@@ -158,6 +158,10 @@ every case. If an old source provides the final assignments of coding
 units, these values can be used as “true” values.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://fberding.github.io/iotarelr/" class="external-link">iotarelr</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Loading required package: ggplot2</span></span>
+<span><span class="co">#&gt; Warning: package 'ggplot2' was built under R version 4.1.3</span></span>
+<span><span class="co">#&gt; Loading required package: ggalluvial</span></span>
+<span><span class="co">#&gt; Warning: package 'ggalluvial' was built under R version 4.1.3</span></span>
 <span><span class="va">res_iota2</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/compute_iota2.html">compute_iota2</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">iotarelr_written_exams</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Coder A"</span>,<span class="st">"Coder B"</span>,<span class="st">"Coder C"</span><span class="op">)</span><span class="op">]</span>,</span>
 <span>                         random_starts <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>                         trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
@@ -165,9 +169,9 @@ units, these values can be used as “true” values.</p>
 <span>  data<span class="op">=</span><span class="va">iotarelr_written_exams</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Coder A"</span>,<span class="st">"Coder B"</span>,<span class="st">"Coder C"</span><span class="op">)</span><span class="op">]</span>,</span>
 <span>  aem<span class="op">=</span><span class="va">res_iota2</span><span class="op">$</span><span class="va">categorical_level</span><span class="op">$</span><span class="va">raw_estimates</span><span class="op">$</span><span class="va">assignment_error_matrix</span><span class="op">)</span></span>
 <span><span class="va">true_values</span><span class="op">&lt;-</span><span class="va">expected_categories</span><span class="op">$</span><span class="va">expected_category</span></span></code></pre></div>
-<p>Third, a new rater has to rate the same material as in the old
-source. That is, the new rater has to rate the same exams with the same
-coding scheme. His results are saved in the vector
+<p>Third, a new rater has to rate the same material as the old source.
+That is, the new rater has to rate the same exams with the same coding
+scheme. Their results are saved in the vector
 <code>iotarelr_new_rater</code>. Now, we can request the reliability
 estimate for this rater by requesting the function
 <code><a href="../reference/check_new_rater.html">check_new_rater()</a></code>.</p>
@@ -196,8 +200,8 @@ the results.</p>
 <span><span class="co">#&gt; Primary Parameters</span></span>
 <span><span class="co">#&gt; Assignment Error Matrix</span></span>
 <span><span class="co">#&gt;         average  good  poor</span></span>
-<span><span class="co">#&gt; average   0.357 0.286 0.357</span></span>
-<span><span class="co">#&gt; good      0.205 0.397 0.397</span></span>
+<span><span class="co">#&gt; average   0.380 0.239 0.380</span></span>
+<span><span class="co">#&gt; good      0.167 0.417 0.417</span></span>
 <span><span class="co">#&gt; poor      0.313 0.178 0.509</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Categorical Sizes</span></span>
@@ -206,29 +210,29 @@ the results.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Categorical Level</span></span>
 <span><span class="co">#&gt;           dimensions average   good   poor</span></span>
-<span><span class="co">#&gt; 1              Alpha  0.3571 0.3975 0.5092</span></span>
-<span><span class="co">#&gt; 2               Beta  0.4725 0.6061 0.3938</span></span>
-<span><span class="co">#&gt; 3               Iota   0.191 0.2403 0.3747</span></span>
-<span><span class="co">#&gt; 4  Iota Error Type I  0.3438 0.3643 0.3612</span></span>
-<span><span class="co">#&gt; 5 Iota Error Type II  0.4653 0.3954 0.2641</span></span>
+<span><span class="co">#&gt; 1              Alpha  0.3804 0.4167 0.5092</span></span>
+<span><span class="co">#&gt; 2               Beta    0.49 0.6287  0.337</span></span>
+<span><span class="co">#&gt; 3               Iota  0.2078 0.2591 0.3692</span></span>
+<span><span class="co">#&gt; 4  Iota Error Type I  0.3383 0.3628 0.3559</span></span>
+<span><span class="co">#&gt; 5 Iota Error Type II  0.4539 0.3781 0.2749</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Scale Level</span></span>
-<span><span class="co">#&gt; Iota Index: 0.2</span></span>
-<span><span class="co">#&gt; Static Iota Index: 0.004</span></span>
-<span><span class="co">#&gt; Dynamic Iota Index: 0.187</span></span></code></pre></div>
+<span><span class="co">#&gt; Iota Index: 0.231</span></span>
+<span><span class="co">#&gt; Static Iota Index: 0.005</span></span>
+<span><span class="co">#&gt; Dynamic Iota Index: 0.213</span></span></code></pre></div>
 <p>Focusing on the <em>Assignment Error Matrix</em>, the values on the
-diagonal are very high. This leads to high vales for the <em>Alpha
-Reliability</em>, which is about 78.73% for average exams, about 85.90%
-for good exams and about 93.24% for poor exams. Thus, the chance is very
-high for this new rater to assign the correct categories. Please note
-that the interpretation of these values is now slightly different from
-the development phase. Here, the high values indicate that the new rater
-has a high chance to assign the same categories to a coding unit as in
-the old study.</p>
-<p>This is also documented in the values for <em>Iota</em> which range
-between .6735 for average exams to .8334 for the poor exams. The
-<em>Dynamic Iota Index</em> is quite high with .716. Finally, we can
-plot the results for the new rater.</p>
+diagonal are very low. This leads to low vales for the <em>Alpha
+Reliability</em>, which is about 38.04% for average exams, about 41.67%
+for good exams and about 50.92% for poor exams. Thus, the chance is very
+high for this new rater to assign the false categories. Please note that
+the interpretation of these values is now slightly different from the
+development phase. Here, the high values indicate that the new rater has
+a high chance to assign different categories to a coding unit as they
+were assigned in the old study.</p>
+<p>This is also documented in the values for <em>Iota</em>, which range
+between .2078 for average exams to .3692 for the poor exams. The
+<em>Dynamic Iota Index</em> is quite low with .213 Finally, we can plot
+the results for the new rater.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_iota.html">plot_iota</a></span><span class="op">(</span><span class="va">res_new_rater</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
@@ -237,13 +241,68 @@ Figure 1: Plot of Iota for a New Rater
 </p>
 </div>
 <p>The plot of <em>Iota</em> for the new rater emphasizes that he is
-able to recover a large number of true categories for all kinds of
-exams. Only in the case of average exams, some coding units belonging to
-that category are not part of the labeled data. Here, nearly the same
-number of forgotten average exams is compensated by coding units from
-other categories. Thus, on average, the number of coding units in the
-labeled data for the average exams equals their true number, but on the
-individual level there are errors.</p>
+able to recover only a small number of true categories for all kinds of
+exams. Additionally we can also plot the corresponding coding stream of
+this new rater.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">plot_alluvial_new_rater</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/plot_iota2_alluvial.html">plot_iota2_alluvial</a></span><span class="op">(</span><span class="va">res_new_rater</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">plot_alluvial_new_rater</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="new_rater_files/figure-html/unnamed-chunk-5-1.png" alt="Figure 2: Stream Plot" width="691.2"><p class="caption">
+Figure 2: Stream Plot
+</p>
+</div>
+<p>The boxes on the left side represent how the true categories are
+distributed in the population. Their height directly reflects the true
+categorical sizes. The boxes on the right side show the amounts in the
+labeled data. The curves between the two pairs of boxes illustrate the
+coding process.</p>
+<p><strong>Average exams:</strong> Focusing on the true average exams,
+the plot illustrates that approximately one third of truly average exams
+are labeled average. This is represented by the big red stream going
+from true average to labeled as average. The rest of the exams that are
+truly average is falsely labeled as either poor or good exams. This is
+shown by the curves going from true average to the respectively labeled
+category (good or poor). Most of the exams that really are average are
+not identified as that.</p>
+<p>In this alluvial plot, the box for true average exams is slightly
+smaller than that of the ones labeled as average. That means that the
+coding scheme tends to overestimate the number of average exams. These
+false interpretations mostly stem from the true poor category that are
+labeled as average, shown by the big blue curve going into ‘labeled as
+average’. In contrast, only a small portion of truly good exams are
+incorrectly labeled as average, demonstrated by the rather small green
+curve going from true good to labeled as average.</p>
+<p><strong>Good exams:</strong> Looking at the good exams, the minority
+of truly good exams are labeled correctly. This is shown by the green
+curve going from left (true good exams) to right (labeled as good). Most
+of the other truly good exams are labeled as poor, which is quite a big
+difference.</p>
+<p>The size of the boxes of the “true good” exams and “the labeled as
+good” exams is very similar, however the latter is almost entirely made
+up of the wrong exams. This means that the category seems to have the
+right size, but truly is not represented correctly because a lot of
+truly poor and some truly average exams are falsely labeled as good.
+This can be seen by the bigger blue and smaller red curve going into the
+box on the right side. In this sense, the coding scheme estimates the
+number of good exams almost correctly with a slight tendency to
+overestimate.</p>
+<p><strong>Poor exams:</strong> Regarding the poor exams, the labeled
+poor exams box is a little bit smaller than the one for the true poor
+exams. The composition of these boxes is very different, however. About
+half of the truly poor exams are labeled correctly, represented by the
+big blue bar going from left to right. The remainder of the truly poor
+exams is either labeled as good or average. Most falsely labeled but
+truly poor exams are labeled average (the bigger blue curve) and some
+are labeled good (smaller blue curve). Regarding the “labeled as poor”
+exams on the right, the box is made up of truly poor exams to
+approximately 50%, with the remainder coming from truly good (the green
+curve) or average (the red curve) exams. This means that only half of
+the exams that are truly poor are also recognized as poor.</p>
+<p>The box on the left (true poor) and on the right (labeled as poor)
+have a similar size, although the right one is slightly smaller. This
+means that the total number of poor exams is estimated quite correct
+with a slight tendency to underestimate.</p>
 </div>
 <div class="section level2">
 <h2 id="conclusion">3 Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"></a>
@@ -255,7 +314,7 @@ guide the training process of new raters, since the <em>Assignment Error
 Matrix</em> and <em>Iota Reliability</em> provide hints where errors
 occur and where everything is fine. This can increase the quality of
 codings and saves both costs and time, making the replication and
-comparison of studies using content analysis more easy.</p>
+comparison of studies using content analysis easier.</p>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>

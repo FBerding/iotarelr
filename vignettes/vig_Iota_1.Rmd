@@ -11,7 +11,7 @@ vignette: >
 # Important Note
 **Please note that Iota1 is outdated. Please use the new version Iota2.**
 **Central definitions of *Iota* have changed in the new version.**
-**Please refer to [Get startet](iotarelr.html)**
+**Please refer to [Get started](iotarelr.html)**
 
 **This vignette is not updated to future developments.**
 

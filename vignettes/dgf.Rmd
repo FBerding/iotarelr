@@ -24,7 +24,7 @@ knitr::opts_chunk$set(
 In this vignette, we would like to show you how the tools of the *Iota
 Concept* can be used to analyze the suitability of a coding scheme for
 rating different kinds of materials. The analysis is very similar to the
-analysis of different item functioning (DIF) from item response theory.
+analysis of different item functioning (DIF) from item-response theory.
 The focal point here is the question whether or not a coding scheme has
 the same degree of reliability for different groups of materials. This
 issue is closely connected to the question if a coding scheme reproduces
@@ -51,7 +51,7 @@ example,
 -   ensuring that social media contributions are rated similarly without
     bias for the platform-specific form of contribution.
 -   ensuring that material created by different groups of learners is
-    assessed without bias from their socioeconomic background.
+    assessed without bias for their socioeconomic background.
 -   ...
 
 In the following, we would like to illustrate this kind of analysis by
@@ -61,6 +61,7 @@ contains information on how the different coding units are grouped. Let
 us have a look at the sample data set.
 
 # 2 Example Analysis
+## 2.1 Basic Analysis
 
 ```{r}
 library(iotarelr)
@@ -84,32 +85,31 @@ calling this function may take some time.
 ```{r}
 dgf_exam<-check_dgf(data=iotarelr_written_exams[c("Coder A","Coder B","Coder C")],
                     splitcr = iotarelr_written_exams$Sex,
-                     random_starts = 2)
+                    random_starts = 300)
 ```
 
 The results are stored in the object `dgf_exam`. For every group
-specified in the column "Sex" a model of Iota2 is fitted. The results
-an be accessed in the same way as for objects created with
+specified in the column "Sex", a model of Iota2 is fitted. The results
+can be accessed in the same way as with objects created with
 `compute_iota2()`. The only thing to do is to request the function
-`get_summary()`with the results for the specific group. Let's start with
+`get_summary()`with the results for the specific group. Let us start with
 the females.
 
 ```{r}
 get_summary(dgf_exam$group_female)
 ```
 
-The summary for the females show the basic information of the fitted
+The summary for the females shows the basic information of the fitted
 model. The best log-likelihood has been replicated. Thus, we can be
 confident that our model represents the best model for the females.
 
 Special attention should be paid to the *Assignment Error Matrix*, since
 this matrix describes how the true categories are assigned. For the
-females, an average exam is assigned as indeed an average exam in about
-88.7% of cases. A good exam is assigned a good exam in about 50% of
-cases. The remaining 50% of cases are assigned as an average exam or as
+females, an average exam is recognized as indeed an average exam in about
+88.7% of cases. A good exam is recognized as  good exam in about 50% of
+cases. The remaining 50% of cases are assigned to be an average exam or a
 a poor exam with the same probability of 25%. A truly poor exam is
-assigned as a poor exam in about 50% of cases and nearly in all other
-cases as an average exam. The error to assign a poor exam as a good exam
+assigned to be a poor exam in about 50% of cases and an average exam in nearly all other cases. The error to assign a poor exam to be a good exam
 is only about 5%. Let us now have a look at the results for the men.
 
 ```{r}
@@ -117,15 +117,14 @@ get_summary(dgf_exam$group_male)
 ```
 
 For the men, the result is very different. According to their
-*Assignment Error Matrix*, an average exam is assigned as an average
-exam only in 54.4% of the cases. If it is not recognized as an average
-exam, it has a higher chance to be considered as a good exam than than a
+*Assignment Error Matrix*, an average exam is recognized as an average
+exam only in about 50% of the cases. If it is not recognized as an average
+exam, it has a higher chance to be considered a good exam than a
 poor one. Concentrating on the good exams, the *Assignment Error Matrix*
 shows the same probability for all categories. This implies that a good
 exam is assigned randomly to any of the three categories. Only the poor
 exams have a high chance to be assigned to the correct category with
-about 75.1%. That is, a poor exam is assigned as a poor exam in three of
-four cases.
+more than 70%.
 
 Comparing the *Assignment Error Matrices*, it becomes clear that the
 coding scheme is more reliable for females than for men.
@@ -145,21 +144,21 @@ lot of exams which truly are either good or poor exams (*Iota Error
 II*). The red rectangle is even bigger than the green (*Iota*) and
 orange ones (*Iota Error I*), meaning that the number of averagely good
 exams is overestimated for the females. Concentrating on the males, the
-red rectangle (*Iota Error II*) is quite small but the organ one (*Iota
+red rectangle (*Iota Error II*) is quite small but the orange one (*Iota
 Error I*) is quite big. Thus, the number of averagely good exams is
 underestimated.
 
 Regarding the good exams of the females, the red rectangle is quite
 small (*Iota Error II*). This means that there is only a small number of
 average or poor exams that are labeled as good. However, the orange
-rectangle is quite big (*Iota Error I*). It has nearly the same size as
+rectangle is quite big (*Iota Error I*). It nearly has the same size as
 the green rectangle (*Iota*). Thus, the data for the good exams misses
 about half of the corresponding exams. This means that the number of
 good exams is underestimated in the data set for the females.
-Concentrating on the males, *Iota* is only about .189, which is low.
+Concentrating on the males, *Iota* is only about .18, which is low.
 Thus, the good exams are not reliably represented in the individual
-data. In contrast, 37.7% of the labeled data are missing good exams
-(*Iota Error I*). Instead, the data set is made up of 43.4% of exams
+data. In contrast, about 36% of the labeled data are missing good exams
+(*Iota Error I*). Instead, the data set is made up of about 46% of exams
 from other categories (*Iota Error II*). That is, from truly average or
 truly poor exams. These exams compensate the missing good exams. As a
 consequence, in the *average of all male participants*, the number of
@@ -170,11 +169,52 @@ Finally, both diagrams for the poor exams look similar for both men and
 women. For the women, the number of missing poor exams is higher than
 for the men (*Iota Error I*). In contrast, the data labeled as poor
 exams contains more exams which truly belong to the category "good" or
-"average" for the men as well as the females (*Iota Error II*). Thus, in
+"average" for the men as well as for the females (*Iota Error II*). Thus, in
 *average over all female participants*, the number of poor exams is
-quite correct as well. For the males, the number or poor exams is
+quite correct as well. For the males, the number of poor exams is
 overestimated. For men as well as for women, the data is not reliable on
 the individual level.
+
+## 2.2 Coding Stream Analysis
+Since version 0.1.3, *iotarelr* provides an additional analysis of the 
+coding stream that is able to make the interpretation of the data more
+convenient. This kind of analysis can be request via the function `plot_iota2_alluvial()`. 
+Please note that the estimates cannot be passed
+directly to the function. Only the results for a single group are compatible.
+Applied to the current example, Figure 2 shows the coding stream analysis for the
+females. The interpretation of the plot is explained in the vignette 
+[Get started](iotarelr.html).
+
+```{r, fig.height = 5, fig.width = 7.2, fig.align = "center", fig.cap="Figure 2: Stream Plot for Females"}
+plot_alluvial_females<-plot_iota2_alluvial(
+  dgf_exam$group_female,
+  label_titel = "Coding Stream from True to Assigned Categories (Females)")
+plot(plot_alluvial_females)
+```
+Comparing the boxes for the true and the labeled data, it becomes clear that 
+the number of average exams is overestimated while the number of good exams
+is underestimated. The sizes of the boxes for the true and assigned poor exams
+are similar. That is, on average, the number of poor exams is represented in the
+labeled date quite correctly.
+
+The stream plot illustrates that the exams labeled as good exams are made up by exams which are in truth good exams to a very high extent. This can be seen by the
+big green curve and the blue and red curves, which in comparison are small. The exams labeled as poor exams are made up of poor and good exams to about 50%. The data labeled as average exams is made up by exams which are in truth good,
+average and poor to about one third.
+
+```{r, fig.height = 5, fig.width = 7.2, fig.align = "center", fig.cap="Figure 3: Stream Plot for Males"}
+plot_alluvial_males<-plot_iota2_alluvial(
+  dgf_exam$group_male,
+  label_titel = "Coding Stream from True to Assigned Categories (Males)")
+plot(plot_alluvial_males)
+```
+
+Turning to the males, the stream plot is very different. Comparing the boxes for
+the true and assigned categories, it becomes clear that the number of average 
+exams is underestimated while the poor exams are overestimated. Furthermore, 
+the coding scheme leads to a small overestimation of the good exams. Thus,
+the coding stream plot reflects the results from section 2.1, indicating that
+the coding scheme tends to divide males' exams into good or poor exams with no
+average in between, compared to an error-free measurement. 
 
 # 3 Summary
 
@@ -194,4 +234,4 @@ This example shows how the guidance of the coding scheme can be analyzed
 for different groups of materials. This information can help in
 developing coding schemes that are free from bias, providing a more
 reliable and valid source of data for subsequent analysis and
-conclusion.
+conclusions.
