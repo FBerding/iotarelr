@@ -116,6 +116,11 @@ is only about 5%. Let us now have a look at the results for the men.
 get_summary(dgf_exam$group_male)
 ```
 
+Before we look on the results please note that in some situations it is very
+difficult to obtain the best estimates. In this example we use 300 random starts
+and the algorithm is still not able to replicate the solution with the best
+log-likelihood. Thus, the results for the men can slightly vary for every run.
+
 For the men, the result is very different. According to their
 *Assignment Error Matrix*, an average exam is recognized as an average
 exam only in about 50% of the cases. If it is not recognized as an average

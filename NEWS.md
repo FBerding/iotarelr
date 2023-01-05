@@ -3,6 +3,7 @@
 * Bug fixes on Git Hub page for iotarelr.
 * Introducing a new function plot_iota2_alluvial() allowing an analysis of the
 coding streams.
+* Updating the vignettes for the new function.
 * Adding a fast estimation method for the condition stage which should increase
 stability of the results. This is the new default for all functions estimating
 a iota2 object.

@@ -44,7 +44,7 @@ An essay can be rated as "poor", "average" or "good". Thus, three categories are
 The fourth column contains the gender of the person who wrote the essay. This column, however,
 is not important at the moment. Such kinds of data can be used to analyze if the
 codings work similarly across different groups of people or different groups of 
-materials. This kind of analysis is described in the vignette [Different Guidance Functioning](dgf.html).
+materials. This kind of analysis is described in the vignette [Different Guidance Functioning](V_02_Estimating_Consequences_for_Subsequent_Analyses.html).
 Keep in mind that at the moment, we are ignoring this column.
 
 The *Iota Concept* provides measures which allow to inspect the reliability of single
@@ -367,10 +367,10 @@ drawing wrong conclusions from statistical analyses.
 In this vignette, we presented the very basic usage of the *Iota Concept*. If you would
 like to lean more about the consequences of reliability on the scale level, we would
 like to recommend the vignette 
-[Estimating Consequences for Subsequent Analysis](cons_and_values.html). 
+[Estimating Consequences for Subsequent Analysis](V_02_Estimating_Consequences_for_Subsequent_Analyses.html). 
 If you are interested in how the *Iota Concept* can be used to analyze if a coding
 scheme performs similarly for different group of materials, we recommend the
-vignette [Different Guidance Functioning](dgf.html).
+vignette [Different Guidance Functioning](V_03_Different_Guidance_Functioning.html).
 
 As we are permanently working on improving *Iota Concept*, please check the
 package's website for news.

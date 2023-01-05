@@ -2,11 +2,11 @@ pandoc: 2.19.2
 pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
-  cons_and_values: cons_and_values.html
-  dgf: dgf.html
-  error_correction: error_correction.html
   iotarelr: iotarelr.html
-  new_rater: new_rater.html
-  vig_Iota_1: vig_Iota_1.html
-last_built: 2022-12-22T11:55Z
+  Old_01_How_to_use_Iota1: Old_01_How_to_use_Iota1.html
+  V_02_Estimating_Consequences_for_Subsequent_Analyses: V_02_Estimating_Consequences_for_Subsequent_Analyses.html
+  V_03_Different_Guidance_Functioning: V_03_Different_Guidance_Functioning.html
+  V_04_Error_Correction: V_04_Error_Correction.html
+  V_05_Test_New_Raters: V_05_Test_New_Raters.html
+last_built: 2023-01-04T10:05Z
 

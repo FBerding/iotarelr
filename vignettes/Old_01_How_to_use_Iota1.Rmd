@@ -4,7 +4,7 @@ author: "Florian Berding and Julia Pargmann"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Old 1) How to use Iota1}
+  %\VignetteIndexEntry{Old_01_How_to_use_Iota1}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -62,7 +62,7 @@ In the current example, the chance-corrected alpha value for category A is relat
 ## 2.3 The beta values
 To provide a more detailed insight of the coding scheme, the beta values account for the errors which occur in the case that the true category is not discovered. That is, the beta values describe the extent to which a category is influenced by errors made in other categories. For example, if the true category of a coding unit is A and a coder does not assign A to that coding unit, the data for category B and C are biased. The data representing categories B and C comprises a coding unit that should not be part of the data.
 
-The *chance-corrected* values for the beta reliabilites are stored in `$beta` and range between 0 and 1. 0 indicates that the beta reliability equals the beta reliability in the case of complete guessing. 1 indicate the absence of any beta errors.
+The *chance-corrected* values for the beta reliabilities are stored in `$beta` and range between 0 and 1. 0 indicates that the beta reliability equals the beta reliability in the case of complete guessing. 1 indicate the absence of any beta errors.
 ```{r}
 results$beta
 ```
