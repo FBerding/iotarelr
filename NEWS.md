@@ -1,4 +1,9 @@
-# iotarelr 0.1.3 (developer version)
+# iotarelr 0.1.4 (developer version)
+* Correction of a test in testthat which depends on drawing random samples.
+* Introducing the possibility to freely estimate the Assignment Error Matrix
+within the function check_new_rater. Default is FALSE.
+
+# iotarelr 0.1.3 
 * Correction of description and citation files.
 * Bug fixes on Git Hub page for iotarelr.
 * Introducing a new function plot_iota2_alluvial() allowing an analysis of the

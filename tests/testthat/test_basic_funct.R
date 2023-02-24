@@ -333,7 +333,7 @@ test_that("Comparisaton of fast and slow estimation", {
     check_new_rater(
       true_values = iotarelr_written_exams$`Coder A`,
       assigned_values = iotarelr_new_rater,
-      con_random_starts = 20,
+      con_random_starts = 200,
       fast = FALSE)$categorical_level$raw_estimates$assignment_error_matrix,
     check_new_rater(
       true_values = iotarelr_written_exams$`Coder A`,

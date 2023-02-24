@@ -1,9 +1,9 @@
 citHeader("To cite iotarelr in publications use:")
 
-citEntry(entry="Book",
+bibentry(bibtype="Book",
 title="Iota Reliability Concept of the Second Generation. Measures for Content
 Analysis Done by Humans or Artificial Intelligence.",
-author=personList(as.person("Florian Berding"),as.person("Julia Pargmann")),
+author=c(as.person("Florian Berding"),as.person("Julia Pargmann")),
 year="2022",
 publisher = "Logos",
 volume="",

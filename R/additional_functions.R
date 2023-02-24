@@ -27,6 +27,10 @@
 #' condition stage. This option ignores all parameters beginning with "con_".
 #' If \code{FALSE} the estimation described in Berding and
 #' Pargmann (2022) is used. Default is \code{TRUE}.
+#' @param free_aem \code{Bool} If \code{TRUE} the Assignment Error Matrix is
+#' estimated in a way ensuring conformity with the assumption of weak superiority.
+#' if \code{FALSE} the Assignment Error Matrix is freely estimated. \code{TRUE}
+#' is default.
 #' @return Returns a \code{list} with the following three components:
 #' The first component \code{estimates_categorical_level} comprises all
 #' elements that describe the ratings on a categorical level. The elements are
@@ -94,7 +98,10 @@
 #'@note The returned object contains further slots since the returned object is
 #'of class \code{iotarelr_iota2}. These slots are empty because they are not part of the
 #'estimation within this function.
-#'@references  Florian Berding and Julia Pargmann (2022).Iota Reliability Concept
+#'@note Please do not use the measures on the scale level if the Assignment Error Matrix
+#'was freely estimated since this kind of matrix is not conceptualized for comparing
+#'the coding process with random guessing.
+#'@references  Florian Berding and Julia Pargmann (2022). Iota Reliability Concept
 #'of the Second Generation. Measures for Content Analysis Done by
 #'Humans or Artificial Intelligences. Berlin: Logos.
 #'https://doi.org/10.30819/5581
@@ -106,7 +113,8 @@ check_new_rater<-function(true_values,
                           con_max_iterations=5000,
                           con_rel_convergence=1e-12,
                           con_trace=FALSE,
-                          fast=TRUE){
+                          fast=TRUE,
+                          free_aem=FALSE){
 
   #Checking format of true values and assigned values
   if((is.data.frame(true_values)==TRUE |
@@ -169,16 +177,20 @@ check_new_rater<-function(true_values,
 
   categorical_sizes=rowSums(freq_matrix)/sum(freq_matrix)
   aem<-NULL
-  for(i in 1:n_categories){
-    tmp<-est_con_multinominal_c(observations=freq_matrix[i,],
-                           anchor = i,
-                           max_iter = con_max_iterations,
-                           step_size = con_step_size,
-                           cr_rel_change = con_rel_convergence,
-                           n_random_starts = con_random_starts,
-                           fast=fast,
-                           trace = con_trace)
-    aem<-rbind(aem,tmp)
+  if(free_aem==FALSE){
+    for(i in 1:n_categories){
+      tmp<-est_con_multinominal_c(observations=freq_matrix[i,],
+                             anchor = i,
+                             max_iter = con_max_iterations,
+                             step_size = con_step_size,
+                             cr_rel_change = con_rel_convergence,
+                             n_random_starts = con_random_starts,
+                             fast=fast,
+                             trace = con_trace)
+      aem<-rbind(aem,tmp)
+    }
+  } else {
+      aem<-freq_matrix/rowSums(freq_matrix)
   }
   colnames(aem)<-categorical_levels
   rownames(aem)<-categorical_levels

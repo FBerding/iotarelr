@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">iotarelr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,7 +85,7 @@
                         <h4 data-toc-skip class="author">Florian Berding
 and Julia Pargmann</h4>
             
-            <h4 data-toc-skip class="date">2023-01-04</h4>
+            <h4 data-toc-skip class="date">2023-02-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/FBerding/iotarelr/blob/HEAD/vignettes/V_04_Error_Correction.Rmd" class="external-link"><code>vignettes/V_04_Error_Correction.Rmd</code></a></small>
       <div class="d-none name"><code>V_04_Error_Correction.Rmd</code></div>
@@ -170,12 +170,12 @@ source. The results are saved in the object
 <span>  aem<span class="op">=</span><span class="va">res_iota2</span><span class="op">$</span><span class="va">categorical_level</span><span class="op">$</span><span class="va">raw_estimates</span><span class="op">$</span><span class="va">assignment_error_matrix</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">expected_categories</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   Coder A Coder B Coder C prob_average  prob_good  prob_poor expected_category</span></span>
-<span><span class="co">#&gt; 1 average average    good 4.842797e-01 0.36360114 0.15211913           average</span></span>
-<span><span class="co">#&gt; 2 average    poor average 8.082125e-07 0.27616858 0.72383061              poor</span></span>
-<span><span class="co">#&gt; 3    poor average    poor 4.961250e-14 0.12924056 0.87075944              poor</span></span>
-<span><span class="co">#&gt; 4 average average average 9.169922e-01 0.04110128 0.04190649           average</span></span>
-<span><span class="co">#&gt; 5    poor average    good 8.417771e-08 0.48182026 0.51817966              poor</span></span>
-<span><span class="co">#&gt; 6    poor    poor average 4.961250e-14 0.12924056 0.87075944              poor</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 average average    good 4.842788e-01 0.36360301 0.15211814           average</span></span>
+<span><span class="co">#&gt; 2 average    poor average 7.185529e-07 0.27617183 0.72382745              poor</span></span>
+<span><span class="co">#&gt; 3    poor average    poor 3.921546e-14 0.12924297 0.87075703              poor</span></span>
+<span><span class="co">#&gt; 4 average average average 9.169923e-01 0.04110148 0.04190624           average</span></span>
+<span><span class="co">#&gt; 5    poor average    good 7.483900e-08 0.48182451 0.51817542              poor</span></span>
+<span><span class="co">#&gt; 6    poor    poor average 3.921546e-14 0.12924297 0.87075703              poor</span></span></code></pre></div>
 <p>The resulting object contains the ratings and additional columns. The
 columns contain the probability that a coding unit belongs to a specific
 true category. The most plausible category is always presented in the

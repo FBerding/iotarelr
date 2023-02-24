@@ -12,7 +12,8 @@ check_new_rater(
   con_max_iterations = 5000,
   con_rel_convergence = 1e-12,
   con_trace = FALSE,
-  fast = TRUE
+  fast = TRUE,
+  free_aem = FALSE
 )
 }
 \arguments{
@@ -46,6 +47,11 @@ this information printed.}
 condition stage. This option ignores all parameters beginning with "con_".
 If \code{FALSE} the estimation described in Berding and
 Pargmann (2022) is used. Default is \code{TRUE}.}
+
+\item{free_aem}{\code{Bool} If \code{TRUE} the Assignment Error Matrix is
+estimated in a way ensuring conformity with the assumption of weak superiority.
+if \code{FALSE} the Assignment Error Matrix is freely estimated. \code{TRUE}
+is default.}
 }
 \value{
 Returns a \code{list} with the following three components:
@@ -121,9 +127,13 @@ Iota 2
 The returned object contains further slots since the returned object is
 of class \code{iotarelr_iota2}. These slots are empty because they are not part of the
 estimation within this function.
+
+Please do not use the measures on the scale level if the Assignment Error Matrix
+was freely estimated since this kind of matrix is not conceptualized for comparing
+the coding process with random guessing.
 }
 \references{
-Florian Berding and Julia Pargmann (2022).Iota Reliability Concept
+Florian Berding and Julia Pargmann (2022). Iota Reliability Concept
 of the Second Generation. Measures for Content Analysis Done by
 Humans or Artificial Intelligences. Berlin: Logos.
 https://doi.org/10.30819/5581
