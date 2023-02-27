@@ -3,14 +3,16 @@ citHeader("To cite iotarelr in publications use:")
 bibentry(bibtype="Book",
 title="Iota Reliability Concept of the Second Generation. Measures for Content
 Analysis Done by Humans or Artificial Intelligence.",
-author=c(as.person("Florian Berding"),as.person("Julia Pargmann")),
+author=c(person(given="Florian",family="Berding"),
+         person(given="Julia", family="Pargmann")),
 year="2022",
 publisher = "Logos",
 volume="",
 number="",
 pages="",
 series="Berufs- und Wirtschaftspädagogik",
-editor=personList(as.person("Florian Berding"),as.person("Tobias Schlömer")),
+editor=c(person(given="Florian",family="Berding"),
+person(given="Tobias", family="Schlömer")),
 url="https://www.logos-verlag.de/cgi-bin/engbuchmid?isbn=5581&lng=eng&id=",
 doi="10.30819/5581",
 
