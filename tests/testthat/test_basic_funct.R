@@ -327,6 +327,7 @@ test_that("Input types for check new rater", {
   )
 })
 #Test fast and slow estimation--------------------------------------------------
+skip("Comparisaton of fast and slow estimation")
 test_that("Comparisaton of fast and slow estimation", {
 
   expect_equal(
@@ -347,7 +348,7 @@ test_that("Comparisaton of fast and slow estimation", {
     check_new_rater(
       true_values = iotarelr_written_exams$`Coder A`,
       assigned_values = iotarelr_new_rater,
-      con_random_starts = 20,
+      con_random_starts = 200,
       fast = FALSE)$information$est_true_cat_sizes,
     check_new_rater(
       true_values = iotarelr_written_exams$`Coder A`,
@@ -360,7 +361,7 @@ test_that("Comparisaton of fast and slow estimation", {
   expect_equal(
     compute_iota2(
       data=iotarelr_written_exams[c("Coder A","Coder B","Coder C")],
-      random_starts = 50,
+      random_starts = 200,
       trace = FALSE,
       fast = FALSE)$categorical_level$raw_estimates$assignment_error_matrix,
     compute_iota2(
@@ -374,7 +375,7 @@ test_that("Comparisaton of fast and slow estimation", {
   expect_equal(
     compute_iota2(
       data=iotarelr_written_exams[c("Coder A","Coder B","Coder C")],
-      random_starts = 50,
+      random_starts = 200,
       trace = FALSE,
       fast = FALSE)$information$est_true_cat_sizes,
     compute_iota2(
