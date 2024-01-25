@@ -30,6 +30,10 @@
 #'on the scale level. If \code{scale="dynamic_iota_index"} Dynamic Iota Index
 #'is used.  If \code{scale="static_iota_index"} Static Iota Index
 #'is used. If \code{scale="none"} no additional plot is created.
+#'@param legend_position \code{string} Position of the legend. Possible values
+#'are "bottom","right","left", "top" and "none".
+#'@param legend_direction \code{string} Layout of the items in the legend. Possible
+#'values are "horizontal" and "vertical".
 #'@return Function returns an object of class \code{gg, ggplot} illustrating how
 #'the data of the different categories influence each other.
 #'@note An example for interpreting the plot can be found in the vignette
@@ -57,10 +61,18 @@ plot_iota<-function(object,
                     number_size=6,
                     key_size=0.5,
                     text_size=10,
+                    legend_position="bottom",
+                    legend_direction="vertical",
                     scale="none"){
 
   if((methods::is(object,"iotarelr_iota2") | methods::is(object,"iotarelr_iota2_dgf"))==FALSE){
     stop("Class of object for iota is not supported by this function.")
+  }
+  if(legend_direction%in%c("horizontal","vertical")==FALSE){
+    stop("legend_direction must be 'horizontal' or 'vertical'.")
+  }
+  if(legend_position%in%c("bottom","top","right","left","none")==FALSE){
+    stop("legend_direction must be 'bottom', 'top', 'left', 'right' or 'none'.")
   }
 
   image_data<-NULL
@@ -236,7 +248,7 @@ plot_iota<-function(object,
       if(scale=="dynamic_iota_index"){
         image_scale=image_scale+
           ggplot2::geom_vline(xintercept = object$scale_level$iota_index_dyn2,
-                              size=2)+
+                              linewidth=2)+
           ggplot2::labs(x="Dynamic Iota Index",
                         y="")
       } else if(scale=="static_iota_index") {
@@ -251,7 +263,7 @@ plot_iota<-function(object,
         if(scale=="dynamic_iota_index"){
           image_scale=image_scale+
             ggplot2::geom_vline(xintercept = object[[g]]$scale_level$iota_index_dyn2,
-                                size=1.5)+
+                                linewidth=1.5)+
             ggplot2::annotate(geom = "text",
                               x = object[[g]]$scale_level$iota_index_dyn2-.02,
                               y = 0.5,
@@ -277,6 +289,8 @@ plot_iota<-function(object,
     }
 
   }
+
+  image_plot=image_plot+ggplot2::theme(legend.position = legend_position)
 
   if(scale=="none"){
     return(image_plot)
@@ -312,6 +326,10 @@ plot_iota<-function(object,
 #'label for each true and assigned category within the plot.
 #'@param key_size \code{double} determining the size of the legend.
 #'@param text_size \code{double} determining the size of the text within the legend.
+#'@param legend_position \code{string} Position of the legend. Possible values
+#'are "bottom","right","left", "top" and "none".
+#'@param legend_direction \code{string} Layout of the items in the legend. Possible
+#'values are "horizontal" and "vertical".
 #'@return Returns an object of class \code{gg} and \code{ggplot} which can be
 #'shown with \code{plot()}.
 #'@note An example for interpreting the plot can be found in the vignette
@@ -331,10 +349,20 @@ plot_iota2_alluvial<-function(object,
                               label_y_axis="Relative Frequencies",
                               label_categories_size=3,
                               key_size=0.5,
-                              text_size=10){
+                              text_size=10,
+                              legend_position="right",
+                              legend_direction="vertical"){
+
   if(methods::is(object,"iotarelr_iota2")==FALSE){
     stop("Class of object for iota is not supported by this function.
          Object must be of class iotarelr_iota2.")
+  }
+
+  if(legend_direction%in%c("horizontal","vertical")==FALSE){
+    stop("legend_direction must be 'horizontal' or 'vertical'.")
+  }
+  if(legend_position%in%c("bottom","top","right","left","none")==FALSE){
+    stop("legend_direction must be 'bottom', 'top', 'left', 'right' or 'none'.")
   }
 
   n_categories=ncol(object$categorical_level$raw_estimates$assignment_error_matrix)
@@ -369,7 +397,7 @@ plot_iota2_alluvial<-function(object,
     ggplot2::scale_fill_discrete(name=label_legend_title)+
     ggalluvial::geom_stratum(width = 1/8,
                              reverse = FALSE)+
-    ggplot2::geom_text(stat = "stratum",
+    ggplot2::geom_text(stat = ggalluvial::StatStratum,
                        ggplot2::aes(label = ggplot2::after_stat(.data$stratum)),
                        reverse = FALSE,
                        size = label_categories_size) +
@@ -378,10 +406,10 @@ plot_iota2_alluvial<-function(object,
     ggplot2::theme_classic()+
     ggtitle(label_titel)+
     ggplot2::ylab(label_y_axis)+
-    ggplot2::theme(legend.position="right",
+    ggplot2::theme(legend.position=legend_position,
                    legend.justification = "left",
                    legend.key.size = ggplot2::unit(key_size, "cm"),
                    legend.text = ggplot2::element_text(size=text_size),
-                   legend.direction="vertical")
+                   legend.direction=legend_direction)
   return(gg_alluvival_plot)
 }

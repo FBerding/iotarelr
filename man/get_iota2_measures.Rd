@@ -22,39 +22,31 @@ elements that describe the ratings on a categorical level. The elements are
 sub-divided into raw estimates and chance-corrected estimates.
 \describe{
 \item{\code{raw_estimates}}{
-\itemize{
-\item{\code{iota: }}
-{A vector containing the Iota values for each category.}
- \item{\code{iota_error_1: }}
-{A vector containing the Iota Error Type I values for each category.}
- \item{\code{iota_error_2: }}
-{A vector containing the Iota Error Type II values for each category.}
-\item{\code{alpha_reliability: }}{A vector containing the Alpha
+\describe{
+\item{\code{iota:}}{A vector containing the Iota values for each category.}
+ \item{\code{iota_error_1:}}{A vector containing the Iota Error Type I values for each category.}
+ \item{\code{iota_error_2:}}{A vector containing the Iota Error Type II values for each category.}
+\item{\code{alpha_reliability:}}{A vector containing the Alpha
 Reliabilities for each category. These values represent probabilities.}
-\item{\code{beta_reliability: }}{A vector containing the Beta Reliabilities for each
+\item{\code{beta_reliability:}}{A vector containing the Beta Reliabilities for each
 category. These values represent probabilities.}
-\item{\code{assignment_error_matrix: }}{Assignment Error Matrix containing the conditional
+\item{\code{assignment_error_matrix:}}{Assignment Error Matrix containing the conditional
 probabilities for assigning a unit of category i to categories 1 to n.}
 }}
 \item{\code{elements_chance_corrected}}{
-\itemize{
-\item{\code{alpha_reliability: }}
-{A vector containing the chance-corrected Alpha Reliabilities for each category.}
-\item{\code{beta_reliability: }}
-{A vector containing the chance-corrected Beta Reliabilities for each category.}
+\describe{
+\item{\code{alpha_reliability:}}{A vector containing the chance-corrected Alpha Reliabilities for each category.}
+\item{\code{beta_reliability:}}{A vector containing the chance-corrected Beta Reliabilities for each category.}
 }}
 }
 The second component \code{estimates_scale_level} contains elements for
 describing the quality of the ratings on a scale level. It comprises the
 following elements:
-\itemize{
-\item{\code{iota_index: }}
-{The Iota Index, representing the reliability on a scale level.}
-\item{\code{iota_index_d4: }}
-{The Static Iota Index, which is a transformation of the original Iota Index,
+\describe{
+\item{\code{iota_index:}}{The Iota Index, representing the reliability on a scale level.}
+\item{\code{iota_index_d4:}}{The Static Iota Index, which is a transformation of the original Iota Index,
 in order to consider the uncertainty of estimation.}
-\item{\code{iota_index_dyn2: }}
-{The Dynamic Iota Index, which is a transformation of the original Iota Index,
+\item{\code{iota_index_dyn2:}}{The Dynamic Iota Index, which is a transformation of the original Iota Index,
 in order to consider the uncertainty of estimation.}
 }
 }

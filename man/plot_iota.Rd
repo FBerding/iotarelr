@@ -16,6 +16,8 @@ plot_iota(
   number_size = 6,
   key_size = 0.5,
   text_size = 10,
+  legend_position = "bottom",
+  legend_direction = "vertical",
   scale = "none"
 )
 }
@@ -53,6 +55,12 @@ legend keys.}
 
 \item{text_size}{\code{Double} passed to theme() determining the size of the
 text within the legend.}
+
+\item{legend_position}{\code{string} Position of the legend. Possible values
+are "bottom","right","left", "top" and "none".}
+
+\item{legend_direction}{\code{string} Layout of the items in the legend. Possible
+values are "horizontal" and "vertical".}
 
 \item{scale}{\code{String} for requesting an additional plot of reliability
 on the scale level. If \code{scale="dynamic_iota_index"} Dynamic Iota Index

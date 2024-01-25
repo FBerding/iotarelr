@@ -35,65 +35,49 @@
 #' The first component \code{estimates_categorical_level} comprises all
 #' elements that describe the ratings on a categorical level. The elements are
 #' sub-divided into raw estimates and chance-corrected estimates.
+#'
+#' \code{raw_estimates}
 #' \describe{
-#' \item{\code{raw_estimates}}{
-#' \itemize{
-#' \item{\code{alpha_reliability: }}{A vector containing the Alpha
+#' \item{\code{alpha_reliability:}}{A vector containing the Alpha
 #' Reliabilities for each category. These values represent probabilities.}
-#' \item{\code{beta_reliability: }}{A vector containing the Beta Reliabilities for each
+#' \item{\code{beta_reliability:}}{A vector containing the Beta Reliabilities for each
 #' category. These values represent probabilities.}
-#' \item{\code{assignment_error_matrix: }}{An Assignment Error Matrix containing the conditional
+#' \item{\code{assignment_error_matrix:}}{An Assignment Error Matrix containing the conditional
 #' probabilities for assigning a unit of category i to categories 1 to n.}
-#' #' \item{\code{iota: }}
-#' {A vector containing the Iota values for each category.}
-#' }}
-#' \item{\code{elements_chance_corrected}}{
-#' \itemize{
-#' \item{\code{alpha_reliability: }}
-#' {A vector containing the chance-corrected Alpha Reliabilities for each category.}
-#' \item{\code{beta_reliability: }}
-#' {A vector containing the chance-corrected Beta Reliabilities for each category.}
-#' }}
+#' \item{\code{iota:}}{A vector containing the Iota values for each category.}
 #' }
+#' \code{elements_chance_corrected}
+#' \describe{
+#' \item{\code{alpha_reliability:}}{A vector containing the chance-corrected Alpha Reliabilities for each category.}
+#' \item{\code{beta_reliability:}}{A vector containing the chance-corrected Beta Reliabilities for each category.}
+#' }
+#'
 #' The second component \code{estimates_scale_level} contains elements to
 #' describe the quality of the ratings on a scale level. It contains the
 #' following elements:
-#' \itemize{
-#' \item{\code{iota_index: }}
-#' {The Iota Index representing the reliability on a scale level.}
-#' \item{\code{iota_index_d4: }}
-#' {The Static Iota Index, which is a transformation of the original Iota Index,
+#' \describe{
+#' \item{\code{iota_index:}}{The Iota Index representing the reliability on a scale level.}
+#' \item{\code{iota_index_d4:}}{The Static Iota Index, which is a transformation of the original Iota Index,
 #' in order to consider the uncertainty of estimation.}
-#' \item{\code{iota_index_dyn2: }}
-#' {The Dynamic Iota Index, which is a transformation of the original Iota Index,
+#' \item{\code{iota_index_dyn2:}}{The Dynamic Iota Index, which is a transformation of the original Iota Index,
 #' in order to consider the uncertainty of estimation.}
 #' }
 #' The third component \code{information} contains important information
 #' regarding the parameter estimation. It comprises the following elements:
-#'\itemize{
-#' \item{\code{log_likelihood: }}
-#' {Log-likelihood of the best solution.}
-#' \item{\code{convergence: }}
-#' {If estimation converged 0, otherwise 1.}
-#' \item{\code{est_true_cat_sizes: }}
-#' {Estimated categorical sizes. This is the estimated amount of the categories.}
-#' \item{\code{conformity: }}
-#' {\code{0} if the solution is in line with assumptions of weak superiority.
+#'\describe{
+#' \item{\code{log_likelihood:}}{Log-likelihood of the best solution.}
+#' \item{\code{convergence:}}{If estimation converged 0, otherwise 1.}
+#' \item{\code{est_true_cat_sizes:}}{Estimated categorical sizes. This is the estimated amount of the categories.}
+#' \item{\code{conformity:}}{\code{0} if the solution is in line with assumptions of weak superiority.
 #'  A number greater 0 indicates the number of violations of the assumption
 #'  of weak superiority.}
-#'  \item{\code{random_starts: }}
-#' {Numer of random starts for the EM algorithm.}
-#' \item{\code{boundaries: }}
-#' {\code{False} if the best solution does not contain boundary values.
+#'  \item{\code{random_starts:}}{Numer of random starts for the EM algorithm.}
+#' \item{\code{boundaries:}}{\code{False} if the best solution does not contain boundary values.
 #' \code{True} if the best solution does contain boundary values}
-#' \item{\code{p_boundaries: }}
-#' {Percentage of solutions with boundary values during estimation.}
-#' \item{\code{call: }}
-#' {Name of the function that created the object.}
-#' \item{\code{n_rater: }}
-#' {Number of raters.}
-#' \item{\code{n_cunits: }}
-#' {Number of coding units.}
+#' \item{\code{p_boundaries:}}{Percentage of solutions with boundary values during estimation.}
+#' \item{\code{call:}}{Name of the function that created the object.}
+#' \item{\code{n_rater:}}{Number of raters.}
+#' \item{\code{n_cunits:}}{Number of coding units.}
 #' }
 #'@note The returned object contains further slots since the returned object is
 #'of class \code{iotarelr_iota2}. These slots are empty because they are not part of the
@@ -103,7 +87,7 @@
 #'the coding process with random guessing.
 #'@references  Florian Berding and Julia Pargmann (2022). Iota Reliability Concept
 #'of the Second Generation. Measures for Content Analysis Done by
-#'Humans or Artificial Intelligences. Berlin: Logos.
+#'Humans or Artificial Intelligences. Berlin:Logos.
 #'https://doi.org/10.30819/5581
 #'@export
 check_new_rater<-function(true_values,
@@ -272,7 +256,7 @@ check_new_rater<-function(true_values,
 #'that documentation.
 #'@references  Florian Berding and Julia Pargmann (2022).Iota Reliability Concept
 #'of the Second Generation. Measures for Content Analysis Done by
-#'Humans or Artificial Intelligences. Berlin: Logos.
+#'Humans or Artificial Intelligences. Berlin:Logos.
 #'https://doi.org/10.30819/5581
 #'@export
 
@@ -333,7 +317,7 @@ check_dgf<-function(data,
 #' probability of each true category, and the expected category for every coding unit.
 #'@references  Florian Berding and Julia Pargmann (2022).Iota Reliability Concept
 #'of the Second Generation. Measures for Content Analysis Done by
-#'Humans or Artificial Intelligences. Berlin: Logos.
+#'Humans or Artificial Intelligences. Berlin:Logos.
 #'https://doi.org/10.30819/5581
 #' @export
 
@@ -508,7 +492,7 @@ summary.iotarelr_iota2<-get_summary
 #' Sciences (2nd Ed.). Taylor & Francis.
 #' @references  Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
 #'of the Second Generation.Measures for Content Analysis Done by
-#'Humans or Artificial Intelligences. Berlin: Logos.
+#'Humans or Artificial Intelligences. Berlin:Logos.
 #'https://doi.org/10.30819/5581
 #' @export
 get_consequences<-function(measure_typ="dynamic_iota_index",

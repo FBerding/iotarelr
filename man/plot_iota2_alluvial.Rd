@@ -15,7 +15,9 @@ plot_iota2_alluvial(
   label_y_axis = "Relative Frequencies",
   label_categories_size = 3,
   key_size = 0.5,
-  text_size = 10
+  text_size = 10,
+  legend_position = "right",
+  legend_direction = "vertical"
 )
 }
 \arguments{
@@ -48,6 +50,12 @@ label for each true and assigned category within the plot.}
 \item{key_size}{\code{double} determining the size of the legend.}
 
 \item{text_size}{\code{double} determining the size of the text within the legend.}
+
+\item{legend_position}{\code{string} Position of the legend. Possible values
+are "bottom","right","left", "top" and "none".}
+
+\item{legend_direction}{\code{string} Layout of the items in the legend. Possible
+values are "horizontal" and "vertical".}
 }
 \value{
 Returns an object of class \code{gg} and \code{ggplot} which can be
