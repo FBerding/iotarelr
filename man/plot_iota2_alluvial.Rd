@@ -62,7 +62,7 @@ Returns an object of class \code{gg} and \code{ggplot} which can be
 shown with \code{plot()}.
 }
 \description{
-Function for creating an alluvial plot that can be plotted via \link{ggplot2}.
+Function for creating an alluvial plot that can be plotted via 'ggplot2'.
 }
 \note{
 An example for interpreting the plot can be found in the vignette

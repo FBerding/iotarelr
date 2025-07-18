@@ -15,7 +15,7 @@
 
 #'Plot Iota2
 #'
-#'Function for creating a plot object that can be plotted via \link{ggplot2}.
+#'Function for creating a plot object that can be plotted via 'ggplot2'.
 #'
 #'@param object Estimates of Iota 2 created with \code{compute_iota2()},
 #'\code{check_dgf()} or \code{check_new_rater()}.
@@ -51,7 +51,7 @@
 #'@return Function returns an object of class \code{gg, ggplot} illustrating how
 #'the data of the different categories influence each other.
 #'@note An example for interpreting the plot can be found in the vignette
-#'\href{../iotarelr.html}{Get started} or via
+#'\href{../doc/iotarelr.html}{Get started} or via
 #'\code{vignette("iotarelr", package = "iotarelr")}.
 #'@importFrom rlang .data
 #'@importFrom methods is
@@ -319,7 +319,7 @@ plot_iota<-function(object,
 
 #'Plot of the Coding Stream
 #'
-#'Function for creating an alluvial plot that can be plotted via \link{ggplot2}.
+#'Function for creating an alluvial plot that can be plotted via 'ggplot2'.
 #'
 #'@param object Estimates of Iota 2 created with \code{compute_iota2()},
 #'\code{check_new_rater()} or with \code{check_dgf()}. Please note that the object

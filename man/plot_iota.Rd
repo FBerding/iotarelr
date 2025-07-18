@@ -72,7 +72,7 @@ Function returns an object of class \code{gg, ggplot} illustrating how
 the data of the different categories influence each other.
 }
 \description{
-Function for creating a plot object that can be plotted via \link{ggplot2}.
+Function for creating a plot object that can be plotted via 'ggplot2'.
 }
 \note{
 An example for interpreting the plot can be found in the vignette

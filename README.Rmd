@@ -43,7 +43,7 @@ The tools are able to provide answers to the following questions:
 
 [![](https://www.r-pkg.org/badges/version/iotarelr?color=green)](https://cran.r-project.org/package=iotarelr)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/iotarelr)](https://cran.r-project.org/package=iotarelr)
-[![](https://img.shields.io/badge/devel%20version-0.1.4-green.svg)](https://github.com/fberding/iotarelr)
+[![](https://img.shields.io/badge/devel%20version-0.1.6-green.svg)](https://github.com/fberding/iotarelr)
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
