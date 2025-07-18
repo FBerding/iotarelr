@@ -1,3 +1,17 @@
+# This file is part of the R package "iotarelr".
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3 as published by
+# the Free Software Foundation.
+#
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>
+
 
 #'Plot Iota2
 #'
@@ -333,7 +347,7 @@ plot_iota<-function(object,
 #'@return Returns an object of class \code{gg} and \code{ggplot} which can be
 #'shown with \code{plot()}.
 #'@note An example for interpreting the plot can be found in the vignette
-#'\href{../iotarelr.html}{Get started} or via
+#'\href{../doc/iotarelr.html}{Get started} or via
 #'\code{vignette("iotarelr", package = "iotarelr")}.
 #'@importFrom rlang .data
 #'@import ggplot2

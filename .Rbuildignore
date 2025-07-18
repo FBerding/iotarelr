@@ -10,3 +10,5 @@
 ^Meta$
 cran-comments.md
 ^CRAN-SUBMISSION$
+^LICENSE\.md$
+^\.github$

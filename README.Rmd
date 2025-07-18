@@ -47,7 +47,8 @@ The tools are able to provide answers to the following questions:
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-
+[![Codecov test coverage](https://codecov.io/gh/FBerding/iotarelr/graph/badge.svg)](https://app.codecov.io/gh/FBerding/iotarelr)
+[![R-CMD-check](https://github.com/FBerding/iotarelr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/FBerding/iotarelr/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 ## Introduction

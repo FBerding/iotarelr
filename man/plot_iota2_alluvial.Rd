@@ -66,6 +66,6 @@ Function for creating an alluvial plot that can be plotted via \link{ggplot2}.
 }
 \note{
 An example for interpreting the plot can be found in the vignette
-\href{../iotarelr.html}{Get started} or via
+\href{../doc/iotarelr.html}{Get started} or via
 \code{vignette("iotarelr", package = "iotarelr")}.
 }
