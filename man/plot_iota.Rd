@@ -74,11 +74,6 @@ the data of the different categories influence each other.
 \description{
 Function for creating a plot object that can be plotted via 'ggplot2'.
 }
-\note{
-An example for interpreting the plot can be found in the vignette
-\href{../iotarelr.html}{Get started} or via
-\code{vignette("iotarelr", package = "iotarelr")}.
-}
 \references{
 Florian Berding and Julia Pargmann (2022).Iota Reliability Concept
 of the Second Generation. Measures for Content Analysis Done by

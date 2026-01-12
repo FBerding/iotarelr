@@ -50,9 +50,6 @@
 #'values are "horizontal" and "vertical".
 #'@return Function returns an object of class \code{gg, ggplot} illustrating how
 #'the data of the different categories influence each other.
-#'@note An example for interpreting the plot can be found in the vignette
-#'\href{../doc/iotarelr.html}{Get started} or via
-#'\code{vignette("iotarelr", package = "iotarelr")}.
 #'@importFrom rlang .data
 #'@importFrom methods is
 #'@references  Florian Berding and Julia Pargmann (2022).Iota Reliability Concept

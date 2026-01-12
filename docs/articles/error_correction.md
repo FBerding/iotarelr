@@ -1,0 +1,138 @@
+# 4) Error Correction
+
+## 1 Introduction
+
+Literature regarding content analysis often presents the estimation of
+reliability as a part of the development phase of a coding scheme, for
+example to inform a revision (Krippendorff, 2019; Kuckartz, 2018;
+Mayring, 2015; Schreier, 2012). If the reliability is considered to be
+sufficient, the main study starts. Often, the reliability of the codings
+of this main study is not further controlled, as it is assumed that the
+reliability estimates of the development phase hold for the entire main
+study. Sometimes however, researchers communicate and discuss their
+findings and assign a category to a coding unit by agreeing on the
+relevant category when the coding scheme is unclear.
+
+With *Iota Concept*, the reliability of a coding scheme can be taken
+into account more explicitly during the main study. It provides the
+opportunity for error corrections, which is not possible with
+traditional measures such as *Percentage Agreement*, *Cohen’s Kappa* or
+*Krippendorff’s Alpha*.
+
+The error correction of the *Iota Concept* is based on two ideas. First,
+an *Assignment Error Matrix* produces patterns of ratings for every
+coding unit. These patterns give hints which true category may be the
+source for this kind of observation. This requires at least two raters.
+Second, involving additional raters provides more information on a
+coding unit, which can improve the assignments. This idea is similar to
+the application of multiple items in questionnaires or tests where each
+item can be considered as a test for the phenomena of interest.
+Additional test are used to reduce errors.
+
+In this vignette, we would like to continue our example of the exams
+from the first [vignette](iotarelr.md) and now want to show you how the
+error correction can be applied.
+
+## 2 Using the error correction of the Iota Concept
+
+Applying the error correction of the *Iota Concept* requires that all
+coding units of the core study are rated by at least two raters. The
+error correction can be requested with the function
+[`est_expected_categories()`](../reference/est_expected_categories.md).
+This function calculates the probability that a coding unit belongs to a
+specific true category under the condition of the observed pattern. To
+illustrate the error correction, a look into the data set is helpful.
+
+``` r
+library(iotarelr)
+#> Loading required package: ggplot2
+#> Warning: package 'ggplot2' was built under R version 4.1.3
+#> Loading required package: ggalluvial
+#> Warning: package 'ggalluvial' was built under R version 4.1.3
+head(iotarelr_written_exams)
+#>   Coder A Coder B Coder C    Sex
+#> 1 average average    good female
+#> 2 average    poor average   male
+#> 3    poor average    poor female
+#> 4 average average average female
+#> 5    poor average    good female
+#> 6    poor    poor average female
+```
+
+The first 6 rows of the data set show that the three raters do not agree
+on all coding units. While the raters agree on the first two exams, they
+disagree partially on exams 3 to 6. In particular, two raters consider
+exam 3 to be average while one rater considers this exams to be good.
+Thus, there seems to be some kind of error and it is not clear which
+category should be assigned to exam 3.
+
+To solve this problem, we must first estimate the *Assignment Error
+Matrix*. In the next step, we pass the estimated *Assignment Error
+Matrix* to the function
+[`est_expected_categories()`](../reference/est_expected_categories.md)
+and use the ratings as our data source. The results are saved in the
+object `expected_categories`.
+
+``` r
+res_iota2<-compute_iota2(
+  data=iotarelr_written_exams[c("Coder A","Coder B","Coder C")],
+  random_starts = 10,
+  trace = FALSE)
+expected_categories<-est_expected_categories(
+  data=iotarelr_written_exams[c("Coder A","Coder B","Coder C")],
+  aem=res_iota2$categorical_level$raw_estimates$assignment_error_matrix)
+head(expected_categories)
+#>   Coder A Coder B Coder C prob_average  prob_good  prob_poor expected_category
+#> 1 average average    good 4.842782e-01 0.36360439 0.15211741           average
+#> 2 average    poor average 6.373066e-07 0.27617420 0.72382516              poor
+#> 3    poor average    poor 3.084868e-14 0.12924473 0.87075527              poor
+#> 4 average average average 9.169923e-01 0.04110162 0.04190605           average
+#> 5    poor average    good 6.637675e-08 0.48182762 0.51817232              poor
+#> 6    poor    poor average 3.084868e-14 0.12924473 0.87075527              poor
+```
+
+The resulting object contains the ratings and additional columns. The
+columns contain the probability that a coding unit belongs to a specific
+true category. The most plausible category is always presented in the
+last column.
+
+For the first row, the probability that this exam is truly an average
+one is about 48.4%. The chance that this exam represents truly a good
+exam is about 36.3% and that is is truly a poor exam is about 15.2%.
+Thus, it is most plausible to assign exam number 1 to the category
+“average”.
+
+For exam number two, the probability that this exam is truly an average
+one is about 0.00%. The chance that this exam represents truly a good
+exam is about 27.6% and that is is truly a poor exam is about 72.4%.
+Thus, it is most plausible to assign exam number 2 to the category
+“poor”.
+
+If the ratings were done by only one rater, these kind of errors would
+not become visible. For example, if the exams were rated only by rater
+A, exam 2 would have been assigned as an average exam, although it is
+more plausible to assign it to the category “poor”.
+
+## 3 Conclusions
+
+Estimating the category that is most likely true has several advantages:
+
+- It allows multiple testing of coding units by more than two raters.
+- The additional information can be used to calculate the certainty of
+  an assignment.
+- The category that is most likely true is assigned to a coding unit.
+- Errors made by only one rater can be avoided.
+- Researchers do not need to discuss every coding unit, which binds
+  financial and time resources for large sample sizes.
+
+## References
+
+- Früh, W. (2017). Inhaltsanalyse: Theorie und Praxis (9., überarbeitete
+  Auflage). UTB.
+- Krippendorff, K. (2019). Content Analysis: An Introduction to Its
+  Methodology (4th Ed.). SAGE.
+- Kuckartz, U. (2018). Qualitative Inhaltsanalyse: Methoden, Praxis,
+  Computerunterstützung (4. Auflage). Grundlagentexte Methoden. Beltz.
+- Mayring, P. (2015). Qualitative Inhaltsanalyse: Grundlagen und
+  Techniken (12., überarbeitete Auflage). Beltz.
+- Schreier, M. (2012). Qualitative Content Analysis in Practice. SAGE.

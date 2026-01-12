@@ -1,18 +1,33 @@
 ## This is a new submission
 
-* Fixed citation files in line with mail by Uwe Ligges (24. Feb. 2023)
+We received a mail by Kurt Hornik describing the following problem:
 
-* Fixed the bug mentioned in an email by Prof Brian Ripley (24. Feb. 2023). The problem was that the test relies on drawing random samples. The sample size was to small for the old and unstable
-estimation method. Thus, some rare cases can occur leading to a wrong estimation which in turn leads to a failing test. Since the new stable method is
-implemented as default the test is skipped in order to avoid random failing tests in the future.
+You have in plot_iota2_alluvial.Rd
 
-## Test envirnoments
-* local Windows 7 install, R 4.1.2
-* win-builder (devel and release)
-* mac via devtools::check_mac_release()
+  An example for interpreting the plot can be found in the vignette
+  \href{../iotarelr.html}{Get started} or via
+
+but that points nowhere in HTML help.  
+
+I guess you want
+
+  \href{../doc/iotarelr.html}{Get started}
+
+instead?
+
+
+Please correct before 2025-08-25 to safely retain your package on CRAN.
+
+We fixed the problem, updated the documentation, and updated some other aspects.
+
+## Test environments
+* local Windows 11 install, R 4.4.2
+* R-CMD-Checks on 
+  - {os: macos-latest,   r: 'release'}
+  - {os: windows-latest, r: 'release'}
+  - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
+  - {os: ubuntu-latest,   r: 'release'}
+  - {os: ubuntu-latest,   r: 'oldrel-1'}
 
 ## R CMD Check results
-There were no ERRORs or WARNINGs.
-There is 1 NOTE referring to a doi which is working 
-
-
+There were no ERRORs or WARNINGs or NOTEs.
