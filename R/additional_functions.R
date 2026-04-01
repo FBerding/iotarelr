@@ -154,6 +154,15 @@ check_new_rater<-function(true_values,
          assigned data for levels that do not occur in the true data.")
   }
 
+  #check if the range of true values is without gaps
+  min_freq=(true_values<=0)
+  if(sum(min_freq)>=1){
+    cat_without_codings=categorical_levels[which(min_freq)]
+    stop("There are no codings for some true categories. These are",
+         paste(cat_without_codings,collapse = " ")
+    )
+  }
+
   #Start of the calculations
   obs<-cbind(true_values,assigned_values)
   colnames(obs)<-c("true_values","assigned_values")

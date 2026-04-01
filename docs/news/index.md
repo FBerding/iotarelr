@@ -3,6 +3,7 @@
 ## iotarelr 0.1.8
 
 - Added a logo.
+- Add a new check for data quality in function ‘check_new_rater’.
 
 ## iotarelr 0.1.7
 
