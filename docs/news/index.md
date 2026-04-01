@@ -1,6 +1,12 @@
 # Changelog
 
+## iotarelr 0.1.8
+
+- Added a logo.
+
 ## iotarelr 0.1.7
+
+CRAN release: 2026-01-12
 
 - Improved checks for function ‘check_new_rater’ which should avoid
   errors in c++.
