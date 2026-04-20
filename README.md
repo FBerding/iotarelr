@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# iotarelr - Iota Inter-Coder-Reliability for Content Analysis
+# iotarelr - Iota Inter-Coder-Reliability for Content Analysis <img src="man/figures/logo.png" align="right" height="120" alt="" />
 
 *iotarelr* provides routines and tools for assessing the quality of
 content analysis on the basis of the Iota Reliability Concept. The
@@ -22,8 +22,6 @@ The tools are able to provide answers to the following questions:
   materials or different groups of people?
 - How do coding errors bias the generated data?
 - How can the generated data be corrected for errors?
-
-# iotarelr <img src="man/figures/logo.png" align="right" height="120" alt="" />
 
 <!-- badges: start -->
 
