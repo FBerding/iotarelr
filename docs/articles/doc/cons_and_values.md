@@ -1,0 +1,207 @@
+# 2) Estimating Consequences for Subsequent Analyses
+
+## 1 Introduction
+
+In the first vignette [Get started](iotarelr.md), rules of thumbs are
+used to evaluate the degree of reliability. In this vignette, we would
+like to demonstrate that a more situation-specific evaluation of
+reliability is possible. In doing this, we continue the example of the
+first vignette, which you can find [here](iotarelr.md). In the center of
+this kind of analysis is the function
+[`get_consequences()`](../../reference/get_consequences.md) which can be
+used to evaluate pretests of coding schemes, as well as for planning or
+evaluating existing studies.
+
+The cut-off values for judging reliability are derived in a way that
+ensures a high data quality in many practical situations. In the study
+of Berding and Pargmann (2022), the most demanding situations are
+chosen. Thus, for some applications, these rules of thumb may be too
+strict. Additionally, it may be helpful to understand the consequences
+induced by specific reliability values.
+
+To illustrate this kind of analysis, we need to extent our example by
+introducing a new variable. Let us assume that all participants of the
+exam were interviewed in order to asses how confident the students are
+about their abilities to successfully pass the exam. Let us further
+assume that the degree of confidence varies between “low”, “medium” and
+“high”.
+
+In analogy to studies investigating the relationship between achievement
+and self-concept (Huang 2011; Möller et al. 2020), we assume that
+participants with better exams have a higher confidence in their
+abilities. Figure 1 illustrates this relationship.
+
+![](con_and_values_intro.png)
+
+Figure 1: Assumed Relationship between Performance and Ability Self
+Concept
+
+To prove this relationship, we use the data from the exams and the rated
+interviews. Whether or not we can draw the right conclusions from the
+data depends on the reliability of the generated data, the sample size
+and the sample method. This can be explored in more detail with the
+function [`get_consequences()`](../../reference/get_consequences.md)
+
+## 2 Using *get_consequences()*
+
+The function [`get_consequences()`](../../reference/get_consequences.md)
+provides information about the impact of reliability on significance
+testing and drawing conclusions. It requires at least four arguments.
+With `measure_typ` you can decide which measure of reliability you would
+like to use on the scale level. Currently, we recommend to use
+`measure_typ = "dynamic_iota_index"` because in our analysis, this
+measure showed the highest value for *R²* in predicting different kinds
+of data quality.
+
+With `measure_1_val` you can set the reliability of the independent
+variable. In our example, this is the performance a participant shows in
+their exam. Here, the value for *Dynamic Iota Index* is about .267 (see
+[Get started](iotarelr.md)). With `measure_2_val` you can set the
+reliability of the dependent variable. If this value is not set
+explicitly, the analysis assumes the same reliability as for the
+independent variable. In our example, the dependent variable refers to
+the data of the interviews showing participants’ confidence in their
+abilities. Let\`s assume that the corresponding value of *Dynamic Iota
+Index* is about .879.
+
+The argument `data_type` sets the scale level. Currently, “nominal” and
+“ordinal” are possible. In the case of nominal data, all results of the
+function refer to significance tests with *Cramer’s V*. In the case of
+ordinal data, all statistics refer to significance tests with *Kendall’s
+Tau*. In our example, both scales form an ordinal scale.
+
+The argument `strength` is closely connected with the data type and
+refers to the **true** strength of a relationship between the
+independent and dependent variable. The argument can be set to “no”,
+“weak”, “medium” and “strong”. These categories are based on the work of
+Cohen (1988), who classified statistical measures according to their
+relevance for real-world applications. Thus,“no” does not imply a value
+of 0 for *Kendall’s Tau*, but a small value around 0. “Strong” does not
+imply a perfect relationship, but rather refers to values above .5.
+Cohen’s (1988) work does not explicitly deal with *Kendall’s Tau* but
+instead employs Pearson correlation. For *Cramer’s V*, the situation is
+more complicated, as the class of the effect size depends on the number
+of categories. However, this is considered in the function. In our
+example, we assume a medium relationship between performance and
+confidence.
+
+The argument `sample_size` refers to the sample size of a planned or
+already realized study. In our example, three raters judged the written
+exams of 318 participants and analyzed their corresponding interviews.
+
+Finally, `level` refers to the certainty level of the calculated
+prediction intervals. A prediction interval characterizes the
+probability that the true value is within a specific range around the
+prediction (Afifi et al. 2020, p. 119). In the current example we choose
+95%.
+
+``` r
+library(iotarelr)
+get_consequences(measure_typ = "dynamic_iota_index",
+                 measure_1_val = .267,
+                 measure_2_val = .879,
+                 data_type = "ordinal",
+                 strength = "medium",
+                 sample_size=318,
+                 level = 0.95)
+#>                       lower 0.95 %  mean upper 0.95 % practically no effect
+#> deviation                    0.107 0.260        0.413                 0.020
+#> classification rate          0.002 0.009        0.028                 0.000
+#> risk of Type I errors        0.064 0.215        0.479                 0.011
+#>                       practically weak effect
+#> deviation                               0.695
+#> classification rate                     0.000
+#> risk of Type I errors                   0.095
+```
+
+The function calculates three important aspects when investigating
+relationships.
+
+**Deviation:** The first row called “deviation” characterizes the
+expected deviation between the estimated sample effect size and the true
+sample effect size. Since we are using ordinal data, the effect size is
+*Kendall’s Tau*. The mean value implies that we expect that *Kendall’s
+Tau* differs from an error-free assessment by about .260 units. This is
+quite high if we use Cohen’s (1988) classification for Pearson
+correlation. Here, the meaning of a correlation changes every .20 units.
+The values for lower and upper mean that with a certainty of 95%, the
+estimated value for *Kendall’s Tau* differs from an error-free
+estimation by .107 to .413 units.
+
+The column “practically no effect” reports the probability that the
+effect size does not deviate more than .1 units. With a reliability of
+.267 for the exams and of .879 for the interviews, this chance is about
+2 %, which is very low. The last column, “practically weak effect”,
+reports the probability that *Kendall’s Tau* deviates less than .3 units
+from an error-free measurement. This probability is about 70%. At first
+glance, this seems to be very high. However, this probability implies
+that in nearly one third of all studies with the same research design,
+the values deviate more than .3 units.
+
+**Classification rate:** The second row is closely connected to the
+deviation. It describes the chance to correctly classify an effect size
+as practically not relevant, as weak, medium or strong, based on
+Cohens’s (1988) classification. The mean value implies that the chance
+to correctly classify the effect size is about .9%, which is very low.
+The upper and lower values state that with a certainty of 95%, the
+chance to correctly classify the effect size is between .2 and 2.8%. It
+becomes clear that with the current reliability of .267 for the exams
+and .879 for the interviews, the risk of drawing the wrong conclusion
+about the strength of the relationship is immense.
+
+The column “practically no effect” reports the probability that the
+chance to correctly classify the effect size is at least 95%, while the
+last column reports that the probability to correctly classify the
+effect size is at least 90%. In both cases the probability is zero.
+
+**Type I errors:** The last row refers to the risk of Type I errors.
+Type I errors mean in this context that the significance test implies
+the acceptance of the null hypothesis, while an error free measurement
+would imply the rejection of the null hypothesis. In other words: The
+results of the significance test imply that there is no relationship,
+although an error-free measurement would imply the acceptance of a
+relationship.
+
+The mean value implies that we have to expect a chance of 21.5% of a
+Type I error. That is, in 21.5% of the cases, the results of the
+significance tests imply that there is no relationship between
+participants’ performance in the exam and the confidence in their
+abilities, although an error-free measurement would imply the existence
+of such a relationship. The lower and the upper values imply that with a
+certainty of 95%, the risk for Type I errors is between 6.4% and 47.9%.
+Thus, there is a high risk for drawing the wrong conclusions.
+
+The column “practically no effect” reports the probability that the risk
+of Type I errors does not exceed 5 % while the last column reports the
+probability that the risk of Type I errors does not exceed 10%. In the
+current example the probability for no relevant effect is about 1.1 %
+and for a weak effect about 9.5%.
+
+Summing up, the information provided by
+[`get_consequences()`](../../reference/get_consequences.md) helps to
+make the suggested cut-off values more specific. The information can be
+used to judge the degree of reliability more situation-specific and can
+support the planning and evaluating of studies.
+
+## 3 Limitations
+
+It is important to note that this analysis has some limitations. First,
+only two types of significance tests are supported (*Cramer’s V* and
+*Kendall’s Tau*). Second, the analysis assumes that both independent and
+dependent variables have the same number of categories. Thus, please use
+the results as an orientation.
+
+## References
+
+- Afifi, A., May, S., Donatello, R. A. & Clark, V. A. (2020). Practical
+  Multivariate Analysis (6th ed.). Chapman and Hall/ CRC Texts in
+  Statistical Science Ser. CRC Press LLC.
+- Huang, C. (2011). Self-concept and academic achievement: a
+  meta-analysis of longitudinal relations. Journal of school psychology,
+  49(5), 505–528. <https://doi.org/10.1016/j.jsp.2011.07.001>
+- Cohen, J. (1988). Statistical Power Analysis for the Behavioral
+  Sciences (2nd Ed.). Taylor & Francis.
+- Möller, J., Zitzmann, S., Helm, F., Machts, N. & Wolff, F. (2020). A
+  Meta-Analysis of Relations Between Achievement and Self-Concept.
+  Review of Educational Research, 90(3), 376–419.
+  <https://doi.org/10.3102/0034654320919354>

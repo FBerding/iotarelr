@@ -50,9 +50,6 @@
 #'values are "horizontal" and "vertical".
 #'@return Function returns an object of class \code{gg, ggplot} illustrating how
 #'the data of the different categories influence each other.
-#'@note An example for interpreting the plot can be found in the vignette
-#'\href{../doc/iotarelr.html}{Get started} or via
-#'\code{vignette("iotarelr", package = "iotarelr")}.
 #'@importFrom rlang .data
 #'@importFrom methods is
 #'@references  Florian Berding and Julia Pargmann (2022).Iota Reliability Concept
@@ -268,7 +265,7 @@ plot_iota<-function(object,
       } else if(scale=="static_iota_index") {
         image_scale=image_scale+
           ggplot2::geom_vline(xintercept = object$scale_level$iota_index_d4,
-                              size=2)+
+                              linewidth=2)+
           ggplot2::labs(x="Static Iota Index",
                         y="")
       }
@@ -289,7 +286,7 @@ plot_iota<-function(object,
         } else if(scale=="static_iota_index") {
           image_scale=image_scale+
             ggplot2::geom_vline(xintercept = object[[g]]$scale_level$iota_index_d4,
-                                size=1.5)+
+                                linewidth=1.5)+
             ggplot2::annotate(geom = "text",
                               x = object[[g]]$scale_level$iota_index_dyn2-.02,
                               y = 0.5,

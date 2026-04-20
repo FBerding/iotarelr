@@ -1,0 +1,84 @@
+# Get Consequences
+
+Function estimating the consequences of reliability for subsequent
+analysis.
+
+## Usage
+
+``` r
+get_consequences(
+  measure_typ = "dynamic_iota_index",
+  measure_1_val,
+  measure_2_val = NULL,
+  level = 0.95,
+  strength = NULL,
+  data_type,
+  sample_size
+)
+```
+
+## Arguments
+
+- measure_typ:
+
+  Type of measure used for estimation. Set "iota_index" for the original
+  Iota Index, "static_iota_index" for the static transformation of the
+  Iota Index with d=4 or "dynamic_iota_index" for the dynamic
+  transformation of the Iota Index with d=2.
+
+- measure_1_val:
+
+  Reliability value for the independent variable.
+
+- measure_2_val:
+
+  Reliability value for the dependent variable. If not set, the function
+  uses the same value as for the independent variable.
+
+- level:
+
+  Level of certainty for calculating the prediction intervals.
+
+- strength:
+
+  True strength of the relationship between the independent and
+  dependent variable. Possible values are "no", "weak", "medium" and
+  "strong". If no value is supplied, a strong relationship is assumed
+  for deviation and a weak relationship for all others. They represent
+  the most demanding situations for the reliability.
+
+- data_type:
+
+  Type of data. Possible values are "nominal" or "ordinal".
+
+- sample_size:
+
+  Size of the sample in the study.
+
+## Value
+
+Returns a `data.frame` which contains the prediction intervals for the
+deviation between true and estimated sample association/correlation,
+risk of Type I errors and chance to correctly classify the effect size.
+Additionally, the probability is estimated so that the statistics of the
+sample deviate from an error free sample with no or only a weak effect .
+
+## Note
+
+The classification of effect sizes uses the work of Cohen (1988), who
+differentiates effect sizes by their relevance for practice.
+
+For nominal data, all statistics refer to Cramer's V. For ordinal data,
+all statistics refer to Kendall's Tau.
+
+The models for calculating the consequences are taken from Berding and
+Pargmann (2022).
+
+## References
+
+Cohen, J. (1988). Statistical Power Analysis for the Behavioral Sciences
+(2nd Ed.). Taylor & Francis.
+
+Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept of
+the Second Generation.Measures for Content Analysis Done by Humans or
+Artificial Intelligences. Berlin:Logos. https://doi.org/10.30819/5581
