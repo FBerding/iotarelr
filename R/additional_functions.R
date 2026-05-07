@@ -155,7 +155,7 @@ check_new_rater<-function(true_values,
   }
 
   #check if the range of true values is without gaps
-  min_freq=(true_values<=0)
+  min_freq=(table(true_values)<=0)
   if(sum(min_freq)>=1){
     cat_without_codings=categorical_levels[which(min_freq)]
     stop("There are no codings for some true categories. These are",
