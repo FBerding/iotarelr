@@ -1,3 +1,7 @@
+# iotarelr 0.1.9
+
+* Fixed error in `check_new_rater` that caused an error without reason.
+
 # iotarelr 0.1.8
 
 * Added a logo.
